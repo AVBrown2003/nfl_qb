@@ -102,7 +102,7 @@ def group_summary(x):
             "turnovers_per_100_drives": round(float(100 * x.turnovers.sum() / x.drives.sum()), 1)}
 
 
-# --- 1. Turnovers don't fall until Year 6 ---------------------------------------------------------
+# --- 1. Turnovers don't fall until Year 6 (the report charts turnovers per 100 drives) ---------------------------------------------------------
 t = qs[qs.career_year <= 10].groupby("career_year")[["drives", "turnovers", "interceptions", "pass_attempts"]].sum()
 rookie = t.loc[1]
 FINDINGS["1_turnovers"] = [{
@@ -110,6 +110,9 @@ FINDINGS["1_turnovers"] = [{
     "int_pct": round(r.interceptions / r.pass_attempts, 4),
     "int_pct_ci95": round(1.96 * sqrt((r.interceptions / r.pass_attempts) * (1 - r.interceptions / r.pass_attempts) / r.pass_attempts), 4),
     "turnovers_per_100_drives": round(100 * r.turnovers / r.drives, 1),
+    "turnovers_ci95": round(100 * 1.96 * sqrt(r.turnovers) / r.drives, 2),
+    "p_vs_rookie_turnovers": None if y == 1 else round(p_two_sided(r.turnovers, r.drives,
+                                                                   rookie.turnovers, rookie.drives), 4),
     "p_vs_rookie": None if y == 1 else round(p_two_sided(r.interceptions, r.pass_attempts,
                                                          rookie.interceptions, rookie.pass_attempts), 4),
 } for y, r in t.iterrows()]
@@ -118,11 +121,23 @@ FINDINGS["1_turnovers"] = [{
 long_careers = set(qs[qs.career_year >= 8].qb_id)
 pool = S[S.qb_id.isin(long_careers) & (S.rookie_class <= FULL_CLASS)]
 best = pool.loc[pool.groupby("qb_id").epa_vs_league.idxmax()]
+# how each QB looked early: pooled EPA vs league over his starting seasons in Years 1-3 (any team).
+# "Looked like a write-off" = below league average then, or not a starter at all in Years 1-3.
+early_all = (S[(S.career_year <= 3) & (S.rookie_class <= FULL_CLASS)]
+             .groupby("qb_id").apply(epa_vs_league, include_groups=False))
+best["early"] = best.qb_id.map(early_all)
+best["writeoff"] = best.early.isna() | (best.early < 0)
+late = best[best.career_year >= 5]
 FINDINGS["2_best_season"] = {
     "qbs": len(best), "median_year": float(best.career_year.median()),
     "share_year5_plus": round((best.career_year >= 5).mean(), 3),
     "share_year6_plus": round((best.career_year >= 6).mean(), 3),
+    "late_breakouts": len(late), "late_writeoffs": int(late.writeoff.sum()),
+    "late_below_average_early": int((late.early < 0).sum()), "late_not_starting_early": int(late.early.isna().sum()),
     "by_year": counts(best.career_year),
+    "by_year_detail": {int(y): {
+        "writeoff": sorted(x[x.writeoff].qb_name), "strong": sorted(x[~x.writeoff].qb_name)}
+        for y, x in best.groupby("career_year")},
 }
 
 # --- 3. A third of QBs who become above average don't get there until Year 4+ --------------------
@@ -134,6 +149,8 @@ FINDINGS["3_first_above_average"] = {
     "share_year4_plus": round((first_good >= 4).mean(), 3),
     "share_year5_plus": round((first_good >= 5).mean(), 3),
     "by_year": counts(first_good),
+    "names_by_year": {int(y): sorted(qs.drop_duplicates("qb_id").set_index("qb_id").qb_name[g.index])
+                      for y, g in first_good.groupby(first_good)},
 }
 
 # --- 4. Rookie to Year 2 is the biggest jump, but not the peak ---------------------------------
@@ -191,7 +208,7 @@ bloomers.sort(key=lambda r: -r["best_epa_vs_league"])
 FINDINGS["8_late_bloomers"] = {"multi_team_qbs": int(multi.qb_id.nunique()), "count": len(bloomers),
                                "qbs": bloomers}
 
-# --- 9 and 10. Kept vs let go -------------------------------------------------------------------
+# --- 9. Patience: QBs kept through below-average Years 1-3 ------------------------------------
 early_orig = S[S.with_original_team & (S.career_year <= 3) & (S.rookie_class <= FULL_CLASS)]
 ids = set(early_orig.qb_id)
 kept = set(S[S.with_original_team & (S.career_year >= 5) & S.qb_id.isin(ids)].qb_id)
@@ -211,11 +228,18 @@ FINDINGS["9_patience"] = {
     "let_go_below_average_early": {"years_1_3": group_summary(early_orig[early_orig.qb_id.isin(let_go & below)])},
     "qbs": kept_below,
 }
-elsewhere = S[S.qb_id.isin(let_go) & ~S.with_original_team]
-FINDINGS["10_teams_mostly_right"] = {
-    "kept_years_1_3": group_summary(early_orig[early_orig.qb_id.isin(kept)]),
-    "let_go_years_1_3": group_summary(early_orig[early_orig.qb_id.isin(let_go)]),
-    "let_go_later_elsewhere": group_summary(elsewhere),
+# --- 10. Counterpoint: most early strugglers never become above average ------------------------
+later = S[(S.career_year >= 4) & (S.rookie_class <= FULL_CLASS)]
+later_good = set(later[later.epa_vs_league > 0].qb_id)
+later_any = set(later.qb_id)
+def outcomes(ids):
+    ids = set(ids)
+    return {"qbs": len(ids), "above_average_later": len(ids & later_good),
+            "more_starts_never_above": len((ids & later_any) - later_good),
+            "no_more_starting_seasons": len(ids - later_any)}
+FINDINGS["10_early_strugglers"] = {
+    "below_average_early": outcomes(early_all[early_all < 0].index),
+    "above_average_early": outcomes(early_all[early_all >= 0].index),
 }
 
 # --- Headline numbers --------------------------------------------------------------------------
@@ -224,11 +248,43 @@ FINDINGS["headline"] = {
     "median_best_season_year": FINDINGS["2_best_season"]["median_year"],
     "share_teams_done_by_year4": FINDINGS["5_teams_move_on"]["share_done_by_year4"],
     "late_bloomers": f"{len(bloomers)} of {FINDINGS['8_late_bloomers']['multi_team_qbs']}",
+    "late_breakout_writeoffs": f"{int(late.writeoff.sum())} of {len(late)}",
 }
 FINDINGS["definitions"] = {"starting_season_min_starts": STARTER, "full_class_through": FULL_CLASS,
                            "league_epa_per_play": {int(k): round(v, 4) for k, v in lg.items()}}
 
-(DATA / "findings.json").write_text(json.dumps(FINDINGS, indent=2))
+# --- Per-QB values for the "look up a quarterback" menus on each finding ------------------------
+names = qs.drop_duplicates("qb_id").set_index("qb_id")
+per_qb = {}
+for qb, x in qs.groupby("qb_id"):
+    xs = x[x.starting_season]
+    xo = xs[xs.with_original_team]
+    cls = int(x.rookie_class.iloc[0])
+    b = xs.loc[xs.epa_vs_league.idxmax()] if len(xs) else None
+    after = xs[~xs.with_original_team]
+    ba = after.loc[after.epa_vs_league.idxmax()] if len(after) else None
+    e, l = xs[xs.career_year <= 3], xs[xs.career_year >= 4]
+    per_qb[qb] = {
+        "name": names.qb_name[qb], "rookie_class": cls, "original_team": names.original_team[qb],
+        "full_class": cls <= FULL_CLASS, "long_career": qb in long_careers,
+        "seasons": [[int(r.career_year), int(r.season), r.team, int(r.starts), int(r.turnovers), int(r.drives),
+                     round(float(r.epa_vs_league), 3), bool(r.with_original_team)] for r in x.itertuples()],
+        "best": None if b is None else {"career_year": int(b.career_year), "season": int(b.season), "team": b.team,
+                                        "epa_vs_league": round(float(b.epa_vs_league), 3)},
+        "first_above": None if not (xs.epa_vs_league > 0).any() else int(xs[xs.epa_vs_league > 0].career_year.min()),
+        "last_original_start": None if xo.empty else int(xo.career_year.max()),
+        "original_starting_seasons": int(len(xo)),
+        "still_starting_for_original_2025": qb in still_there_2025,
+        "best_with_original": None if xo.empty else round(float(xo.epa_vs_league.max()), 3),
+        "best_after": None if ba is None else {"career_year": int(ba.career_year), "season": int(ba.season),
+                                               "team": ba.team, "epa_vs_league": round(float(ba.epa_vs_league), 3)},
+        "early": None if e.empty else round(float(epa_vs_league(e)), 3),
+        "later": None if l.empty else round(float(epa_vs_league(l)), 3),
+        "later_above_average": bool((l.epa_vs_league > 0).any()),
+    }
+FINDINGS["per_qb"] = per_qb
+
+(DATA / "findings.json").write_text(json.dumps(FINDINGS, indent=1))
 
 # --- Print a summary --------------------------------------------------------------------------
 f = FINDINGS
@@ -248,4 +304,5 @@ print(f"7  most common seasons given: {f['7_seasons_given']['most_common']} "
       f"({f['7_seasons_given']['share_one_season']:.0%})")
 print(f"8  late bloomers: {f['headline']['late_bloomers']}")
 print("9  kept + below avg early:", f['9_patience']['kept_below_average_early'])
-print("10", f['10_teams_mostly_right'])
+print("2  late breakouts:", {k: f['2_best_season'][k] for k in ['late_breakouts', 'late_writeoffs', 'late_below_average_early', 'late_not_starting_early']})
+print("10", f['10_early_strugglers'])
