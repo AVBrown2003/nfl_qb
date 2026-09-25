@@ -68,7 +68,7 @@ Promise.all([fetch("data/findings.json").then((r) => r.json()), fetch("data/care
 /* =============================== CAREER EXPLORER =============================== */
 
 const EX = { career: null, i: 0, timer: null };
-const QUICK = ["Drew Brees", "Jared Goff", "Ryan Tannehill", "Sam Darnold", "Matthew Stafford", "Patrick Mahomes", "Josh Allen"];
+const QUICK = ["Sam Darnold", "Drew Brees", "Jared Goff", "Ryan Tannehill", "Matthew Stafford", "Patrick Mahomes", "Josh Allen"];
 
 function initExplorer() {
   const sel = document.getElementById("qb-select");
@@ -84,7 +84,7 @@ function initExplorer() {
     quick.appendChild(b);
   });
   document.getElementById("play").addEventListener("click", togglePlay);
-  selectQB(byName["Drew Brees"]);
+  selectQB(byName["Sam Darnold"]);
 }
 
 const bestIndex = (c) => {
