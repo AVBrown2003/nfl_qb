@@ -30,9 +30,12 @@ A two-page website (a report and a dashboard) that follows every NFL starting qu
 |---|---|
 | `01_build_qb_plays.py` | Reads the raw nflverse files, picks the qualifying QBs, and builds the play-level data (one row per QB play) with drive and career-year information attached. |
 | `02_build_qb_drives.py` | Rolls the plays up to one row per QB per drive and checks the result against the assignment requirements. |
+| `03_analysis.py` | Computes every number and chart in the report (the 10 findings and the headline numbers). Definitions are in the docstring at the top. |
 | `data/qb_drives.csv` | **The project data set:** one row per QB per drive. |
 | `data/qb_drives.parquet` | The same data in a compressed format for Python. |
 | `data/qb_plays.parquet` | The play-level data that the drive file is built from. |
+| `data/qb_seasons.csv` | One row per QB per regular season (record, EPA vs league average, team, original team), built by `03_analysis.py`. |
+| `data/findings.json` | The headline numbers and the data behind each report chart, built by `03_analysis.py`. |
 | `pyproject.toml`, `uv.lock` | The Python environment (pandas, pyarrow), managed with uv. |
 
 The raw nflverse downloads (`raw/`, about 550 MB) are not in the repository because of their size. They come from the nflverse-data releases (`pbp`, `schedules`, and `players`).
@@ -42,4 +45,5 @@ The raw nflverse downloads (`raw/`, about 550 MB) are not in the repository beca
 ```
 uv run python 01_build_qb_plays.py
 uv run python 02_build_qb_drives.py
+uv run python 03_analysis.py
 ```
