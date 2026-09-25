@@ -354,3 +354,4 @@ footer { margin-top: 70px; padding: 30px 0 44px; border-top: 3px solid var(--nav
 .season-key .k.worst { background: #f5b0b0; border-color: #d64545; margin-left: 10px; }
 .season-btn.best:hover { background: #95d9aa; }
 .season-btn.worst:hover { background: #f09c9c; }
+.method p + h5 { margin-top: 14px; }

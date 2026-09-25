@@ -139,16 +139,8 @@
     <div class="finding-text reveal">
       <div class="num">Finding 02</div>
       <h3>Most late best seasons came from quarterbacks who were written off or waiting their turn</h3>
-      <p>To compare seasons, this report uses <strong>EPA, expected points added</strong>, the standard way analysts
-        grade a single play. Before every snap, the down, the distance and the spot on the field say how many points
-        an offense can expect to score on that drive: first-and-10 at your own 25 is worth about <strong>1.1
-        points</strong>, first-and-10 at the opponent's 25 about <strong>4.1</strong>. A play's EPA is how much it
-        changes that number. From 2021 to 2025, a touchdown pass averaged <strong>+2.8</strong>, a third-down
-        completion that moved the chains +2.4, an incompletion −0.9, a sack −1.8 and an interception
-        <strong>−4.4</strong>. Averaged per play, it rewards the plays that help a team score and punishes the ones
-        that hurt, whatever the box score says.</p>
       <p>A quarterback's <strong>best season</strong> is the one where his EPA per play was furthest above the league
-        average. Among the 73 quarterbacks whose careers lasted at least eight seasons, 30 had their best season before
+        average (both are explained below the chart). Among the 73 quarterbacks whose careers lasted at least eight seasons, 30 had their best season before
         Year 5, including Patrick Mahomes, Lamar Jackson and Cam Newton in Year 2. Early stars are real, but where do
         the rest fall?</p>
       <p>43 had their best season in Year 5 or later. Longer careers have more seasons to peak in, so the count is not the
@@ -168,6 +160,8 @@
         <span><i style="background:var(--c-qb)"></i>Understudy: not starting in Years 1–3</span>
         <span><i style="background:var(--c-neutral)"></i>Above average in Years 1–3</span></div>
       <div class="method">
+        <h5>What EPA means</h5>
+        <p class="define">To compare seasons, this report uses <strong>EPA, expected points added</strong>, the standard way analysts grade a single play. Before every snap, the down, the distance and the spot on the field say how many points an offense can expect to score on that drive: first-and-10 at your own 25 is worth about <strong>1.1 points</strong>, first-and-10 at the opponent's 25 about <strong>4.1</strong>. A play's EPA is how much it changes that number. From 2021 to 2025, a touchdown pass averaged <strong>+2.8</strong>, a third-down completion that moved the chains +2.4, an incompletion −0.9, a sack −1.8 and an interception <strong>−4.4</strong>. Averaged per play, it rewards the plays that help a team score and punishes the ones that hurt, whatever the box score says.</p>
         <h5>How it's calculated</h5>
         <p class="formula">EPA per play = sum of EPA on the QB's plays ÷ number of his plays</p>
         <p class="formula">EPA vs league = his EPA per play − league EPA per play that season</p>
@@ -185,10 +179,6 @@
     <div class="finding-text reveal">
       <div class="num">Finding 03</div>
       <h3>Most good quarterbacks show it early, but a third are late bloomers</h3>
-      <p>Here, <strong>league average</strong> means the average EPA per play of every NFL quarterback in that season,
-        starters and backups together. In 2024 it was +0.047 per play; in 2003 it was −0.027. A season is
-        <strong>above average</strong> when a quarterback's EPA per play beats that season's number, which puts him
-        ahead of the typical NFL passer that year.</p>
       <p>Of the 104 quarterbacks with at least one starting season, <strong>63</strong> eventually had an above-average
         season. Most of them, 41, did it by Year 3. Teams are right that good quarterbacks often show it early. But
         <strong>22 of the 63 (35%)</strong> did not get there until Year 4 or later, and 15 not until Year 5 or later:
@@ -204,6 +194,8 @@
       <div class="legend"><span><i style="background:var(--c-neutral)"></i>Showed it by Year 3</span>
         <span><i style="background:var(--c-qb)"></i>Late bloomer: Year 4 or later</span></div>
       <div class="method">
+        <h5>What league average means</h5>
+        <p class="define">Here, <strong>league average</strong> means the average EPA per play of every NFL quarterback in that season, starters and backups together. In 2024 it was +0.047 per play; in 2003 it was −0.027. A season is <strong>above average</strong> when a quarterback's EPA per play beats that season's number, which puts him ahead of the typical NFL passer that year.</p>
         <h5>How it's calculated</h5>
         <p class="formula">League average (season) = sum of EPA on every NFL QB's plays ÷ number of those plays</p>
         <p class="formula">Above average = his EPA per play &gt; league average, in a season with 8+ starts</p>
@@ -220,7 +212,7 @@
       <div class="num">Finding 04</div>
       <h3>Rookie to Year 2 is the biggest jump, but it isn't the peak</h3>
       <p>Follow the same 58 quarterbacks (everyone who started 8+ games in Year 5) through their careers, measured by
-        EPA per play against the league average (explained in Finding 02). The jump from rookie year to Year 2 is by
+        EPA per play against the league average (defined under the Finding 02 chart). The jump from rookie year to Year 2 is by
         far the largest: from <strong>0.069 below</strong> average per play to <strong>0.035 above</strong>. 74% of
         quarterbacks improve from Year 1 to Year 2, more than in any other year.</p>
       <p>But the group keeps climbing after that, dips in Years 4 and 5, and is at its best in <strong>Year 8
@@ -339,6 +331,8 @@
       <div class="team-grid" hidden></div>
       <div class="legend" data-legend hidden></div>
       <div class="method">
+        <h5>Where the contract data comes from</h5>
+        <p class="define">The 2011 labor agreement created today's rookie wage scale, with four-year rookie contracts and a fifth-year team option for first-round picks, so every quarterback since then has faced the same contract clock. Contract records from before about 2010 are also incomplete. Contracts come from OverTheCap, via nflverse, and money is measured as a share of that year's salary cap so deals from different years compare fairly.</p>
         <h5>How it's calculated</h5>
         <p class="formula">Cap share = contract's average money per year ÷ that year's salary cap</p>
         <p class="formula">Career year signed = year signed − rookie year + 1</p>
@@ -350,11 +344,6 @@
       <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
-  <p class="preface after"><strong>Why only quarterbacks who entered the league since 2011:</strong> the 2011 labor agreement created
-        today's rookie wage scale, with four-year rookie contracts and a fifth-year team option for first-round picks, so
-        every quarterback since then has faced the same contract clock. Contract records from before about 2010 are also
-        incomplete. Contracts come from OverTheCap, via nflverse, and money is measured as a share of that year's salary
-        cap so deals from different years compare fairly.</p>
   </section>
 
   <!-- ================= PART 3 ================= -->
