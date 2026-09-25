@@ -21,8 +21,9 @@ HALF_SEASON = 9           # more than half of 16 (and of 17 since 2021)
 
 # --- 1. Qualifying QBs ---------------------------------------------------------------------
 # rookie season = first NFL season, from the nflverse players file
-rookie = (pd.read_parquet(RAW / "players.parquet", columns=["gsis_id", "rookie_season"])
-          .rename(columns={"gsis_id": "qb_id"}).set_index("qb_id").rookie_season)
+players = (pd.read_parquet(RAW / "players.parquet", columns=["gsis_id", "rookie_season", "display_name"])
+           .rename(columns={"gsis_id": "qb_id"}).set_index("qb_id"))
+rookie = players.rookie_season
 
 # starters, from each game's listed starting QB
 games = pd.read_csv(RAW / "games.csv")
@@ -45,7 +46,7 @@ COLS = [
     "pass_touchdown", "interception", "sack", "qb_scramble",
     "rush_attempt", "rushing_yards", "rush_touchdown",
     "fumble_lost", "fumbled_1_player_id",
-    "passer_player_id", "passer_player_name", "rusher_player_id", "rusher_player_name",
+    "passer_player_id", "rusher_player_id",
     "yards_gained", "epa", "two_point_attempt", "qb_spike", "qb_kneel",
 ]
 
@@ -64,7 +65,8 @@ for year in range(FIRST, LAST + 1):
 
     # the QB on the play: passer on dropbacks, rusher on QB runs
     pbp["qb_id"] = pbp.passer_player_id.fillna(pbp.rusher_player_id)
-    pbp["qb_name"] = pbp.passer_player_name.fillna(pbp.rusher_player_name)
+    # full name from the players file (play-by-play spells some names several ways, e.g. "D. Brees")
+    pbp["qb_name"] = pbp.qb_id.map(players.display_name)
     pbp = pbp[pbp.qb_id.isin(qb_ids) & (pbp.two_point_attempt != 1)]
     frames.append(pbp)
     print(year, len(pbp))
