@@ -7,7 +7,7 @@
   <meta name="description" content="NFL quarterbacks keep improving long after most teams stop waiting on them. A drive-by-drive look at every starting QB who entered the league from 2000 to 2025.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -21,32 +21,34 @@
       <a href="#about">The Data</a>
     </div>
   </div>
+  <div class="progress" id="progress"></div>
 </nav>
 
 <header class="hero">
   <div class="wrap">
-    <p class="kicker">NFL Quarterbacks · Rookie classes 2000–2025</p>
-    <h1>Worth the <span>Wait</span></h1>
-    <p class="byline">By <strong>Your Name</strong> · Data: nflverse play-by-play</p>
+    <p class="kicker">NFL quarterbacks · Rookie classes 2000–2025</p>
+    <h1>Worth the Wait</h1>
+    <p class="dek">Quarterbacks keep getting better long after their teams stop waiting on them.</p>
+    <p class="byline"><span>By <strong>Your Name</strong></span><span>Data: nflverse play-by-play, 2000–2025</span></p>
     <p class="summary">
       This report follows every NFL quarterback who entered the league from 2000 on and went on to
       start at least half a season: 135 quarterbacks and 105,862 of their drives, through the 2025
-      season. The pattern is consistent. Quarterbacks keep getting better well into their fifth
-      and sixth seasons. Their turnovers do not drop until Year 6, and the typical quarterback's best
-      season comes in Year 5. But most teams give up on the quarterback they started with by Year 4,
-      and nearly half of the quarterbacks who later started somewhere else had their best season
-      after leaving. The learning curve is longer than teams are willing to wait.
+      season. Quarterbacks are still improving in their fifth and sixth seasons. Their turnovers do
+      not come down until Year 6, and most of the quarterbacks whose best season came in Year 5 or
+      later had looked like write-offs early. Yet most teams give up on the quarterback they started
+      with by Year 4, and nearly half of the quarterbacks who went on to start somewhere else had their
+      best season after leaving. The learning curve is longer than teams are willing to wait.
     </p>
 
-    <div class="scoreboard" id="scoreboard" aria-label="Headline numbers">
-      <div class="score"><div class="value" data-h="best">Year 5</div>
-        <div class="label">The typical quarterback's best season (median, among careers of 8+ years)</div></div>
-      <div class="score"><div class="value" data-h="turnovers">Year 6</div>
-        <div class="label">The first season interceptions drop significantly below rookie levels</div></div>
-      <div class="score team"><div class="value" data-h="moved">61%</div>
-        <div class="label">of teams have moved on from the quarterback they started with by Year 4</div></div>
-      <div class="score team"><div class="value" data-h="bloomers">21 of 44</div>
-        <div class="label">quarterbacks who started for two or more teams had their best season after leaving the first</div></div>
+    <div class="scoreboard" aria-label="Headline numbers">
+      <div class="score"><div class="value" data-count="6" data-prefix="Year ">Year 6</div>
+        <div class="label">The first season a quarterback's turnovers drop significantly below his rookie level</div></div>
+      <div class="score"><div class="value" data-count="30" data-suffix=" of 43">30 of 43</div>
+        <div class="label">Quarterbacks with a Year 5+ breakout who looked like write-offs in Years 1–3</div></div>
+      <div class="score team"><div class="value" data-count="61" data-suffix="%">61%</div>
+        <div class="label">of original teams had moved on from their quarterback by Year 4</div></div>
+      <div class="score team"><div class="value" data-count="21" data-suffix=" of 44">21 of 44</div>
+        <div class="label">Quarterbacks who started for 2+ teams and had their best season after leaving the first</div></div>
     </div>
     <p class="dataset-line">135 quarterbacks · 105,862 drives · 1,089 seasons · 2000–2025 regular seasons</p>
   </div>
@@ -55,10 +57,10 @@
 <main class="wrap">
 
   <!-- ================= CAREER EXPLORER ================= -->
-  <section class="explorer" id="explorer" aria-labelledby="explorer-title">
+  <section class="explorer reveal" id="explorer" aria-labelledby="explorer-title">
     <div class="explorer-head">
       <div>
-        <p class="kicker" style="margin:0">Follow a career</p>
+        <p class="kicker" style="margin:0 0 10px">Follow a career</p>
         <h2 id="explorer-title">Watch a quarterback grow up</h2>
         <p>Pick a quarterback and step through his career. The jersey matches the team he played for
           that year, and each dial shows how that season ranks against all 625 starting seasons in the data.</p>
@@ -91,151 +93,157 @@
     </div>
   </section>
 
-  <!-- ================= 1ST QUARTER ================= -->
-  <div class="quarter" id="q1"><b>1st Quarter</b> The learning curve is long</div>
-  <p class="quarter-intro">If quarterbacks were finished products after a year or two, a short leash would make sense.
-    They are not. On turnovers, on efficiency, and on the timing of their best seasons, the typical
-    quarterback is still improving in Years 5 and 6.</p>
+  <!-- ================= PART 1 ================= -->
+  <div class="part reveal" id="part1">
+    <div class="part-label">Part 1 · The first quarter</div>
+    <h2>The learning curve is long</h2>
+    <p class="part-intro">If quarterbacks were finished products after a year or two, a short leash would make sense.
+      They are not. On turnovers, on efficiency, and on when their best seasons arrive, many quarterbacks are
+      still improving in Years 5 and 6.</p>
+  </div>
 
   <section class="finding" id="f1">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 01</div>
-      <h2>Turnovers don't really fall until Year 6</h2>
-      <p>Rookies throw an interception on <strong>2.63%</strong> of their passes. In Years 2 through 5
-        that barely moves: <strong>2.48%, 2.45%, 2.45%, 2.44%</strong>. None of those four seasons is
-        statistically different from the rookie year (every p-value is above 0.1).</p>
-      <p>Then in Year 6 the rate drops to <strong>2.21%</strong>, clearly below the rookie rate
-        (p &lt; 0.001), and it stays lower from there. Counting lost fumbles too, turnovers fall from
-        10.7 per 100 drives in Year 5 to <strong>9.5</strong> in Year 6. That is about 16% fewer interceptions than
-        a rookie throws, and it takes five full seasons to get there.</p>
+      <h3>Turnovers don't really fall until Year 6</h3>
+      <p>A rookie quarterback gives the ball away, through an interception or a fumble he loses, about
+        <strong>10.9 times every 100 drives</strong>. For the next four seasons that barely moves:
+        <strong>10.4, 10.6, 10.7 and 10.7</strong>. None of those years is statistically different from the
+        rookie year (every p-value is above 0.2).</p>
+      <p>Year 6 is the first real drop, to <strong>9.5 per 100 drives</strong> (p = 0.002 against the rookie
+        year). That is about 13% fewer giveaways, and it takes five full seasons to get there. It stays below
+        the rookie level after that, though Years 8 and 9 drift back toward 10.</p>
     </div>
-    <div class="card" data-chart="f1">
+    <div class="card reveal delay" data-chart="f1">
       <div class="card-head">
-        <div><p class="card-title" data-title>Interception rate by career year</p>
-          <p class="card-sub">All 135 QBs, regular season. The band is a 95% confidence interval.</p></div>
-        <div class="toggle" role="group" aria-label="Measure">
-          <button type="button" data-mode="int" aria-pressed="true">INT %</button>
-          <button type="button" data-mode="to" aria-pressed="false">Turnovers / 100 drives</button>
-        </div>
+        <div><p class="card-title">Turnovers per 100 drives, by career year</p>
+          <p class="card-sub">All 135 QBs, regular season. The shaded band is a 95% confidence interval.</p></div>
       </div>
       <div class="chart"></div>
-      <div class="card-foot"><span class="note">Hover for each year's number.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
   <section class="finding" id="f2">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 02</div>
-      <h2>The typical quarterback has his best season in Year 5</h2>
-      <p>For each quarterback whose career lasted at least eight seasons, I found his single best
-        starting season, measured by EPA per play compared with that year's league average. The median
-        best season is <strong>Year 5</strong>.</p>
-      <p><strong>59%</strong> of these quarterbacks (43 of 73) had their best season in Year 5 or later, and
-        48% in Year 6 or later. Year 2 is the most common single year (13 QBs), but most careers
-        peak later than that.</p>
+      <h3>Most late breakouts came from quarterbacks who looked like write-offs</h3>
+      <p>Call a quarterback's best season his <strong>breakout</strong>: his highest EPA per play compared with
+        the league average, in a season with 8+ starts. Among the 73 quarterbacks whose careers lasted at least
+        eight seasons, plenty broke out early: 30 had their best season before Year 5, including Patrick
+        Mahomes, Lamar Jackson and Cam Newton in Year 2. Early stars are real.</p>
+      <p>The quarterbacks this report is about are the other 43, whose breakout came in Year 5 or later. Longer
+        careers simply have more seasons to peak in, so the point is not how many there are. It is who they
+        were: <strong>30 of the 43 looked like write-offs early</strong>. 15 were below the league average over
+        Years 1–3, and 15 were not even starting yet. Drew Brees, Aaron Rodgers, Matthew Stafford, Ryan
+        Tannehill, Alex Smith, Sam Darnold and Geno Smith are all on that list. A team grading them after three
+        seasons would have seen a quarterback to replace.</p>
     </div>
-    <div class="card" data-chart="f2">
+    <div class="card reveal delay" data-chart="f2">
       <div class="card-head">
-        <div><p class="card-title">Career year of each QB's best season</p>
-          <p class="card-sub">73 QBs whose careers reached Year 8 (rookie classes 2000–2018)</p></div>
+        <div><p class="card-title">Breakout season for each quarterback</p>
+          <p class="card-sub">73 QBs whose careers reached Year 8 (rookie classes 2000–2018). Hover a bar for the names.</p></div>
       </div>
       <div class="chart"></div>
-      <div class="card-foot"><span class="note">Best season = highest EPA per play vs league among seasons with 8+ starts.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="legend"><span><i style="background:var(--c-qb)"></i>Looked like a write-off in Years 1–3 (below average, or not starting)</span>
+        <span><i style="background:var(--c-neutral)"></i>Above average in Years 1–3</span></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
   <section class="finding" id="f3">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 03</div>
-      <h2>A third of the QBs who become above average don't get there until Year 4 or later</h2>
-      <p>Of the 104 quarterbacks who had at least one starting season, <strong>63</strong> eventually
-        played a season better than the league average. For most of them it happened early, but
-        <strong>35%</strong> (22 QBs) first got there in Year 4 or later, and <strong>24%</strong> in Year 5 or later.</p>
-      <p>A team that judges its quarterback after three seasons never sees any of those 22 good seasons.
-        The other 41 quarterbacks never had an above-average season at all.</p>
+      <h3>Most good quarterbacks show it early, but a third are late bloomers</h3>
+      <p>Of the 104 quarterbacks with at least one starting season, <strong>63</strong> eventually played a
+        season better than the league average. Most of them, 41, did it by Year 3. Teams are right that good
+        quarterbacks often show it early.</p>
+      <p>But <strong>22 of the 63 (35%)</strong> did not get there until Year 4 or later, and 15 not until Year 5
+        or later. That group includes Aaron Rodgers, Drew Brees, Tony Romo and Kirk Cousins in Year 4, Alex Smith
+        and Sam Darnold in Year 7, and Geno Smith in Year 10. A team that judges its quarterback after three
+        seasons never sees any of them become above average.</p>
     </div>
-    <div class="card" data-chart="f3">
+    <div class="card reveal delay" data-chart="f3">
       <div class="card-head">
-        <div><p class="card-title">Career year of each QB's first above-average season</p>
-          <p class="card-sub">63 QBs who ever beat the league average (rookie classes 2000–2018)</p></div>
+        <div><p class="card-title">First above-average season for each quarterback</p>
+          <p class="card-sub">63 QBs who ever beat the league average (rookie classes 2000–2018). Hover a bar for the names.</p></div>
       </div>
       <div class="chart"></div>
-      <div class="card-foot"><span class="note">Above average = EPA per play higher than that season's league average, 8+ starts.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="legend"><span><i style="background:var(--c-neutral)"></i>Showed it by Year 3</span>
+        <span><i style="background:var(--c-qb)"></i>Late bloomer: Year 4 or later</span></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
   <section class="finding" id="f4">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 04</div>
-      <h2>Rookie to Year 2 is the biggest jump, but it isn't the peak</h2>
-      <p>Following the same 58 quarterbacks (everyone who started 8+ games in Year 5), the jump from
-        rookie year to Year 2 is by far the largest: from <strong>0.069 below</strong> the league average
-        per play to <strong>0.035 above</strong> it. <strong>74%</strong> of quarterbacks improve from Year 1 to Year 2,
-        more than in any other year.</p>
-      <p>But Year 2 is a starting point, not an arrival. The group keeps climbing and is best in
-        <strong>Year 8 (+0.061)</strong>, with a dip in Years 4 and 5 along the way. Judging a quarterback by his
-        second season catches him at the very start of the climb.</p>
+      <h3>Rookie to Year 2 is the biggest jump, but it isn't the peak</h3>
+      <p>This finding uses <strong>EPA, expected points added</strong>. Before every play, based on the down,
+        the distance and the spot on the field, an offense can expect to score a certain number of points on
+        that drive. EPA is how much a play changes that expectation: a completion that converts a third down
+        adds expected points, and a sack or an interception takes them away. Here it is averaged per play and
+        compared with the league average that season, so <strong>0 means a league-average quarterback</strong>.</p>
+      <p>Following the same 58 quarterbacks (everyone who started 8+ games in Year 5), the jump from rookie year
+        to Year 2 is by far the largest: from <strong>0.069 below</strong> average per play to <strong>0.035
+        above</strong>. 74% of quarterbacks improve from Year 1 to Year 2, more than in any other year. But the
+        group keeps climbing after that, dips in Years 4 and 5, and is at its best in <strong>Year 8
+        (+0.061)</strong>. Judging a quarterback by his second season catches him at the start of the climb.</p>
     </div>
-    <div class="card" data-chart="f4">
+    <div class="card reveal delay" data-chart="f4">
       <div class="card-head">
-        <div><p class="card-title" data-title>EPA per play vs league average</p>
+        <div><p class="card-title">EPA per play vs league average, by career year</p>
           <p class="card-sub">The same 58 QBs followed from rookie year (classes 2000–2021)</p></div>
-        <div class="toggle" role="group" aria-label="Measure">
-          <button type="button" data-mode="epa" aria-pressed="true">EPA vs league</button>
-          <button type="button" data-mode="win" aria-pressed="false">Win %</button>
-          <button type="button" data-mode="int" aria-pressed="false">INT %</button>
-        </div>
       </div>
       <div class="chart"></div>
-      <div class="card-foot"><span class="note">0 = league average that season.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
-  <!-- ================= 2ND QUARTER ================= -->
-  <div class="quarter" id="q2"><b>2nd Quarter</b> Teams don't wait that long</div>
-  <p class="quarter-intro">Now the other side of the argument: how long does a team actually stick with the
-    quarterback it started with? Here, a quarterback's "original team" is the first team he played for.</p>
+  <!-- ================= PART 2 ================= -->
+  <div class="part reveal" id="part2">
+    <div class="part-label">Part 2 · The second quarter</div>
+    <h2>Teams don't wait that long</h2>
+    <p class="part-intro">Now the other side of the argument: how long does a team stick with the quarterback it
+      started with? Here, a quarterback's "original team" is the first team he played for.</p>
+  </div>
 
   <section class="finding" id="f5">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 05</div>
-      <h2>Most teams give up on their quarterback by Year 4</h2>
-      <p>For 88 quarterbacks who started for their original team and are no longer its starter, I
-        found the last season they started there. The median is <strong>Year 4</strong>. <strong>61%</strong>
-        were done by Year 4 and <strong>73%</strong> by Year 5. The single most common last season is Year 3.</p>
-      <p>In other words, most original teams moved on before the season that is most likely to be the
-        quarterback's best (Finding 02), and before his turnovers come down (Finding 01).</p>
+      <h3>Most teams give up on their quarterback by Year 4</h3>
+      <p>For 88 quarterbacks who started for their original team and are no longer its starter, I found the last
+        season they started there. The median is <strong>Year 4</strong>. <strong>61%</strong> were done by Year 4
+        and <strong>73%</strong> by Year 5. The single most common last season is Year 3.</p>
+      <p>In other words, most original teams moved on before the quarterback's turnovers came down (Finding 01)
+        and before the late bloomers in Findings 02 and 03 arrived.</p>
     </div>
-    <div class="card" data-chart="f5">
+    <div class="card reveal delay" data-chart="f5">
       <div class="card-head">
-        <div><p class="card-title" data-title>Last season as the original team's starter</p>
+        <div><p class="card-title">Last season as the original team's starter</p>
           <p class="card-sub">88 QBs whose run with their first team has ended (classes 2000–2018)</p></div>
-        <div class="toggle" role="group" aria-label="Measure">
-          <button type="button" data-mode="count" aria-pressed="true">Number of QBs</button>
-          <button type="button" data-mode="cum" aria-pressed="false">Share gone by then</button>
-        </div>
       </div>
       <div class="chart"></div>
-      <div class="card-foot"><span class="note">Starting season = 8+ starts.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
   <section class="finding" id="f6">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 06</div>
-      <h2>Only about a third are still starting for their original team in Year 5</h2>
+      <h3>Only about a third are still starting for their original team in Year 5</h3>
       <p>Take the 73 quarterbacks who were starters in their first or second season. In Year 2,
         <strong>81%</strong> of them are starting for their original team. By Year 4 it is <strong>44%</strong>,
         by Year 5 <strong>36%</strong>, and by Year 6 just <strong>22%</strong>.</p>
-      <p>The gap between the two lines is quarterbacks who are still starting, just not for the team
-        that brought them in. By Year 6, 38% are starting somewhere, but only 22% for their first team.</p>
+      <p>The gap between the two lines is quarterbacks who are still starting, just not for the team that brought
+        them in. By Year 6, 38% are starting somewhere, but only 22% for their first team.</p>
     </div>
-    <div class="card" data-chart="f6">
+    <div class="card reveal delay" data-chart="f6">
       <div class="card-head">
         <div><p class="card-title">Share of early starters still starting</p>
           <p class="card-sub">73 QBs who started in Year 1 or 2 (classes 2000–2018)</p></div>
@@ -243,149 +251,148 @@
       <div class="chart"></div>
       <div class="legend"><span><i class="line" style="background:var(--c-qb)"></i>Starting for any team</span>
         <span><i class="line" style="background:var(--c-team)"></i>Starting for his original team</span></div>
-      <div class="card-foot"><span class="note">Starting = 8+ starts that season.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
   <section class="finding" id="f7">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 07</div>
-      <h2>The most common number of starting seasons a team gives its quarterback is one</h2>
+      <h3>The most common number of starting seasons a team gives its quarterback is one</h3>
       <p>Of those same 88 quarterbacks, <strong>30 (34%)</strong> got exactly one starting season from their
-        original team before it moved on. Another 15 got two and 7 got three: <strong>59%</strong> got
-        three seasons or fewer.</p>
-      <p>A handful got more than a decade, but they are the exceptions. The typical quarterback gets a
-        short run to prove himself, shorter than the curve in the 1st Quarter says he needs.</p>
+        original team before it moved on. Another 15 got two and 7 got three: <strong>59%</strong> got three
+        seasons or fewer.</p>
+      <p>A handful got more than a decade, but they are the exceptions. The typical quarterback gets a short run to
+        prove himself, shorter than Part 1 says he needs.</p>
     </div>
-    <div class="card" data-chart="f7">
+    <div class="card reveal delay" data-chart="f7">
       <div class="card-head">
         <div><p class="card-title">Starting seasons given by the original team</p>
           <p class="card-sub">88 QBs whose run with their first team has ended</p></div>
       </div>
       <div class="chart"></div>
-      <div class="card-foot"><span class="note">Counts seasons with 8+ starts for the original team.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
-  <!-- ================= 3RD QUARTER ================= -->
-  <div class="quarter" id="q3"><b>3rd Quarter</b> The cost of not waiting</div>
-  <p class="quarter-intro">If the curve is long and teams are short on patience, some quarterbacks should blossom
-    after their first team gives up on them, and the ones who were given time should improve. Both show up.
-    Click any quarterback below to open his career in the explorer.</p>
+  <!-- ================= PART 3 ================= -->
+  <div class="part reveal" id="part3">
+    <div class="part-label">Part 3 · The third quarter</div>
+    <h2>The cost of not waiting</h2>
+    <p class="part-intro">If the curve is long and teams are short on patience, some quarterbacks should blossom
+      after their first team gives up on them, and the ones who were given time should improve. Both show up.
+      Click any quarterback below to open his career in the explorer.</p>
+  </div>
 
   <section class="finding" id="f8">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 08</div>
-      <h2>21 quarterbacks had their best season after their first team gave up on them</h2>
-      <p>Of the 44 quarterbacks who started for two or more teams, <strong>21</strong> had their best season
-        for a later team, and 18 of those seasons were better than the league average.</p>
-      <p>Drew Brees left the Chargers after Year 5 and had his best season in New Orleans in Year 9
-        (13–2). Jared Goff's best came in Detroit in Year 9 (15–2). Ryan Tannehill went from barely
-        above average in Miami to <strong>+0.20</strong> per play in Tennessee. Sam Darnold and Geno Smith were
-        below average with the Jets, and both later had above-average seasons in Seattle, including
-        Darnold's 14–3 season in 2025.</p>
+      <h3>21 quarterbacks had their best season after their first team gave up on them</h3>
+      <p>Of the 44 quarterbacks who started for two or more teams, <strong>21</strong> had their best season for a
+        later team, and 18 of those seasons were better than the league average.</p>
+      <p>Drew Brees left the Chargers after Year 5 and had his best season in New Orleans in Year 9 (13–2). Jared
+        Goff's best came in Detroit in Year 9 (15–2). Ryan Tannehill went from barely above average in Miami to
+        <strong>+0.20</strong> per play in Tennessee. Sam Darnold and Geno Smith were below average with the Jets,
+        and both later had above-average seasons in Seattle, including Darnold's 14–3 season in 2025.</p>
     </div>
-    <div class="card" data-chart="f8">
+    <div class="card reveal delay" data-chart="f8">
       <div class="card-head">
-        <div><p class="card-title">Best season with the original team vs. best season after</p>
-          <p class="card-sub">EPA per play vs league average. Click a row to open that QB's career.</p></div>
+        <div><p class="card-title">Best season with the original team vs. best season after leaving</p>
+          <p class="card-sub">EPA per play vs league average, seasons with 8+ starts. Click a card to open that career.</p></div>
       </div>
-      <div class="chart"></div>
-      <div class="legend"><span><i class="dot" style="background:var(--c-neutral)"></i>Best with original team</span>
-        <span><i class="dot" style="background:var(--c-qb)"></i>Best after leaving</span></div>
-      <div class="card-foot"><span class="note">Seasons with 8+ starts.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="qb-cards" id="bloomer-cards"></div>
+      <div class="show-more"><button class="btn" type="button" id="show-all-bloomers">Show all 21</button></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
   <section class="finding" id="f9">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 09</div>
-      <h2>Quarterbacks who were kept through rough early years became above average</h2>
-      <p>Nine quarterbacks were below the league average in Years 1–3 and were still starting for their
-        original team in Year 5. As a group they went from <strong>0.066 below</strong> average to
-        <strong>0.065 above</strong> it from Year 4 on. Their win rate rose from .427 to .552, and their
-        interception rate fell from 2.8% to 2.0%.</p>
-      <p>All nine improved, and six became above average, including Drew Brees, Matthew Stafford, Alex
-        Smith and Derek Carr. It is a small group, but it is exactly the group a short leash would
-        have cut.</p>
+      <h3>Quarterbacks who were kept through rough early years became above average</h3>
+      <p>Nine quarterbacks were below the league average in Years 1–3 and were still starting for their original
+        team in Year 5. As a group they went from <strong>0.066 below</strong> average to <strong>0.065
+        above</strong> it from Year 4 on. Their win rate rose from .427 to .552, and their interception rate fell
+        from 2.8% to 2.0%.</p>
+      <p>All nine improved, and six became above average, including Drew Brees, Matthew Stafford, Alex Smith and
+        Derek Carr. It is a small group, but it is exactly the group a short leash would have cut.</p>
     </div>
-    <div class="card" data-chart="f9">
+    <div class="card reveal delay" data-chart="f9">
       <div class="card-head">
         <div><p class="card-title">Years 1–3 vs. Year 4 on, for QBs kept despite a rough start</p>
-          <p class="card-sub">EPA per play vs league average. Click a row to open that QB's career.</p></div>
+          <p class="card-sub">EPA per play vs league average, seasons with 8+ starts. Click a row to open that career.</p></div>
       </div>
       <div class="chart"></div>
-      <div class="legend"><span><i class="dot" style="background:var(--c-neutral)"></i>Years 1–3</span>
-        <span><i class="dot" style="background:var(--c-qb)"></i>Year 4 on (any team)</span></div>
-      <div class="card-foot"><span class="note">Seasons with 8+ starts.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="legend"><span><i style="background:var(--c-neutral)"></i>Years 1–3</span>
+        <span><i style="background:var(--c-qb)"></i>Year 4 on (any team)</span></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
-  <!-- ================= 4TH QUARTER ================= -->
-  <div class="quarter" id="q4"><b>4th Quarter</b> The case against</div>
-  <p class="quarter-intro">The strongest objection to this argument is that teams let go of the quarterbacks
-    who deserved it. The data partly agrees.</p>
+  <!-- ================= PART 4 ================= -->
+  <div class="part reveal" id="part4">
+    <div class="part-label">Part 4 · The fourth quarter</div>
+    <h2>The case against waiting</h2>
+    <p class="part-intro">The strongest objection to this argument is that early struggles usually mean what they
+      seem to mean. The data partly agrees.</p>
+  </div>
 
   <section class="finding" id="f10">
-    <div>
+    <div class="finding-text reveal">
       <div class="num">Finding 10</div>
-      <h2>Teams mostly let go of the right quarterbacks</h2>
-      <p>The 52 quarterbacks whose original team stopped starting them before Year 5 were clearly worse in Years 1–3 than the 32 who were kept:
-        <strong>0.077 below</strong> average per play against <strong>0.041 above</strong>, and a .427 win rate
-        against .592. The 18 who later started elsewhere improved, but on average only to 0.040
-        below average.</p>
-      <p>So teams are not wrong about most of the quarterbacks they cut. The argument of this report is
-        narrower: the curve is long enough that a short leash also cuts some quarterbacks who were still
-        on their way up, as Findings 08 and 09 show. Even among the quarterbacks who were below average
-        early, the ones who were kept had been less far below it (−0.066) than the ones who were let go (−0.118).</p>
+      <h3>Most early strugglers never become above average, but most never got another chance</h3>
+      <p>Here is the strongest case against waiting. Of the 53 quarterbacks who were below the league average over
+        their starting seasons in Years 1–3, only <strong>18 (34%)</strong> ever had an above-average season after
+        that. Of the 32 who were above average early, <strong>25 (78%)</strong> had one later. Early play does
+        predict later play, and most teams that move on from a struggling quarterback are playing the odds.</p>
+      <p>But look at why the other 35 never got there. <strong>28 of them never started another season</strong>
+        after Year 3, and only 7 got more chances and still never beat the average. Among early strugglers who were
+        given more starts, <strong>18 of 25 (72%)</strong> eventually did. The data cannot say how the other 28
+        would have turned out. They were never given the time.</p>
     </div>
-    <div class="card" data-chart="f10">
+    <div class="card reveal delay" data-chart="f10">
       <div class="card-head">
-        <div><p class="card-title" data-title>Kept vs. let go</p>
-          <p class="card-sub">QBs who started for their original team in Years 1–3 (classes 2000–2018)</p></div>
-        <div class="toggle" role="group" aria-label="Measure">
-          <button type="button" data-mode="epa_vs_league" aria-pressed="true">EPA vs league</button>
-          <button type="button" data-mode="win_pct" aria-pressed="false">Win %</button>
-          <button type="button" data-mode="int_pct" aria-pressed="false">INT %</button>
-          <button type="button" data-mode="turnovers_per_100_drives" aria-pressed="false">TO / 100 drives</button>
-        </div>
+        <div><p class="card-title">What happened after Year 3</p>
+          <p class="card-sub">85 QBs with a starting season in Years 1–3 (rookie classes 2000–2018)</p></div>
       </div>
       <div class="chart"></div>
-      <div class="card-foot"><span class="note">Kept = still starting for his original team in Year 5 or later.</span><button class="link-btn" data-table>Show table</button></div>
+      <div class="legend"><span><i style="background:var(--c-qb)"></i>Later had an above-average season</span>
+        <span><i style="background:var(--c-neutral)"></i>Started again, never above average</span>
+        <span><i style="background:var(--c-team)"></i>Never started another season</span></div>
+      <div class="card-foot"></div>
       <div class="tbl" hidden></div>
     </div>
   </section>
 
   <!-- ================= ABOUT THE DATA ================= -->
-  <section class="about" id="about">
+  <section class="about reveal" id="about">
     <h2>About the data</h2>
     <p>Everything on this site is computed from free, public data by the scripts in the
       <a href="https://github.com/AVBrown2003/nfl_qb">GitHub repository</a>.</p>
 
     <h3>Where it comes from</h3>
-    <p><a href="https://github.com/nflverse/nflverse-data">nflverse</a> play-by-play for the 2000–2025 NFL
-      seasons, plus its schedule (final scores and listed starting QBs), player (rookie season, draft,
-      full names), roster (jersey numbers) and team files. The data is released under CC-BY 4.0.</p>
+    <p><a href="https://github.com/nflverse/nflverse-data">nflverse</a> play-by-play for the 2000–2025 NFL seasons,
+      plus its schedule (final scores and listed starting QBs), player (rookie season, draft, full names), roster
+      (jersey numbers) and team files. The data is released under CC-BY 4.0.</p>
 
     <h3>What one row is</h3>
-    <p>The data set, <code>data/qb_drives.csv</code>, has one row per quarterback per offensive drive:
-      105,862 rows and 41 columns. Each row has the game, date, season, the quarterback and his career
-      year, the teams, the quarter, how the drive ended, where it started, the game's final result, and
-      the quarterback's own passing, rushing, sack, turnover and EPA totals on that drive.</p>
+    <p>The data set, <code>data/qb_drives.csv</code>, has one row per quarterback per offensive drive: 105,862 rows
+      and 41 columns. Each row has the game, date, season, the quarterback and his career year, the teams, the
+      quarter, how the drive ended, where it started, the game's final result, and the quarterback's own passing,
+      rushing, sack, turnover and EPA totals on that drive.</p>
 
     <h3>Which quarterbacks, and what was dropped</h3>
     <ul>
-      <li>Quarterbacks whose first NFL season was 2000 or later and who started 9+ regular-season games
-        in at least one season. Quarterbacks who entered the league before 2000 are left out so every career
-        is followed from its first season. All of each quarterback's seasons through 2025 are kept,
-        including seasons as a backup.</li>
+      <li>Quarterbacks whose first NFL season was 2000 or later and who started 9+ regular-season games in at least
+        one season. Quarterbacks who entered the league before 2000 are left out so every career is followed from its
+        first season. All of each quarterback's seasons through 2025 are kept, including seasons as a backup.</li>
       <li>The 2026 season is left out because it is still in progress.</li>
-      <li>Kneels and spikes are dropped (they run the clock and are not real attempts), and so are
-        two-point tries. A drive made only of kneels has no row.</li>
+      <li>Kneels and spikes are dropped (they run the clock and are not real attempts), and so are two-point tries.
+        A drive made only of kneels has no row.</li>
       <li>If a quarterback was replaced mid-drive, each quarterback gets his own row for that drive.</li>
       <li>All findings use the regular season only.</li>
       <li>Air yards are blank before 2006, when the NFL did not track them.</li>
@@ -395,26 +402,25 @@
     <dl>
       <dt>Career year</dt><dd>Season minus the quarterback's rookie season, plus one. Year 1 is the rookie season.</dd>
       <dt>Starting season</dt><dd>A season with 8 or more starts, where a start is being the team's listed starting quarterback.</dd>
-      <dt>Win %</dt><dd>(Wins + half of ties) ÷ starts, counting only games the quarterback started.</dd>
-      <dt>EPA per play</dt><dd>Expected points added (nflverse's measure of how much a play changes the team's expected score), summed over the quarterback's own plays and divided by his number of plays.</dd>
-      <dt>EPA vs league</dt><dd>A season's EPA per play minus that season's average EPA per play for every NFL quarterback, so seasons from different eras compare fairly. 0 is league average.</dd>
-      <dt>Interception rate</dt><dd>Interceptions ÷ pass attempts.</dd>
-      <dt>Turnovers per 100 drives</dt><dd>(Interceptions + fumbles the quarterback lost) ÷ drives × 100.</dd>
-      <dt>TD drives</dt><dd>Share of his drives that ended in a touchdown.</dd>
-      <dt>Best season</dt><dd>The starting season with the highest EPA vs league.</dd>
+      <dt>Turnovers per 100 drives</dt><dd>(Interceptions + fumbles the quarterback lost) ÷ drives × 100. The confidence band is ±1.96 × √turnovers ÷ drives × 100.</dd>
+      <dt>EPA per play</dt><dd>Expected points added (nflverse's measure of how much a play changes the offense's expected points on the drive), summed over the quarterback's own plays and divided by his number of plays.</dd>
+      <dt>EPA vs league</dt><dd>A season's EPA per play minus that season's average EPA per play for every NFL quarterback, so seasons from different eras compare fairly. 0 is league average; above 0 is an above-average season.</dd>
+      <dt>Breakout season</dt><dd>A quarterback's starting season with the highest EPA vs league.</dd>
+      <dt>Early (Years 1–3)</dt><dd>EPA vs league pooled over all of a quarterback's starting seasons in Years 1–3, for any team. "Looked like a write-off" means that number is below 0, or he had no starting season in Years 1–3.</dd>
       <dt>Original team</dt><dd>The first team the quarterback played for. This handles draft-day trades.</dd>
-      <dt>Kept / let go</dt><dd>Kept = still starting for his original team in Year 5 or later. Let go = started for it in Years 1–3 but not after Year 4.</dd>
-      <dt>Group averages</dt><dd>Pooled over the group's plays, drives or starts (for example, total interceptions ÷ total attempts), not an average of averages.</dd>
-      <dt>Significance</dt><dd>A two-proportion z-test of each year's interception rate against the rookie year. It treats passes as independent, so it slightly overstates confidence.</dd>
+      <dt>Kept</dt><dd>Still starting for his original team in Year 5 or later (Finding 09).</dd>
+      <dt>Win %</dt><dd>(Wins + half of ties) ÷ starts, counting only games the quarterback started.</dd>
+      <dt>Group averages</dt><dd>Pooled over the group's plays, drives or starts (for example, total turnovers ÷ total drives), not an average of averages.</dd>
+      <dt>Significance</dt><dd>A two-proportion z-test of each year's turnover rate against the rookie year. It treats drives as independent, so it slightly overstates confidence.</dd>
       <dt>Explorer percentiles</dt><dd>The share of the 625 starting seasons in the data that a season beats on that stat (for interception rate, lower is better).</dd>
       <dt>Jersey colors</dt><dd>Approximate home-jersey colors for each team and era, entered by hand from uniform history.</dd>
     </dl>
 
     <h3>Limits</h3>
-    <p>Later career years only include quarterbacks who lasted that long, so a plain average by career year
-      flatters later years. That is why Findings 02–04 compare each quarterback with himself or follow a fixed
-      group. Classes from 2019 on have not had time to reach Year 8, so they are left out of the career-length
-      findings. Rookie classes 2022–2025 are still early in their careers.</p>
+    <p>Later career years only include quarterbacks who lasted that long, so a plain average by career year flatters
+      later years. That is why Findings 02–04 compare each quarterback with himself or follow a fixed group. Classes
+      from 2019 on have not had time to reach Year 8, so they are left out of the career-length findings, and rookie
+      classes 2022–2025 are still early in their careers.</p>
   </section>
 </main>
 

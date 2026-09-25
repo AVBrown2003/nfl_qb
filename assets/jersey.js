@@ -58,9 +58,9 @@ const Jersey = (() => {
     parts.sleeveL = h("path", { d: "M-2,92 L38,100 L37,110 L-4,102 Z", class: "jersey-trim" }, g);
     parts.sleeveR = h("path", { d: "M242,92 L202,100 L203,110 L244,102 Z", class: "jersey-trim" }, g);
     parts.collar = h("path", { d: "M72,8 Q120,24 168,8 Q120,34 72,8 Z", class: "jersey-trim" }, g);
-    parts.name = text(g, 120, 66, "", "jersey-name", { "text-anchor": "middle", style: "font: 600 22px var(--font-head); letter-spacing: .14em" });
-    parts.numOutline = text(g, 120, 200, "", "jersey-num-outline", { "text-anchor": "middle", "stroke-width": 7, "stroke-linejoin": "round", style: "font: 700 118px var(--font-head)" });
-    parts.num = text(g, 120, 200, "", "jersey-num", { "text-anchor": "middle", style: "font: 700 118px var(--font-head)" });
+    parts.name = text(g, 120, 66, "", "jersey-name", { "text-anchor": "middle", style: "font: 700 22px var(--font-label); letter-spacing: .14em" });
+    parts.numOutline = text(g, 120, 200, "", "jersey-num-outline", { "text-anchor": "middle", "stroke-width": 7, "stroke-linejoin": "round", style: "font: 700 118px var(--font-label)" });
+    parts.num = text(g, 120, 200, "", "jersey-num", { "text-anchor": "middle", style: "font: 700 118px var(--font-label)" });
     parts.caption = text(svg, CX, CY + 162, "", "dial-label", { "text-anchor": "middle" });
 
     // dials
