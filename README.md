@@ -1,6 +1,6 @@
 # NFL Quarterback Rookie Classes, 2000–2025
 
-A two-page website (a report and a dashboard) that follows every NFL starting quarterback who entered the league from 2000 on, drive by drive, from his rookie season through the rest of his career.
+A two-page website (a report and a dashboard), live at https://avbrown2003.github.io/nfl_qb/, that follows every NFL starting quarterback who entered the league from 2000 on, drive by drive, from his rookie season through the rest of his career.
 
 ## The data
 
@@ -28,6 +28,12 @@ A two-page website (a report and a dashboard) that follows every NFL starting qu
 
 | File | What it does |
 |---|---|
+| `index.html` | The report page: headline numbers, the career explorer, the 10 findings with their charts, and the data notes. |
+| `dashboard.html` | The dashboard page (placeholder until it is built). |
+| `assets/style.css` | Shared fonts, colors, and layout for both pages. |
+| `assets/charts.js` | Small SVG chart helpers (columns, lines, dumbbells, bars) with hover tooltips and table views. |
+| `assets/jersey.js` | Draws the career explorer's jersey and the five stat dials around it. |
+| `assets/report.js` | Loads `data/findings.json` and `data/careers.json` and draws everything on the report page. |
 | `01_build_qb_plays.py` | Reads the raw nflverse files, picks the qualifying QBs, and builds the play-level data (one row per QB play) with drive and career-year information attached. |
 | `02_build_qb_drives.py` | Rolls the plays up to one row per QB per drive and checks the result against the assignment requirements. |
 | `03_analysis.py` | Computes every number and chart in the report (the 10 findings and the headline numbers). Definitions are in the docstring at the top. |
