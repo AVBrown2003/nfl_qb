@@ -144,14 +144,21 @@ function selectSeason(i) {
 function renderSeasonButtons() {
   const box = document.getElementById("seasons");
   box.innerHTML = "";
-  EX.career.seasons.forEach((s, i) => {
+  // best and worst EPA-vs-league seasons, among starting seasons (8+ starts) so tiny samples don't count
+  const seasons = EX.career.seasons, pool = seasons.filter((s) => s.starts >= 8).length ? seasons.filter((s) => s.starts >= 8) : seasons;
+  const best = pool.reduce((a, b) => (b.epa_vs_league > a.epa_vs_league ? b : a));
+  const worst = pool.reduce((a, b) => (b.epa_vs_league < a.epa_vs_league ? b : a));
+  seasons.forEach((s, i) => {
     const b = document.createElement("button");
-    b.type = "button"; b.className = "season-btn";
+    b.type = "button"; b.className = `season-btn${s === best ? " best" : s === worst && pool.length > 1 ? " worst" : ""}`;
+    if (s === best) b.title = `Best EPA season: ${signed(s.epa_vs_league, 3)} per play vs league`;
+    else if (s === worst && pool.length > 1) b.title = `Worst EPA season: ${signed(s.epa_vs_league, 3)} per play vs league`;
     b.innerHTML = `<i style="background:${s.jersey.body};${s.jersey.body === "#FFFFFF" ? "box-shadow:inset 0 0 0 1px #cfd4da" : ""}"></i>Y${s.career_year}<small>'${String(s.season).slice(2)} ${s.team}</small>`;
     b.setAttribute("aria-label", `${s.season}, ${yearLabel(s.career_year)}, ${s.team_name}`);
     b.addEventListener("click", () => { stopPlay(); selectSeason(i); });
     box.appendChild(b);
   });
+  box.insertAdjacentHTML("beforeend", `<p class="season-key"><span class="k best"></span>Best EPA season<span class="k worst"></span>Worst EPA season<span class="note">(among seasons with 8+ starts)</span></p>`);
 }
 
 // EPA vs league for every season of the selected career; click a bar to jump to that season
