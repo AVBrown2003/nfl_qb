@@ -46,6 +46,20 @@ q["total_epa"] = q.total_epa.round(3)
 # air yards are not tracked before 2006: leave blank rather than 0
 q["air_yards"] = q.air_yards.astype("Int64").where(q.season >= 2006)
 
+# how far into his career the QB is: 1 = rookie season, counted from his first NFL season
+# (so QBs who entered the league before 2000 start the data past year 1)
+rookie = pd.read_parquet(Path(__file__).parent / "raw" / "players.parquet",
+                         columns=["gsis_id", "rookie_season"])
+q = q.merge(rookie.rename(columns={"gsis_id": "qb_id"}), on="qb_id", how="left", validate="m:1")
+q["career_year"] = q.season - q.rookie_season + 1
+q["career_stage"] = q.career_year.map(lambda n: "Rookie" if n == 1 else f"Year {n}")
+q = q.drop(columns="rookie_season")
+cols = list(q.columns)
+for c in ["career_stage", "career_year"]:  # place right after qb_name
+    cols.remove(c)
+    cols.insert(cols.index("qb_name") + 1, c)
+q = q[cols]
+
 q["quarter"] = pd.Categorical(q.quarter, ["Q1", "Q2", "Q3", "Q4", "OT"], ordered=True)
 q = q.sort_values(["game_date", "game_id", "qb_id", "quarter"]).reset_index(drop=True)
 q["game_date"] = q.game_date.dt.date

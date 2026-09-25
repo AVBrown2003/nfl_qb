@@ -15,6 +15,8 @@ A two-page website (a report and a dashboard) about how NFL starting quarterback
 - Two-point conversion attempts.
 - Overtime periods are combined into one quarter, labeled `OT`.
 
+**Career year:** `career_year` (1, 2, 3 …) and `career_stage` (Rookie, Year 2, Year 3 …) count from each QB's first NFL season, which comes from the nflverse players file. QBs who entered the league before 2000 start the data past year 1: Brett Favre's 2000 season is Year 10.
+
 `air_yards` is blank before 2006, because the NFL did not track it before then.
 
 ## Files
