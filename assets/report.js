@@ -115,7 +115,7 @@ function selectSeason(i) {
   yr.textContent = `${yearLabel(s.career_year)} · ${s.season}`;
   yr.className = `yr${s.with_original_team ? "" : " orig-no"}`;
   const tags = [];
-  if (i === best) tags.push("<strong>Breakout (career-best) season</strong>");
+  if (i === best) tags.push("<strong>Career-best season</strong>");
   if (s.starts < 8) tags.push("Backup / part-time season (under 8 starts)");
   if (!s.with_original_team) tags.push(`No longer with his original team (${c.original_team})`);
   document.getElementById("s-meta").innerHTML =
@@ -137,7 +137,7 @@ function selectSeason(i) {
   const origYears = c.seasons.filter((x) => x.with_original_team && x.starts >= 8).map((x) => x.career_year);
   const bs = best >= 0 ? c.seasons[best] : null;
   document.getElementById("career-note").textContent =
-    (bs ? `Breakout season: ${bs.season} (${yearLabel(bs.career_year)}) with ${bs.team}, ${signed(bs.epa_vs_league, 2)} per play vs league. ` : "No starting seasons. ") +
+    (bs ? `Best season: ${bs.season} (${yearLabel(bs.career_year)}) with ${bs.team}, ${signed(bs.epa_vs_league, 2)} per play vs league. ` : "No starting seasons. ") +
     (origYears.length ? `Last starting season for ${c.original_team}: ${yearLabel(Math.max(...origYears))}.` : "");
 }
 
@@ -210,10 +210,11 @@ function openInExplorer(name, season) {
 /* =============================== FINDINGS =============================== */
 
 /* Wires one finding card:
-   - draw(el, qb, animate) draws the chart, highlighting the looked-up QB (a per_qb record) if any
-   - table() returns [columns, rows] for the table view
+   - draw(el, qb, animate, mode) draws the chart, highlighting the looked-up QB (a per_qb record) if any
+   - table(mode) returns [columns, rows] for the table view
    - readout(qb) returns the sentence shown under the chart for the looked-up QB
-   The chart is first drawn (animated) when the card scrolls into view. */
+   Cards with a switch (.toggle) pass the chosen view as `mode`. The chart is first drawn (animated)
+   when the card scrolls into view. */
 function setup(id, { draw, table, readout }) {
   const card = document.querySelector(`[data-chart="${id}"]`);
   const chart = card.querySelector(".chart") || card.querySelector(".qb-cards");
@@ -225,17 +226,26 @@ function setup(id, { draw, table, readout }) {
     <button class="link-btn" type="button" data-table>Show table</button>`;
   const sel = foot.querySelector("select"), out = foot.querySelector(".readout"), link = foot.querySelector("[data-table]");
   let qb = null, drawn = false;
-  const redraw = (animate) => draw(chart, qb, animate);
+  let mode = card.querySelector(".toggle button[aria-pressed='true']")?.dataset.mode;
+  const redraw = (animate) => draw(chart, qb, animate, mode);
+  const showTable = () => { if (!tbl.hidden) Charts.table(tbl, ...table(mode)); };
   const pick = () => {
     qb = sel.value ? { id: sel.value, ...PER[sel.value] } : null;
-    out.innerHTML = qb ? readout(qb) : "";
+    out.innerHTML = qb ? readout(qb, mode) : "";
   };
   sel.addEventListener("change", () => { pick(); if (drawn) redraw(false); });
   if (URL_QB) { sel.value = URL_QB; pick(); }   // ?qb=Name preselects a quarterback everywhere
+  card.querySelectorAll(".toggle button").forEach((b) => b.addEventListener("click", () => {
+    mode = b.dataset.mode;
+    card.querySelectorAll(".toggle button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    if (qb) out.innerHTML = readout(qb, mode);
+    if (drawn) redraw(true);
+    showTable();
+  }));
   link.addEventListener("click", () => {
     tbl.hidden = !tbl.hidden;
     link.textContent = tbl.hidden ? "Show table" : "Hide table";
-    if (!tbl.hidden) Charts.table(tbl, ...table());
+    showTable();
   });
   const io = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) { drawn = true; redraw(true); io.disconnect(); }
@@ -295,36 +305,41 @@ function initFindings() {
     },
   });
 
-  // ---- 02 breakout season ----------------------------------------------------------------------
+  // ---- 02 best season, split by how each QB looked in Years 1-3 ------------------------------------
   const f2 = F["2_best_season"], det = f2.by_year_detail;
+  const PROFILE = [
+    { key: "writeoff", name: "Write-offs", color: C.team },
+    { key: "understudy", name: "Understudies", color: C.qb },
+    { key: "strong", name: "Good early", color: C.neutral },
+  ];
+  const profileOf = (q) => (q.early === null ? "an understudy (no starting season in Years 1–3)"
+    : q.early < 0 ? `a write-off (below average in Years 1–3, ${signed(q.early)})` : `good early (above average in Years 1–3, ${signed(q.early)})`);
   setup("f2", {
     draw: (el, q, animate) => {
       const mine = q && q.long_career && q.full_class && q.best ? q.best.career_year : null;
       Charts.columns(el, {
         animate,
         data: range(1, 16).map((x) => {
-          const d = det[x] || { writeoff: [], strong: [] };
-          return { x, xLabel: x === 1 ? "R" : x, outline: x === mine, d,
-                   stack: [{ y: d.writeoff.length, color: C.qb }, { y: d.strong.length, color: C.neutral }] };
+          const d = det[x] || { writeoff: [], understudy: [], strong: [] };
+          return { x, xLabel: x === 1 ? "R" : x, outline: x === mine, d, stack: PROFILE.map((p) => ({ y: d[p.key].length, color: p.color })) };
         }),
-        xTitle: "Breakout season: the career year of his best season (R = rookie)", yTitle: "QBs",
-        regions: [{ from: 5, label: `Year 5 or later: ${f2.late_breakouts} QBs, ${f2.late_writeoffs} of them early write-offs` }],
+        xTitle: "Career year of his best season (R = rookie)", yTitle: "QBs",
+        regions: [{ from: 5, label: `Year 5 or later: ${f2.late_breakouts} QBs, ${f2.late_below_average_early} write-offs + ${f2.late_not_starting_early} understudies` }],
         tip: (d) => {
-          const n = d.d.writeoff.length + d.d.strong.length;
-          return `<b>Breakout in ${yearLabel(d.x)}: ${n} QB${n === 1 ? "" : "s"}</b>` +
-            (d.d.writeoff.length ? `<br>${Charts.key(C.qb)} Early write-offs: ${list(d.d.writeoff)}` : "") +
-            (d.d.strong.length ? `<br>${Charts.key(C.neutral)} Good early: ${list(d.d.strong)}` : "");
+          const n = PROFILE.reduce((a, p) => a + d.d[p.key].length, 0);
+          return `<b>Best season in ${yearLabel(d.x)}: ${n} QB${n === 1 ? "" : "s"}</b>` +
+            PROFILE.filter((p) => d.d[p.key].length).map((p) => `<br>${Charts.key(p.color)} ${p.name}: ${list(d.d[p.key])}`).join("");
         },
       });
     },
-    table: () => [["Breakout year", "Early write-offs", "Good early", "Write-offs"],
-      range(1, 16).filter((x) => det[x]).map((x) => [yearLabel(x), det[x].writeoff.length, det[x].strong.length, list(det[x].writeoff)])],
+    table: () => [["Best season", "Write-offs", "Understudies", "Good early", "Names"],
+      range(1, 16).filter((x) => det[x]).map((x) => [yearLabel(x), det[x].writeoff.length, det[x].understudy.length, det[x].strong.length,
+                                                    list([...det[x].writeoff, ...det[x].understudy, ...det[x].strong])])],
     readout: (q) => {
-      if (!q.best) return `${who(q)} never had a starting season (8+ starts), so he has no breakout season.`;
+      if (!q.best) return `${who(q)} never had a starting season (8+ starts), so he has no best season to place.`;
       const b = q.best;
-      const early = q.early === null ? "was not a starter in Years 1–3" : q.early < 0 ? `was below average in Years 1–3 (${signed(q.early)})` : `was above average in Years 1–3 (${signed(q.early)})`;
       const note = q.long_career && q.full_class ? "" : " He is not in this chart, which only includes careers of 8+ seasons from the 2000–2018 classes.";
-      return `${who(q)}: breakout in ${yearLabel(b.career_year)} (${b.season}, ${b.team}), ${signed(b.epa_vs_league)} per play vs league. He ${early}.${note}`;
+      return `${who(q)}: best season in ${yearLabel(b.career_year)} (${b.season}, ${b.team}), ${signed(b.epa_vs_league)} per play vs league. Early on he was ${profileOf(q)}.${note}`;
     },
   });
 
@@ -409,60 +424,125 @@ function initFindings() {
     },
   });
 
-  // ---- 06 still starting ---------------------------------------------------------------------------
-  const f6 = F["6_still_starting"].by_year;
+  // ---- 06 seasons given: donut --------------------------------------------------------------------
+  const f6 = F["6_seasons_given"];
+  const BUCKETS = [
+    { label: "1 season", test: (n) => n === 1, color: C.team },
+    { label: "2 seasons", test: (n) => n === 2, color: "#ec7776" },
+    { label: "3 seasons", test: (n) => n === 3, color: C.teamLight },
+    { label: "4–5 seasons", test: (n) => n >= 4 && n <= 5, color: "#9aa3ae" },
+    { label: "6–9 seasons", test: (n) => n >= 6 && n <= 9, color: "#bcc3cc" },
+    { label: "10 or more", test: (n) => n >= 10, color: "#dde1e6" },
+  ];
+  const bucketRows = BUCKETS.map((b) => {
+    const ns = Object.keys(f6.by_seasons).map(Number).filter(b.test);
+    return { ...b, n: ns.reduce((a, k) => a + f6.by_seasons[k], 0), names: ns.flatMap((k) => (f6.names_by_seasons[k] || []).map((nm) => (ns.length > 1 ? `${nm} (${k})` : nm))) };
+  });
   setup("f6", {
     draw: (el, q, animate) => {
-      const mine = q ? new Map(starting(q).map((r) => [r[0], r[7]])) : null;
-      const series = [
-        { name: "Any team", color: C.qb, labelDy: -6, points: f6.map((r) => ({ x: r.career_year, y: r.share_starting })) },
-        { name: "Original team", color: C.team, labelDy: 8, points: f6.map((r) => ({ x: r.career_year, y: r.share_starting_for_original_team, big: r.career_year === 5 })) },
-      ];
-      Charts.lines(el, {
-        animate, xs: range(1, 10), xFmt: yrShort, yFmt: (v) => pct(v), yDomain: [0, 1], rightPad: 104, series,
-        notes: [{ x: 5, y: f6[4].share_starting_for_original_team, dy: 36, text: `Year 5: ${pct(f6[4].share_starting_for_original_team)}` }],
-      });
-      if (q) {   // a strip of dots under the chart: filled = starting for his original team, hollow = elsewhere
-        const svg = el.querySelector("svg"), vb = svg.viewBox.baseVal, W = vb.width, H = vb.height;
-        const x = Charts.scale(1, 10, 52 + 12, W - 104), yy = H + 18;
-        svg.setAttribute("viewBox", `0 0 ${W} ${H + 34}`);
-        Charts.text(svg, 52 - 8, yy + 4, q.name.split(" ").pop(), "tick-label", { "text-anchor": "end" });
-        range(1, 10).forEach((y) => {
-          if (!mine.has(y)) { Charts.h("line", { x1: x(y) - 4, x2: x(y) + 4, y1: yy, y2: yy, stroke: "#cfd4da", "stroke-width": 2 }, svg); return; }
-          Charts.h("circle", { cx: x(y), cy: yy, r: 6, fill: mine.get(y) ? C.compare : "#fff", stroke: C.compare, "stroke-width": 2 }, svg);
-        });
-      }
-    },
-    table: () => [["Career year", "Starting for any team", "Starting for original team"],
-      f6.map((r) => [yearLabel(r.career_year), pct(r.share_starting, 1), pct(r.share_starting_for_original_team, 1)])],
-    readout: (q) => {
-      const s = starting(q);
-      if (!s.length) return `${who(q)} never had a starting season.`;
-      const orig = s.filter((r) => r[7]).map((r) => r[0]), other = s.filter((r) => !r[7]).map((r) => `${r[0]} (${r[2]})`);
-      return `${who(q)}: starting seasons for ${q.original_team} in Year${orig.length === 1 ? "" : "s"} ${orig.join(", ") || "none"}` +
-        (other.length ? `; for other teams in Year${other.length === 1 ? "" : "s"} ${other.join(", ")}` : "") +
-        ". Shown under the chart: filled dot = original team, hollow = another team.";
-    },
-  });
-
-  // ---- 07 seasons given ----------------------------------------------------------------------------
-  const f7 = F["7_seasons_given"], rows7 = countsToRows(f7.by_seasons, range(1, 18));
-  setup("f7", {
-    draw: (el, q, animate) => {
-      const mine = q && q.full_class && !q.still_starting_for_original_2025 && q.original_starting_seasons ? q.original_starting_seasons : null;
-      Charts.columns(el, {
-        animate,
-        data: rows7.map((r) => ({ x: r.x, y: r.n, color: r.x === 1 ? C.team : r.x <= 3 ? C.teamLight : C.neutral, outline: r.x === mine,
-                                 label: r.x === 1 ? `${r.n} QBs (${pct(f7.share_one_season)})` : null })),
-        xTitle: "Starting seasons given by the original team", yTitle: "QBs",
-        tip: (d) => `<b>${d.x} starting season${d.x > 1 ? "s" : ""}</b><br>${d.y} QBs (${pct(d.y / f7.qbs)})`,
+      const mine = q && q.full_class && !q.still_starting_for_original_2025 ? q.original_starting_seasons : null;
+      Charts.donut(el, {
+        animate, legendEl: el.parentElement.querySelector(".pie-legend"), center: [String(f6.qbs), "quarterbacks"],
+        slices: bucketRows.map((b) => ({ ...b, on: mine !== null && b.test(mine) })),
       });
     },
-    table: () => [["Starting seasons", "QBs", "Share"], rows7.map((r) => [r.x, r.n, pct(r.n / f7.qbs, 1)])],
+    table: () => [["Starting seasons given", "QBs", "Share", "Names"],
+      Object.keys(f6.by_seasons).map(Number).sort((a, b) => a - b).map((k) => [k, f6.by_seasons[k], pct(f6.by_seasons[k] / f6.qbs, 1), list(f6.names_by_seasons[k] || [])])],
     readout: (q) => {
       if (!q.original_starting_seasons) return `${who(q)} never had a starting season for his original team (${q.original_team}).`;
       return `${who(q)}: ${q.original_team} gave him ${q.original_starting_seasons} starting season${q.original_starting_seasons > 1 ? "s" : ""}` +
-        (q.still_starting_for_original_2025 ? ", and he was still their starter in 2025." : ".");
+        (q.still_starting_for_original_2025 ? ", and he was still their starter in 2025, so he is not in the chart." : q.full_class ? ". His slice is pulled out." : ". (His class is after 2018, so he is not in the chart.)");
+    },
+  });
+
+  // ---- 07 money: the clock, the price, who gets paid, which teams ---------------------------------
+  const k7 = F["7_contracts"];
+  const teamColor = {};
+  CAREERS.forEach((c) => c.seasons.forEach((s) => { teamColor[s.team] = s.jersey.body === "#FFFFFF" ? s.jersey.number : s.jersey.body; }));
+  const card7 = document.querySelector('[data-chart="f7"]');
+  const legend7 = card7.querySelector("[data-legend]"), grid7 = card7.querySelector(".team-grid");
+  const TITLES = {
+    clock: ["When teams paid their own quarterback", `${k7.second_deals} big second contracts (10%+ of the cap) from a QB's original team, QBs who entered the league 2011–2025`],
+    price: ["What a quarterback costs, as a share of the salary cap", "Median rookie deal vs. median big second contract, by the years it was signed"],
+    who: ["Who got a big second contract from his original team", "51 QBs who entered the league 2011–2021 and started for their original team in Years 1–3"],
+    teams: ["Which teams paid their own quarterback", "Big second contracts to a QB who started his career with that team, QBs who entered the league 2011–2025"],
+  };
+  const paidParts = (g) => [
+    { name: "Got a big second contract", n: g.paid, color: C.qb, names: g.names_paid },
+    { name: "Did not", n: g.qbs - g.paid, color: C.neutral, names: g.names_not_paid },
+  ];
+  setup("f7", {
+    draw: (el, q, animate, mode) => {
+      const [t, sub] = TITLES[mode];
+      card7.querySelector("[data-title]").textContent = t;
+      card7.querySelector("[data-sub]").textContent = sub;
+      el.hidden = mode === "teams";
+      grid7.hidden = mode !== "teams";
+      legend7.hidden = mode !== "who";
+      const own = q ? q.contracts.find((c) => c[6] && c[1] > 1 && c[5] >= 0.10) : null;
+      if (mode === "clock") {
+        Charts.columns(el, {
+          animate, data: range(1, 8).map((x) => {
+            const deals = k7.deals.filter((d) => d.career_year === x);
+            return { x, y: deals.length, deals, color: x <= 4 ? C.team : C.teamLight, xLabel: x === 1 ? "R" : x, outline: own && own[1] === x,
+                     label: x === 4 ? `${deals.length} of ${k7.second_deals}` : null };
+          }),
+          xTitle: "Career year the deal was signed (Year 4 = after three seasons)", yTitle: "Deals",
+          regions: [{ from: 5, fill: "rgba(42,120,214,.07)", label: "Where the late best seasons in Part 1 happen" }],
+          tip: (d) => `<b>Signed in ${yearLabel(d.x)}: ${d.y} deal${d.y === 1 ? "" : "s"}</b>` +
+            (d.deals.length ? `<br>${d.deals.map((x) => `${x.qb} (${x.team}, ${x.year_signed}, ${pct(x.cap_pct, 1)} of cap)`).join("<br>")}` : ""),
+        });
+      } else if (mode === "price") {
+        const rows = [{ x: 1, xLabel: "Rookie deal", y: k7.rookie_deal_cap_pct.round_1, color: C.neutral, deals: [], label: pct(k7.rookie_deal_cap_pct.round_1, 1),
+                        tip: `<b>First-round rookie deal</b><br>Median ${pct(k7.rookie_deal_cap_pct.round_1, 1)} of the cap per year (round 2: ${pct(k7.rookie_deal_cap_pct.round_2, 1)}, round 3+: ${pct(k7.rookie_deal_cap_pct.round_3_plus, 1)})` }]
+          .concat(k7.price_by_window.map((w, i) => {
+            const deals = k7.deals.filter((d) => d.year_signed >= w.from && d.year_signed <= w.to);
+            return { x: i + 2, xLabel: `${w.from}–${String(w.to).slice(2)}`, y: w.median_cap_pct, color: C.team, label: pct(w.median_cap_pct, 1),
+                     tip: `<b>Big second contracts signed ${w.from}–${w.to}</b><br>Median ${pct(w.median_cap_pct, 1)} of the cap (${w.deals} deals)<br>${deals.map((x) => `${x.qb}: ${pct(x.cap_pct, 1)}`).join("<br>")}` };
+          }));
+        Charts.columns(el, { animate, data: rows, yMax: 0.27, yFmt: (v) => pct(v), yTitle: "Share of cap", xTitle: "First-round rookie deal, then big second contracts by year signed", tip: (d) => d.tip });
+      } else if (mode === "who") {
+        const w = k7.who_paid;
+        legend7.innerHTML = `<span><i style="background:${C.qb}"></i>Got a big second contract</span><span><i style="background:${C.neutral}"></i>Did not</span>`;
+        const grp = q && q.rookie_class >= 2011 && q.rookie_class <= 2021 && q.early !== null;
+        Charts.stack100(el, {
+          animate, rows: [
+            { label: "Above average early", sub: `Years 1–3 · ${w.above_average_early.qbs} QBs`, parts: paidParts(w.above_average_early), on: grp && q.early >= 0 },
+            { label: "Below average early", sub: `Years 1–3 · ${w.below_average_early.qbs} QBs`, parts: paidParts(w.below_average_early), on: grp && q.early < 0 },
+            { label: "First-round picks", sub: `${w.round_1.qbs} QBs`, parts: paidParts(w.round_1) },
+            { label: "Later picks / undrafted", sub: `${w.later_rounds.qbs} QBs`, parts: paidParts(w.later_rounds) },
+          ],
+        });
+      } else {
+        grid7.innerHTML = Object.entries(k7.teams).map(([t, names]) =>
+          `<div class="team-tile${names.length ? "" : " none"}${q && own && q.original_team === t ? " on" : ""}" style="--team:${teamColor[t] || "#cfd4da"}" data-team="${t}">
+            <b>${t}</b><span>${names.length ? `${names.length} deal${names.length > 1 ? "s" : ""}` : "none"}</span></div>`).join("");
+        grid7.querySelectorAll(".team-tile").forEach((tile) => {
+          const names = k7.teams[tile.dataset.team];
+          tile.addEventListener("mousemove", (e) => Charts.showTip(`<b>${tile.dataset.team}</b><br>${names.length ? names.join(", ") : "Never gave a big second contract to a QB who started his career there"}`, e));
+          tile.addEventListener("mouseleave", Charts.hideTip);
+        });
+      }
+    },
+    table: (mode) => mode === "price"
+      ? [["Deal", "Median share of cap", "Deals"], [["First-round rookie deal", pct(k7.rookie_deal_cap_pct.round_1, 1), "–"],
+          ...k7.price_by_window.map((w) => [`Big second contract, ${w.from}–${w.to}`, pct(w.median_cap_pct, 1), w.deals])]]
+      : mode === "who"
+        ? [["Group", "QBs", "Got a big 2nd contract", "Names paid"], Object.entries({ "Above average early": "above_average_early", "Below average early": "below_average_early",
+            "First-round picks": "round_1", "Later picks / undrafted": "later_rounds" }).map(([l, key]) => [l, k7.who_paid[key].qbs, k7.who_paid[key].paid, list(k7.who_paid[key].names_paid)])]
+        : mode === "teams"
+          ? [["Team", "Big 2nd contracts to own QB", "Names"], Object.entries(k7.teams).map(([t, n]) => [t, n.length, list(n)])]
+          : [["QB", "Team", "Year signed", "Career year", "Years", "Total ($M)", "Share of cap", "Guaranteed ($M)"],
+             k7.deals.map((d) => [d.qb, d.team, d.year_signed, yearLabel(d.career_year), d.years, d.value, pct(d.cap_pct, 1), d.guaranteed])],
+    readout: (q) => {
+      if (!q.contracts.length) return `${who(q)}: no contract records in the data.`;
+      const rookie = q.contracts[0], big = q.contracts.filter((c) => c[1] > 1 && c[5] >= 0.10);
+      const ownBig = big.find((c) => c[6]);
+      const note = q.rookie_class < 2011 ? " (He entered the league before 2011, so he is not in these charts.)" : "";
+      return `${who(q)}: first contract ${rookie[0]} with ${rookie[6] ? q.original_team : rookie[2]}, ${pct(rookie[5], 1)} of the cap per year. ` +
+        (ownBig ? `Big second contract from his original team in ${yearLabel(ownBig[1])} (${ownBig[0]}), ${pct(ownBig[5], 1)} of the cap.`
+          : big.length ? `No big second contract from his original team; his first big deal came with ${big[0][2]} in ${big[0][0]} (${pct(big[0][5], 1)} of the cap).`
+            : "He never signed a contract worth 10%+ of the cap.") + note;
     },
   });
 
@@ -520,51 +600,87 @@ function initFindings() {
     },
   });
 
-  // ---- 09 patience: paired bars ------------------------------------------------------------------
-  const p9 = F["9_patience"].qbs.slice().sort((a, b) => b.year_4_plus - a.year_4_plus);
+  // ---- 09 box scores: early strugglers who kept starting vs. QBs who were good early ---------------
+  const b9 = F["9_box_scores"];
+  const M9 = {
+    completion_pct: { title: "Completion percentage by career year", fmt: (v) => pct(v, 1), val: (r) => r[2] / r[3] },
+    yards_per_game: { title: "Passing yards per game by career year", fmt: (v) => v.toFixed(0), val: (r) => r[4] / r[1] },
+    tds_per_game: { title: "Touchdown passes per game by career year", fmt: (v) => v.toFixed(2), val: (r) => r[5] / r[1] },
+  };
   setup("f9", {
-    draw: (el, q, animate) => Charts.pairedBars(el, {
-      animate, rows: p9.map((r) => ({ ...r, label: r.qb, sub: `${r.rookie_class} class`, a: r.years_1_3, b: r.year_4_plus, on: q && q.name === r.qb })),
-      aColor: C.neutral, bColor: C.qb, xFmt: (v) => signed(v, 2), zeroLabel: "League average",
-      xTitle: "EPA per play vs league average (0 = average)",
-      tip: (r) => `<b>${r.qb}</b><br>${Charts.key(C.neutral)} Years 1–3: <b>${signed(r.a)}</b><br>${Charts.key(C.qb)} Year 4 on: <b>${signed(r.b)}</b><br><span class="tt-dim">Click to open his career</span>`,
-      onClick: (r) => openInExplorer(r.qb),
-    }),
-    table: () => [["QB", "Rookie class", "Years 1–3", "Year 4 on"], p9.map((r) => [r.qb, r.rookie_class, signed(r.years_1_3), signed(r.year_4_plus)])],
-    readout: (q) => {
-      if (q.early === null) return `${who(q)} had no starting season in Years 1–3.`;
-      const inList = p9.some((r) => r.qb === q.name);
-      return `${who(q)}: Years 1–3 ${signed(q.early)}, Year 4 on ${q.later === null ? "no starting seasons" : signed(q.later)} per play vs league` +
-        (inList ? ". He is one of the nine, highlighted above." : ". He is not one of the nine, who were below average early and still starting for their original team in Year 5.");
+    draw: (el, q, animate, mode) => {
+      const m = M9[mode];
+      document.querySelector('[data-chart="f9"] [data-title]').textContent = m.title;
+      const series = [
+        { name: "Strugglers, kept starting", color: C.qb, endLabel: false, points: b9.strugglers.by_year.map((r) => ({ x: r.career_year, y: r[mode], extra: `(${r.qbs} QBs)` })) },
+        { name: "Good early", color: C.neutral, endLabel: false, points: b9.good_early.by_year.map((r) => ({ x: r.career_year, y: r[mode], extra: `(${r.qbs} QBs)` })) },
+      ];
+      if (q) series.push({ name: q.name, color: C.compare, points: range(1, 8).map((y) => {
+        const r = q.box.find((b) => b[0] === y);
+        return { x: y, y: r && r[3] ? m.val(r) : null };
+      }) });
+      Charts.lines(el, { animate, xs: range(1, 8), xFmt: yrShort, yFmt: m.fmt, rightPad: q ? 130 : 24, series });
+    },
+    table: (mode) => [["Group", "Years", "QBs", "Completion %", "Yards per game", "TD passes per game"],
+      [["Strugglers, kept starting", b9.strugglers], ["Good early", b9.good_early]].flatMap(([l, g]) => [
+        [l, "Years 1–3", g.years_1_3.qbs, pct(g.years_1_3.completion_pct, 1), g.years_1_3.yards_per_game, g.years_1_3.tds_per_game],
+        [l, "Year 4 on", g.year_4_plus.qbs, pct(g.year_4_plus.completion_pct, 1), g.year_4_plus.yards_per_game, g.year_4_plus.tds_per_game]])],
+    readout: (q, mode) => {
+      if (!q.box.length) return `${who(q)} never had a starting season.`;
+      const agg = (rows) => {
+        const g = rows.reduce((a, r) => a + r[1], 0), c = rows.reduce((a, r) => a + r[2], 0), at = rows.reduce((a, r) => a + r[3], 0);
+        const y = rows.reduce((a, r) => a + r[4], 0), t = rows.reduce((a, r) => a + r[5], 0);
+        return rows.length ? `${pct(c / at, 1)}, ${(y / g).toFixed(0)} yards, ${(t / g).toFixed(2)} TDs per game` : "no starting seasons";
+      };
+      const inGroup = b9.strugglers.names.includes(q.name) ? " He is one of the 25 strugglers who kept starting." : b9.good_early.names.includes(q.name) ? " He is one of the 29 who were good early." : "";
+      return `${who(q)}: Years 1–3 ${agg(q.box.filter((r) => r[0] <= 3))}; Year 4 on ${agg(q.box.filter((r) => r[0] >= 4))} (starting seasons only).${inGroup}`;
     },
   });
 
-  // ---- 10 early strugglers --------------------------------------------------------------------------
-  const f10 = F["10_early_strugglers"];
+  // ---- 10 early strugglers, and draft position ------------------------------------------------------
+  const f10 = F["10_early_strugglers"], d10 = f10.strugglers_by_draft;
   const parts = (g) => [
-    { name: "Later had an above-average season", n: g.above_average_later, color: C.qb },
+    { name: "Later had an above-average season", n: g.above_average_later, color: C.qb, names: g.names_above_later },
     { name: "Started again, never above average", n: g.more_starts_never_above, color: C.neutral },
-    { name: "Never started another season", n: g.no_more_starting_seasons, color: C.team },
+    { name: "Never started another season", n: g.no_more_starting_seasons, color: C.team, names: g.names_no_more_starts },
   ];
+  const draftGroup = (q) => (q.draft_round === null || q.draft_round >= 4 ? 2 : q.draft_round === 1 ? 0 : 1);
   setup("f10", {
-    draw: (el, q, animate) => {
-      const grp = q && q.full_class && q.early !== null ? (q.early < 0 ? 0 : 1) : null;
-      Charts.stack100(el, {
-        animate, rows: [
-          { label: "Below average early", sub: `Years 1–3 · ${f10.below_average_early.qbs} QBs`, parts: parts(f10.below_average_early), on: grp === 0 },
-          { label: "Above average early", sub: `Years 1–3 · ${f10.above_average_early.qbs} QBs`, parts: parts(f10.above_average_early), on: grp === 1 },
-        ],
-      });
+    draw: (el, q, animate, mode) => {
+      const card = document.querySelector('[data-chart="f10"]');
+      const inPool = q && q.full_class && q.early !== null;
+      if (mode === "early") {
+        card.querySelector("[data-title]").textContent = "What happened after Year 3";
+        card.querySelector("[data-sub]").textContent = "85 QBs with a starting season in Years 1–3 (rookie classes 2000–2018)";
+        Charts.stack100(el, { animate, rows: [
+          { label: "Below average early", sub: `Years 1–3 · ${f10.below_average_early.qbs} QBs`, parts: parts(f10.below_average_early), on: inPool && q.early < 0 },
+          { label: "Above average early", sub: `Years 1–3 · ${f10.above_average_early.qbs} QBs`, parts: parts(f10.above_average_early), on: inPool && q.early >= 0 },
+        ] });
+      } else {
+        card.querySelector("[data-title]").textContent = "Early strugglers, by where they were drafted";
+        card.querySelector("[data-sub]").textContent = "53 QBs who were below average in Years 1–3 (rookie classes 2000–2018). Hover a segment for the names.";
+        const g = inPool && q.early < 0 ? draftGroup(q) : null;
+        Charts.stack100(el, { animate, rows: [
+          { label: "First round", sub: `${d10.round_1.qbs} QBs`, parts: parts(d10.round_1), on: g === 0 },
+          { label: "Rounds 2–3", sub: `${d10.rounds_2_3.qbs} QBs`, parts: parts(d10.rounds_2_3), on: g === 1 },
+          { label: "Round 4+ / undrafted", sub: `${d10.round_4_plus.qbs} QBs`, parts: parts(d10.round_4_plus), on: g === 2 },
+        ] });
+      }
     },
-    table: () => [["Group", "QBs", "Later above average", "Started again, never above", "Never started again"],
-      [["Below average in Years 1–3", f10.below_average_early], ["Above average in Years 1–3", f10.above_average_early]]
-        .map(([l, g]) => [l, g.qbs, g.above_average_later, g.more_starts_never_above, g.no_more_starting_seasons])],
+    table: (mode) => {
+      const row = (l, g) => [l, g.qbs, g.above_average_later, g.more_starts_never_above, g.no_more_starting_seasons];
+      const head = ["Group", "QBs", "Later above average", "Started again, never above", "Never started again"];
+      return mode === "early"
+        ? [head, [row("Below average in Years 1–3", f10.below_average_early), row("Above average in Years 1–3", f10.above_average_early)]]
+        : [head, [row("First round", d10.round_1), row("Rounds 2–3", d10.rounds_2_3), row("Round 4+ / undrafted", d10.round_4_plus)]];
+    },
     readout: (q) => {
-      if (q.early === null) return `${who(q)} had no starting season in Years 1–3, so he is not in this chart.`;
+      const pick = q.draft_round === null ? "undrafted" : `round ${q.draft_round}, pick ${q.draft_pick}`;
+      if (q.early === null) return `${who(q)} (${pick}) had no starting season in Years 1–3, so he is not in this chart.`;
       const later = starting(q).some((r) => r[0] >= 4);
       const outcome = q.later_above_average ? "later had an above-average season" : later ? "started again but never had an above-average season" : "never started another season";
-      return `${who(q)}: ${q.early < 0 ? "below" : "above"} average in Years 1–3 (${signed(q.early)}), and ${outcome}.` +
-        (q.full_class ? " His group is outlined above." : " (His class is after 2018, so he is not counted in this chart.)");
+      return `${who(q)} (${pick}): ${q.early < 0 ? "below" : "above"} average in Years 1–3 (${signed(q.early)}), and ${outcome}.` +
+        (q.full_class ? " His group is outlined." : " (His class is after 2018, so he is not counted in this chart.)");
     },
   });
 }

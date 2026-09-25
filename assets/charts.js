@@ -277,12 +277,53 @@ const Charts = (() => {
         const label = `${p.n} (${Math.round((p.n / total) * 100)}%)`;
         if (w > label.length * 7 + 12)
           text(svg, x0 + w / 2, top + bh / 2 + 4, label, "seg-label late", { "text-anchor": "middle", fill: luminance(p.color) > 0.4 ? css("--ink") : "#fff" });
-        seg.addEventListener("mousemove", (e) => showTip(`<b>${r.label}</b><br>${key(p.color)} ${p.name}: <b>${p.n}</b> of ${total} (${Math.round((p.n / total) * 100)}%)`, e));
+        seg.addEventListener("mousemove", (e) => showTip(`<b>${r.label}</b><br>${key(p.color)} ${p.name}: <b>${p.n}</b> of ${total} (${Math.round((p.n / total) * 100)}%)` +
+          (p.names && p.names.length ? `<br><span class="tt-dim">${p.names.join(", ")}</span>` : ""), e));
         seg.addEventListener("mouseleave", hideTip);
         acc += p.n;
       });
       if (r.on) h("rect", { x: m.l - 4, y: top - 4, width: W - m.r - m.l + 8, height: bh + 8, rx: 7, fill: "none", stroke: css("--c-compare"), "stroke-width": 2 }, svg);
     });
+    return svg;
+  }
+
+  // ---- donut: slices of a whole, with a legend that doubles as a hover target ---------------------
+  // s.slices = [{label, n, color, names, on}], s.center = [big text, small text], s.legendEl = element for the legend
+  function drawDonut(el, s, W) {
+    const size = Math.min(W, 340), R = size / 2 - 8, r0 = R * 0.58, cx = size / 2, cy = size / 2;
+    const svg = h("svg", { viewBox: `0 0 ${size} ${size}`, role: "img", "aria-label": s.aria || "", style: `max-width:${size}px;margin:0 auto` }, el);
+    const total = s.slices.reduce((a, p) => a + p.n, 0);
+    let a0 = -Math.PI / 2;
+    const tip = (p) => `<b>${p.label}: ${p.n} QB${p.n === 1 ? "" : "s"}</b> (${Math.round((p.n / total) * 100)}%)` +
+      (p.names && p.names.length ? `<br><span class="tt-dim">${p.names.join(", ")}</span>` : "");
+    const paths = s.slices.map((p, i) => {
+      const a1 = a0 + (p.n / total) * Math.PI * 2, gap = 0.012, large = a1 - a0 > Math.PI ? 1 : 0;
+      const pt = (a, rr) => `${cx + rr * Math.cos(a)},${cy + rr * Math.sin(a)}`;
+      const d = `M${pt(a0 + gap, R)}A${R},${R} 0 ${large} 1 ${pt(a1 - gap, R)}L${pt(a1 - gap, r0)}A${r0},${r0} 0 ${large} 0 ${pt(a0 + gap, r0)}Z`;
+      const mid = (a0 + a1) / 2;
+      const path = h("path", { d, fill: p.color, class: "slice dot",
+                               stroke: p.on ? css("--c-compare") : "none", "stroke-width": p.on ? 3 : 0 }, svg);
+      if (p.on) path.style.transform = `translate(${Math.cos(mid) * 6}px, ${Math.sin(mid) * 6}px)`;
+      if (p.n / total > 0.07) {
+        const [lx, ly] = [cx + ((R + r0) / 2) * Math.cos(mid), cy + ((R + r0) / 2) * Math.sin(mid)];
+        text(svg, lx, ly + 4, `${Math.round((p.n / total) * 100)}%`, "seg-label late", { "text-anchor": "middle", fill: luminance(p.color) > 0.4 ? css("--ink") : "#fff" });
+      }
+      path.addEventListener("mousemove", (e) => showTip(tip(p), e));
+      path.addEventListener("mouseleave", hideTip);
+      a0 = a1;
+      return path;
+    });
+    if (s.center) {
+      text(svg, cx, cy + 2, s.center[0], "dial-value", { "text-anchor": "middle", style: "font-size:30px" });
+      text(svg, cx, cy + 22, s.center[1], "dial-pct", { "text-anchor": "middle" });
+    }
+    if (s.legendEl) {
+      s.legendEl.innerHTML = s.slices.map((p) => `<div class="${p.on ? "on" : ""}"><i style="background:${p.color}"></i><span>${p.label}</span><b>${p.n}</b></div>`).join("");
+      [...s.legendEl.children].forEach((row, i) => {
+        row.addEventListener("mousemove", (e) => { showTip(tip(s.slices[i]), e); paths[i].style.opacity = 0.8; });
+        row.addEventListener("mouseleave", () => { hideTip(); paths[i].style.opacity = 1; });
+      });
+    }
     return svg;
   }
 
@@ -299,5 +340,6 @@ const Charts = (() => {
     lines: (el, s) => mount(el, drawLines, s),
     pairedBars: (el, s) => mount(el, drawPairedBars, s),
     stack100: (el, s) => mount(el, drawStack100, s),
+    donut: (el, s) => mount(el, drawDonut, s),
   };
 })();
