@@ -46,7 +46,7 @@ A two-page website (a report and a dashboard), live at https://avbrown2003.githu
 | `data/careers.json` | Career explorer data for the report page, built by `04_site_data.py`. |
 | `pyproject.toml`, `uv.lock` | The Python environment (pandas, pyarrow), managed with uv. |
 
-The raw nflverse downloads (`raw/`, about 550 MB) are not in the repository because of their size. They come from the nflverse-data releases (`pbp`, `schedules`, `players`, `rosters`, and `teams`). QB names come from the players file, because play-by-play spells some names several ways.
+The raw nflverse downloads (`raw/`, about 550 MB) are not in the repository because of their size. They come from the nflverse-data releases (`pbp`, `schedules`, `players`, `rosters`, `teams`, and `contracts`, which is OverTheCap's contract history). QB names come from the players file, because play-by-play spells some names several ways.
 
 ## Rebuilding the data
 

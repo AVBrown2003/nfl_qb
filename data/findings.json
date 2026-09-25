@@ -121,6 +121,7 @@
      "Colt McCoy",
      "Mike Glennon"
     ],
+    "understudy": [],
     "strong": [
      "Robert Griffin III"
     ]
@@ -134,6 +135,7 @@
      "Tarvaris Jackson",
      "Trevor Siemian"
     ],
+    "understudy": [],
     "strong": [
      "Ben Roethlisberger",
      "Cam Newton",
@@ -151,6 +153,7 @@
      "Kyle Boller",
      "Terrelle Pryor"
     ],
+    "understudy": [],
     "strong": [
      "Byron Leftwich",
      "Chad Pennington",
@@ -160,7 +163,8 @@
     ]
    },
    "4": {
-    "writeoff": [
+    "writeoff": [],
+    "understudy": [
      "Matt Cassel",
      "Tony Romo"
     ],
@@ -173,8 +177,10 @@
    "5": {
     "writeoff": [
      "Blaine Gabbert",
+     "Kyle Orton"
+    ],
+    "understudy": [
      "Kirk Cousins",
-     "Kyle Orton",
      "Matt Moore",
      "Tim Rattay",
      "Tyrod Taylor"
@@ -187,9 +193,11 @@
    "6": {
     "writeoff": [
      "Case Keenum",
-     "David Garrard",
      "Derek Carr",
      "Mark Sanchez"
+    ],
+    "understudy": [
+     "David Garrard"
     ],
     "strong": [
      "Eli Manning",
@@ -198,11 +206,13 @@
    },
    "7": {
     "writeoff": [
+     "Jacoby Brissett",
+     "Sam Bradford"
+    ],
+    "understudy": [
      "Aaron Rodgers",
      "Brian Hoyer",
-     "Jacoby Brissett",
      "Joshua Dobbs",
-     "Sam Bradford",
      "Shaun Hill"
     ],
     "strong": [
@@ -213,11 +223,13 @@
    },
    "8": {
     "writeoff": [
+     "Sam Darnold",
+     "Teddy Bridgewater"
+    ],
+    "understudy": [
      "Kellen Clemens",
      "Matt Schaub",
-     "Sam Darnold",
-     "Taylor Heinicke",
-     "Teddy Bridgewater"
+     "Taylor Heinicke"
     ],
     "strong": [
      "Dak Prescott",
@@ -227,10 +239,12 @@
    "9": {
     "writeoff": [
      "Drew Brees",
+     "Ryan Tannehill"
+    ],
+    "understudy": [
      "Jimmy Garoppolo",
      "Rex Grossman",
-     "Ryan Fitzpatrick",
-     "Ryan Tannehill"
+     "Ryan Fitzpatrick"
     ],
     "strong": [
      "Jared Goff",
@@ -239,6 +253,7 @@
    },
    "10": {
     "writeoff": [],
+    "understudy": [],
     "strong": [
      "Mike Vick"
     ]
@@ -248,12 +263,14 @@
      "Geno Smith",
      "Matthew Stafford"
     ],
+    "understudy": [],
     "strong": []
    },
    "13": {
     "writeoff": [
      "Alex Smith"
     ],
+    "understudy": [],
     "strong": [
      "Carson Palmer"
     ]
@@ -262,6 +279,7 @@
     "writeoff": [
      "Josh McCown"
     ],
+    "understudy": [],
     "strong": []
    }
   }
@@ -545,62 +563,7 @@
    "20": 1
   }
  },
- "6_still_starting": {
-  "qbs": 73,
-  "by_year": [
-   {
-    "career_year": 1,
-    "share_starting": 0.63,
-    "share_starting_for_original_team": 0.63
-   },
-   {
-    "career_year": 2,
-    "share_starting": 0.822,
-    "share_starting_for_original_team": 0.808
-   },
-   {
-    "career_year": 3,
-    "share_starting": 0.575,
-    "share_starting_for_original_team": 0.575
-   },
-   {
-    "career_year": 4,
-    "share_starting": 0.493,
-    "share_starting_for_original_team": 0.438
-   },
-   {
-    "career_year": 5,
-    "share_starting": 0.438,
-    "share_starting_for_original_team": 0.356
-   },
-   {
-    "career_year": 6,
-    "share_starting": 0.384,
-    "share_starting_for_original_team": 0.219
-   },
-   {
-    "career_year": 7,
-    "share_starting": 0.384,
-    "share_starting_for_original_team": 0.247
-   },
-   {
-    "career_year": 8,
-    "share_starting": 0.342,
-    "share_starting_for_original_team": 0.219
-   },
-   {
-    "career_year": 9,
-    "share_starting": 0.219,
-    "share_starting_for_original_team": 0.137
-   },
-   {
-    "career_year": 10,
-    "share_starting": 0.288,
-    "share_starting_for_original_team": 0.11
-   }
-  ]
- },
- "7_seasons_given": {
+ "6_seasons_given": {
   "qbs": 88,
   "most_common": 1,
   "share_one_season": 0.341,
@@ -619,6 +582,621 @@
    "14": 4,
    "17": 1,
    "18": 1
+  },
+  "names_by_seasons": {
+   "1": [
+    "Andrew Walter",
+    "Brady Quinn",
+    "Brandon Weeden",
+    "Brett Hundley",
+    "Brooks Bollinger",
+    "Bruce Gradkowski",
+    "Case Keenum",
+    "Chad Hutchinson",
+    "Charlie Frye",
+    "Chris Simms",
+    "Chris Weinke",
+    "DeShone Kizer",
+    "EJ Manuel",
+    "Jake Locker",
+    "Jimmy Clausen",
+    "Josh McCown",
+    "Josh Rosen",
+    "Kyle Allen",
+    "Mason Rudolph",
+    "Matt Cassel",
+    "Matt Leinart",
+    "Mike Glennon",
+    "Patrick Ramsey",
+    "Rex Grossman",
+    "Shaun Hill",
+    "Tarvaris Jackson",
+    "Terrelle Pryor",
+    "Tim Rattay",
+    "Tim Tebow",
+    "Tyler Thigpen"
+   ],
+   "2": [
+    "Blaine Gabbert",
+    "Chad Henne",
+    "Colt McCoy",
+    "Derek Anderson",
+    "Geno Smith",
+    "J.P. Losman",
+    "JaMarcus Russell",
+    "Jay Cutler",
+    "Kyle Orton",
+    "Nick Foles",
+    "Quincy Carter",
+    "Robert Griffin III",
+    "Teddy Bridgewater",
+    "Trent Edwards",
+    "Trevor Siemian"
+   ],
+   "3": [
+    "Byron Leftwich",
+    "Christian Ponder",
+    "Deshaun Watson",
+    "Jason Campbell",
+    "Kirk Cousins",
+    "Sam Bradford",
+    "Sam Darnold"
+   ],
+   "4": [
+    "Baker Mayfield",
+    "Colin Kaepernick",
+    "Drew Brees",
+    "Jared Goff",
+    "Joey Harrington",
+    "Josh Freeman",
+    "Kyle Boller",
+    "Marcus Mariota",
+    "Mark Sanchez",
+    "Mike Vick",
+    "Mitchell Trubisky",
+    "Vince Young"
+   ],
+   "5": [
+    "Alex Smith",
+    "Andrew Luck",
+    "Blake Bortles",
+    "Carson Wentz",
+    "Chad Pennington",
+    "David Carr",
+    "David Garrard",
+    "Jameis Winston"
+   ],
+   "6": [
+    "Carson Palmer",
+    "Ryan Tannehill"
+   ],
+   "7": [
+    "Marc Bulger"
+   ],
+   "8": [
+    "Cam Newton",
+    "Tony Romo"
+   ],
+   "9": [
+    "Andy Dalton",
+    "Derek Carr"
+   ],
+   "10": [
+    "Russell Wilson"
+   ],
+   "11": [
+    "Joe Flacco",
+    "Matthew Stafford"
+   ],
+   "14": [
+    "Aaron Rodgers",
+    "Eli Manning",
+    "Matt Ryan",
+    "Philip Rivers"
+   ],
+   "17": [
+    "Ben Roethlisberger"
+   ],
+   "18": [
+    "Tom Brady"
+   ]
+  }
+ },
+ "7_contracts": {
+  "from_class": 2011,
+  "rookie_deal_cap_pct": {
+   "round_1": 0.035,
+   "round_2": 0.01,
+   "round_3_plus": 0.005
+  },
+  "second_deals": 24,
+  "signed_career_year": {
+   "4": 16,
+   "5": 7,
+   "6": 1
+  },
+  "signed_by_year4": 16,
+  "price_by_window": [
+   {
+    "from": 2014,
+    "to": 2016,
+    "deals": 7,
+    "median_cap_pct": 0.143
+   },
+   {
+    "from": 2017,
+    "to": 2019,
+    "deals": 3,
+    "median_cap_pct": 0.17
+   },
+   {
+    "from": 2020,
+    "to": 2022,
+    "deals": 5,
+    "median_cap_pct": 0.221
+   },
+   {
+    "from": 2023,
+    "to": 2025,
+    "deals": 9,
+    "median_cap_pct": 0.215
+   }
+  ],
+  "deals": [
+   {
+    "qb": "Cam Newton",
+    "team": "CAR",
+    "year_signed": 2015,
+    "career_year": 5,
+    "years": 5.0,
+    "value": 103.8,
+    "cap_pct": 0.145,
+    "guaranteed": 41.0
+   },
+   {
+    "qb": "Andy Dalton",
+    "team": "CIN",
+    "year_signed": 2014,
+    "career_year": 4,
+    "years": 6.0,
+    "value": 96.0,
+    "cap_pct": 0.12,
+    "guaranteed": 17.0
+   },
+   {
+    "qb": "Colin Kaepernick",
+    "team": "SF",
+    "year_signed": 2014,
+    "career_year": 4,
+    "years": 6.0,
+    "value": 114.0,
+    "cap_pct": 0.143,
+    "guaranteed": 13.0
+   },
+   {
+    "qb": "Russell Wilson",
+    "team": "SEA",
+    "year_signed": 2015,
+    "career_year": 4,
+    "years": 4.0,
+    "value": 87.6,
+    "cap_pct": 0.153,
+    "guaranteed": 31.7
+   },
+   {
+    "qb": "Kirk Cousins",
+    "team": "WAS",
+    "year_signed": 2016,
+    "career_year": 5,
+    "years": 1.0,
+    "value": 20.0,
+    "cap_pct": 0.129,
+    "guaranteed": 20.0
+   },
+   {
+    "qb": "Andrew Luck",
+    "team": "IND",
+    "year_signed": 2016,
+    "career_year": 5,
+    "years": 5.0,
+    "value": 123.0,
+    "cap_pct": 0.158,
+    "guaranteed": 47.0
+   },
+   {
+    "qb": "Ryan Tannehill",
+    "team": "MIA",
+    "year_signed": 2015,
+    "career_year": 4,
+    "years": 4.0,
+    "value": 77.0,
+    "cap_pct": 0.134,
+    "guaranteed": 21.5
+   },
+   {
+    "qb": "Derek Carr",
+    "team": "LV",
+    "year_signed": 2017,
+    "career_year": 4,
+    "years": 5.0,
+    "value": 125.0,
+    "cap_pct": 0.15,
+    "guaranteed": 40.0
+   },
+   {
+    "qb": "Carson Wentz",
+    "team": "PHI",
+    "year_signed": 2019,
+    "career_year": 4,
+    "years": 4.0,
+    "value": 128.0,
+    "cap_pct": 0.17,
+    "guaranteed": 66.5
+   },
+   {
+    "qb": "Dak Prescott",
+    "team": "DAL",
+    "year_signed": 2020,
+    "career_year": 5,
+    "years": 1.0,
+    "value": 31.4,
+    "cap_pct": 0.158,
+    "guaranteed": 31.4
+   },
+   {
+    "qb": "Jared Goff",
+    "team": "LA",
+    "year_signed": 2019,
+    "career_year": 4,
+    "years": 4.0,
+    "value": 134.0,
+    "cap_pct": 0.178,
+    "guaranteed": 57.0
+   },
+   {
+    "qb": "Deshaun Watson",
+    "team": "HOU",
+    "year_signed": 2020,
+    "career_year": 4,
+    "years": 4.0,
+    "value": 156.0,
+    "cap_pct": 0.197,
+    "guaranteed": 74.9
+   },
+   {
+    "qb": "Patrick Mahomes",
+    "team": "KC",
+    "year_signed": 2020,
+    "career_year": 4,
+    "years": 10.0,
+    "value": 450.0,
+    "cap_pct": 0.227,
+    "guaranteed": 63.1
+   },
+   {
+    "qb": "Lamar Jackson",
+    "team": "BAL",
+    "year_signed": 2023,
+    "career_year": 6,
+    "years": 5.0,
+    "value": 260.0,
+    "cap_pct": 0.231,
+    "guaranteed": 135.0
+   },
+   {
+    "qb": "Josh Allen",
+    "team": "BUF",
+    "year_signed": 2021,
+    "career_year": 4,
+    "years": 6.0,
+    "value": 258.0,
+    "cap_pct": 0.236,
+    "guaranteed": 100.0
+   },
+   {
+    "qb": "Kyler Murray",
+    "team": "ARI",
+    "year_signed": 2022,
+    "career_year": 4,
+    "years": 5.0,
+    "value": 230.5,
+    "cap_pct": 0.221,
+    "guaranteed": 103.3
+   },
+   {
+    "qb": "Daniel Jones",
+    "team": "NYG",
+    "year_signed": 2023,
+    "career_year": 5,
+    "years": 4.0,
+    "value": 160.0,
+    "cap_pct": 0.178,
+    "guaranteed": 81.0
+   },
+   {
+    "qb": "Tua Tagovailoa",
+    "team": "MIA",
+    "year_signed": 2024,
+    "career_year": 5,
+    "years": 4.0,
+    "value": 212.4,
+    "cap_pct": 0.208,
+    "guaranteed": 93.2
+   },
+   {
+    "qb": "Jordan Love",
+    "team": "GB",
+    "year_signed": 2024,
+    "career_year": 5,
+    "years": 4.0,
+    "value": 220.0,
+    "cap_pct": 0.215,
+    "guaranteed": 100.8
+   },
+   {
+    "qb": "Justin Herbert",
+    "team": "LAC",
+    "year_signed": 2023,
+    "career_year": 4,
+    "years": 5.0,
+    "value": 262.5,
+    "cap_pct": 0.234,
+    "guaranteed": 133.7
+   },
+   {
+    "qb": "Jalen Hurts",
+    "team": "PHI",
+    "year_signed": 2023,
+    "career_year": 4,
+    "years": 5.0,
+    "value": 255.0,
+    "cap_pct": 0.227,
+    "guaranteed": 110.0
+   },
+   {
+    "qb": "Joe Burrow",
+    "team": "CIN",
+    "year_signed": 2023,
+    "career_year": 4,
+    "years": 5.0,
+    "value": 275.0,
+    "cap_pct": 0.245,
+    "guaranteed": 146.5
+   },
+   {
+    "qb": "Trevor Lawrence",
+    "team": "JAX",
+    "year_signed": 2024,
+    "career_year": 4,
+    "years": 5.0,
+    "value": 275.0,
+    "cap_pct": 0.215,
+    "guaranteed": 142.0
+   },
+   {
+    "qb": "Brock Purdy",
+    "team": "SF",
+    "year_signed": 2025,
+    "career_year": 4,
+    "years": 5.0,
+    "value": 265.0,
+    "cap_pct": 0.19,
+    "guaranteed": 100.0
+   }
+  ],
+  "who_paid": {
+   "above_average_early": {
+    "qbs": 22,
+    "paid": 17,
+    "names_paid": [
+     "Andrew Luck",
+     "Andy Dalton",
+     "Cam Newton",
+     "Carson Wentz",
+     "Colin Kaepernick",
+     "Dak Prescott",
+     "Deshaun Watson",
+     "Jalen Hurts",
+     "Jared Goff",
+     "Joe Burrow",
+     "Josh Allen",
+     "Justin Herbert",
+     "Kyler Murray",
+     "Lamar Jackson",
+     "Patrick Mahomes",
+     "Russell Wilson",
+     "Tua Tagovailoa"
+    ],
+    "names_not_paid": [
+     "Baker Mayfield",
+     "Jameis Winston",
+     "Marcus Mariota",
+     "Nick Foles",
+     "Robert Griffin III"
+    ]
+   },
+   "below_average_early": {
+    "qbs": 29,
+    "paid": 4,
+    "names_paid": [
+     "Daniel Jones",
+     "Derek Carr",
+     "Ryan Tannehill",
+     "Trevor Lawrence"
+    ],
+    "names_not_paid": [
+     "Blaine Gabbert",
+     "Blake Bortles",
+     "Brandon Weeden",
+     "Brett Hundley",
+     "Case Keenum",
+     "Christian Ponder",
+     "Davis Mills",
+     "DeShone Kizer",
+     "Drew Lock",
+     "EJ Manuel",
+     "Gardner Minshew",
+     "Geno Smith",
+     "Jake Locker",
+     "Josh Rosen",
+     "Justin Fields",
+     "Kyle Allen",
+     "Mac Jones",
+     "Mason Rudolph",
+     "Mike Glennon",
+     "Mitchell Trubisky",
+     "Sam Darnold",
+     "Teddy Bridgewater",
+     "Terrelle Pryor",
+     "Trevor Siemian",
+     "Zach Wilson"
+    ]
+   },
+   "round_1": {
+    "qbs": 32,
+    "paid": 15,
+    "names_paid": [
+     "Andrew Luck",
+     "Cam Newton",
+     "Carson Wentz",
+     "Daniel Jones",
+     "Deshaun Watson",
+     "Jared Goff",
+     "Joe Burrow",
+     "Josh Allen",
+     "Justin Herbert",
+     "Kyler Murray",
+     "Lamar Jackson",
+     "Patrick Mahomes",
+     "Ryan Tannehill",
+     "Trevor Lawrence",
+     "Tua Tagovailoa"
+    ],
+    "names_not_paid": [
+     "Baker Mayfield",
+     "Blaine Gabbert",
+     "Blake Bortles",
+     "Brandon Weeden",
+     "Christian Ponder",
+     "EJ Manuel",
+     "Jake Locker",
+     "Jameis Winston",
+     "Josh Rosen",
+     "Justin Fields",
+     "Mac Jones",
+     "Marcus Mariota",
+     "Mitchell Trubisky",
+     "Robert Griffin III",
+     "Sam Darnold",
+     "Teddy Bridgewater",
+     "Zach Wilson"
+    ]
+   },
+   "later_rounds": {
+    "qbs": 19,
+    "paid": 6,
+    "names_paid": [
+     "Andy Dalton",
+     "Colin Kaepernick",
+     "Dak Prescott",
+     "Derek Carr",
+     "Jalen Hurts",
+     "Russell Wilson"
+    ],
+    "names_not_paid": [
+     "Brett Hundley",
+     "Case Keenum",
+     "Davis Mills",
+     "DeShone Kizer",
+     "Drew Lock",
+     "Gardner Minshew",
+     "Geno Smith",
+     "Kyle Allen",
+     "Mason Rudolph",
+     "Mike Glennon",
+     "Nick Foles",
+     "Terrelle Pryor",
+     "Trevor Siemian"
+    ]
+   }
+  },
+  "teams": {
+   "ARI": [
+    "Kyler Murray"
+   ],
+   "ATL": [],
+   "BAL": [
+    "Lamar Jackson"
+   ],
+   "BUF": [
+    "Josh Allen"
+   ],
+   "CAR": [
+    "Cam Newton"
+   ],
+   "CHI": [],
+   "CIN": [
+    "Andy Dalton",
+    "Joe Burrow"
+   ],
+   "CLE": [],
+   "DAL": [
+    "Dak Prescott"
+   ],
+   "DEN": [],
+   "DET": [],
+   "GB": [
+    "Jordan Love"
+   ],
+   "HOU": [
+    "Deshaun Watson"
+   ],
+   "IND": [
+    "Andrew Luck"
+   ],
+   "JAX": [
+    "Trevor Lawrence"
+   ],
+   "KC": [
+    "Patrick Mahomes"
+   ],
+   "LA": [
+    "Jared Goff"
+   ],
+   "LAC": [
+    "Justin Herbert"
+   ],
+   "LV": [
+    "Derek Carr"
+   ],
+   "MIA": [
+    "Ryan Tannehill",
+    "Tua Tagovailoa"
+   ],
+   "MIN": [],
+   "NE": [],
+   "NO": [],
+   "NYG": [
+    "Daniel Jones"
+   ],
+   "NYJ": [],
+   "PHI": [
+    "Carson Wentz",
+    "Jalen Hurts"
+   ],
+   "PIT": [],
+   "SEA": [
+    "Russell Wilson"
+   ],
+   "SF": [
+    "Brock Purdy",
+    "Colin Kaepernick"
+   ],
+   "TB": [],
+   "TEN": [],
+   "WAS": [
+    "Kirk Cousins"
+   ]
   }
  },
  "8_late_bloomers": {
@@ -879,88 +1457,209 @@
    }
   ]
  },
- "9_patience": {
-  "kept_below_average_early": {
+ "9_box_scores": {
+  "strugglers": {
    "years_1_3": {
-    "qbs": 9,
-    "epa_vs_league": -0.066,
-    "win_pct": 0.427,
-    "int_pct": 0.0279,
-    "turnovers_per_100_drives": 11.1
+    "qbs": 25,
+    "completion_pct": 0.5505,
+    "yards_per_game": 203.0,
+    "tds_per_game": 1.116
    },
    "year_4_plus": {
-    "qbs": 9,
-    "epa_vs_league": 0.065,
-    "win_pct": 0.552,
-    "int_pct": 0.0202,
-    "turnovers_per_100_drives": 9.1
-   }
+    "qbs": 25,
+    "completion_pct": 0.6121,
+    "yards_per_game": 240.8,
+    "tds_per_game": 1.487
+   },
+   "by_year": [
+    {
+     "career_year": 1,
+     "qbs": 17,
+     "completion_pct": 0.52,
+     "yards_per_game": 182.2,
+     "tds_per_game": 0.881
+    },
+    {
+     "career_year": 2,
+     "qbs": 21,
+     "completion_pct": 0.5578,
+     "yards_per_game": 204.5,
+     "tds_per_game": 1.152
+    },
+    {
+     "career_year": 3,
+     "qbs": 16,
+     "completion_pct": 0.5697,
+     "yards_per_game": 222.6,
+     "tds_per_game": 1.311
+    },
+    {
+     "career_year": 4,
+     "qbs": 14,
+     "completion_pct": 0.5662,
+     "yards_per_game": 215.7,
+     "tds_per_game": 1.249
+    },
+    {
+     "career_year": 5,
+     "qbs": 13,
+     "completion_pct": 0.5911,
+     "yards_per_game": 217.8,
+     "tds_per_game": 1.222
+    },
+    {
+     "career_year": 6,
+     "qbs": 13,
+     "completion_pct": 0.5889,
+     "yards_per_game": 229.7,
+     "tds_per_game": 1.193
+    },
+    {
+     "career_year": 7,
+     "qbs": 11,
+     "completion_pct": 0.6211,
+     "yards_per_game": 236.7,
+     "tds_per_game": 1.429
+    },
+    {
+     "career_year": 8,
+     "qbs": 8,
+     "completion_pct": 0.6344,
+     "yards_per_game": 249.9,
+     "tds_per_game": 1.545
+    }
+   ],
+   "names": [
+    "Alex Smith",
+    "Blaine Gabbert",
+    "Blake Bortles",
+    "Brady Quinn",
+    "Case Keenum",
+    "Chad Henne",
+    "David Carr",
+    "Derek Carr",
+    "Drew Brees",
+    "Geno Smith",
+    "Jacoby Brissett",
+    "Joey Harrington",
+    "Josh Freeman",
+    "Josh McCown",
+    "Kyle Boller",
+    "Kyle Orton",
+    "Mark Sanchez",
+    "Matthew Stafford",
+    "Mitchell Trubisky",
+    "Ryan Tannehill",
+    "Sam Bradford",
+    "Sam Darnold",
+    "Tarvaris Jackson",
+    "Teddy Bridgewater",
+    "Vince Young"
+   ]
   },
-  "let_go_below_average_early": {
+  "good_early": {
    "years_1_3": {
-    "qbs": 43,
-    "epa_vs_league": -0.118,
-    "win_pct": 0.392,
-    "int_pct": 0.0294,
-    "turnovers_per_100_drives": 11.8
-   }
-  },
-  "qbs": [
-   {
-    "qb": "Drew Brees",
-    "rookie_class": 2001,
-    "years_1_3": -0.063,
-    "year_4_plus": 0.161
+    "qbs": 29,
+    "completion_pct": 0.5849,
+    "yards_per_game": 233.4,
+    "tds_per_game": 1.564
    },
-   {
-    "qb": "David Carr",
-    "rookie_class": 2002,
-    "years_1_3": -0.094,
-    "year_4_plus": -0.083
+   "year_4_plus": {
+    "qbs": 29,
+    "completion_pct": 0.6033,
+    "yards_per_game": 249.6,
+    "tds_per_game": 1.641
    },
-   {
-    "qb": "Kyle Boller",
-    "rookie_class": 2003,
-    "years_1_3": -0.137,
-    "year_4_plus": -0.106
-   },
-   {
-    "qb": "Alex Smith",
-    "rookie_class": 2005,
-    "years_1_3": -0.057,
-    "year_4_plus": 0.034
-   },
-   {
-    "qb": "Vince Young",
-    "rookie_class": 2006,
-    "years_1_3": -0.037,
-    "year_4_plus": 0.094
-   },
-   {
-    "qb": "Matthew Stafford",
-    "rookie_class": 2009,
-    "years_1_3": -0.009,
-    "year_4_plus": 0.045
-   },
-   {
-    "qb": "Ryan Tannehill",
-    "rookie_class": 2012,
-    "years_1_3": -0.03,
-    "year_4_plus": 0.018
-   },
-   {
-    "qb": "Derek Carr",
-    "rookie_class": 2014,
-    "years_1_3": -0.052,
-    "year_4_plus": 0.019
-   },
-   {
-    "qb": "Blake Bortles",
-    "rookie_class": 2014,
-    "years_1_3": -0.103,
-    "year_4_plus": -0.001
-   }
-  ]
+   "by_year": [
+    {
+     "career_year": 1,
+     "qbs": 13,
+     "completion_pct": 0.5717,
+     "yards_per_game": 224.8,
+     "tds_per_game": 1.296
+    },
+    {
+     "career_year": 2,
+     "qbs": 23,
+     "completion_pct": 0.5756,
+     "yards_per_game": 229.0,
+     "tds_per_game": 1.635
+    },
+    {
+     "career_year": 3,
+     "qbs": 28,
+     "completion_pct": 0.598,
+     "yards_per_game": 241.0,
+     "tds_per_game": 1.629
+    },
+    {
+     "career_year": 4,
+     "qbs": 28,
+     "completion_pct": 0.5859,
+     "yards_per_game": 235.3,
+     "tds_per_game": 1.502
+    },
+    {
+     "career_year": 5,
+     "qbs": 24,
+     "completion_pct": 0.5889,
+     "yards_per_game": 240.1,
+     "tds_per_game": 1.592
+    },
+    {
+     "career_year": 6,
+     "qbs": 22,
+     "completion_pct": 0.5891,
+     "yards_per_game": 243.0,
+     "tds_per_game": 1.56
+    },
+    {
+     "career_year": 7,
+     "qbs": 20,
+     "completion_pct": 0.6084,
+     "yards_per_game": 240.5,
+     "tds_per_game": 1.726
+    },
+    {
+     "career_year": 8,
+     "qbs": 20,
+     "completion_pct": 0.6123,
+     "yards_per_game": 248.7,
+     "tds_per_game": 1.666
+    }
+   ],
+   "names": [
+    "Andrew Luck",
+    "Andy Dalton",
+    "Baker Mayfield",
+    "Ben Roethlisberger",
+    "Cam Newton",
+    "Carson Palmer",
+    "Carson Wentz",
+    "Chad Pennington",
+    "Colin Kaepernick",
+    "Dak Prescott",
+    "Derek Anderson",
+    "Deshaun Watson",
+    "Eli Manning",
+    "Jameis Winston",
+    "Jared Goff",
+    "Jason Campbell",
+    "Jay Cutler",
+    "Joe Flacco",
+    "Josh Allen",
+    "Lamar Jackson",
+    "Marc Bulger",
+    "Marcus Mariota",
+    "Matt Ryan",
+    "Mike Vick",
+    "Nick Foles",
+    "Patrick Mahomes",
+    "Philip Rivers",
+    "Russell Wilson",
+    "Tom Brady"
+   ]
+  }
  },
  "10_early_strugglers": {
   "below_average_early": {
@@ -974,6 +1673,84 @@
    "above_average_later": 25,
    "more_starts_never_above": 4,
    "no_more_starting_seasons": 3
+  },
+  "strugglers_by_draft": {
+   "round_1": {
+    "qbs": 25,
+    "above_average_later": 11,
+    "more_starts_never_above": 5,
+    "no_more_starting_seasons": 9,
+    "names_above_later": [
+     "Alex Smith",
+     "Blake Bortles",
+     "Josh Freeman",
+     "Mark Sanchez",
+     "Matthew Stafford",
+     "Mitchell Trubisky",
+     "Ryan Tannehill",
+     "Sam Bradford",
+     "Sam Darnold",
+     "Teddy Bridgewater",
+     "Vince Young"
+    ],
+    "names_no_more_starts": [
+     "Brandon Weeden",
+     "Christian Ponder",
+     "EJ Manuel",
+     "J.P. Losman",
+     "JaMarcus Russell",
+     "Jake Locker",
+     "Josh Rosen",
+     "Patrick Ramsey",
+     "Tim Tebow"
+    ]
+   },
+   "rounds_2_3": {
+    "qbs": 17,
+    "above_average_later": 5,
+    "more_starts_never_above": 2,
+    "no_more_starting_seasons": 10,
+    "names_above_later": [
+     "Derek Carr",
+     "Drew Brees",
+     "Geno Smith",
+     "Jacoby Brissett",
+     "Josh McCown"
+    ],
+    "names_no_more_starts": [
+     "Andrew Walter",
+     "Charlie Frye",
+     "Chris Simms",
+     "Colt McCoy",
+     "DeShone Kizer",
+     "Jimmy Clausen",
+     "Mason Rudolph",
+     "Mike Glennon",
+     "Quincy Carter",
+     "Trent Edwards"
+    ]
+   },
+   "round_4_plus": {
+    "qbs": 11,
+    "above_average_later": 2,
+    "more_starts_never_above": 0,
+    "no_more_starting_seasons": 9,
+    "names_above_later": [
+     "Case Keenum",
+     "Kyle Orton"
+    ],
+    "names_no_more_starts": [
+     "Brett Hundley",
+     "Brooks Bollinger",
+     "Bruce Gradkowski",
+     "Chad Hutchinson",
+     "Chris Weinke",
+     "Kyle Allen",
+     "Terrelle Pryor",
+     "Trevor Siemian",
+     "Tyler Thigpen"
+    ]
+   }
   }
  },
  "headline": {
@@ -1154,7 +1931,60 @@
    },
    "early": 0.243,
    "later": 0.082,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     3,
+     15,
+     275,
+     421,
+     3120,
+     22
+    ],
+    [
+     4,
+     10,
+     189,
+     319,
+     2139,
+     13
+    ],
+    [
+     5,
+     13,
+     242,
+     388,
+     2673,
+     16
+    ],
+    [
+     7,
+     16,
+     313,
+     508,
+     3352,
+     17
+    ],
+    [
+     8,
+     9,
+     179,
+     284,
+     1766,
+     10
+    ],
+    [
+     9,
+     16,
+     321,
+     498,
+     3653,
+     19
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 18,
+   "contracts": []
   },
   "00-0019596": {
    "name": "Tom Brady",
@@ -1413,7 +2243,262 @@
    },
    "early": 0.011,
    "later": 0.165,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     15,
+     264,
+     454,
+     2843,
+     18
+    ],
+    [
+     3,
+     16,
+     373,
+     632,
+     3764,
+     28
+    ],
+    [
+     4,
+     16,
+     317,
+     559,
+     3620,
+     23
+    ],
+    [
+     5,
+     16,
+     288,
+     498,
+     3690,
+     28
+    ],
+    [
+     6,
+     16,
+     334,
+     555,
+     4110,
+     26
+    ],
+    [
+     7,
+     16,
+     320,
+     542,
+     3533,
+     24
+    ],
+    [
+     8,
+     16,
+     398,
+     599,
+     4806,
+     50
+    ],
+    [
+     10,
+     16,
+     371,
+     581,
+     4398,
+     28
+    ],
+    [
+     11,
+     16,
+     324,
+     517,
+     3900,
+     36
+    ],
+    [
+     12,
+     16,
+     401,
+     642,
+     5235,
+     39
+    ],
+    [
+     13,
+     16,
+     401,
+     661,
+     4827,
+     34
+    ],
+    [
+     14,
+     16,
+     380,
+     664,
+     4343,
+     25
+    ],
+    [
+     15,
+     16,
+     373,
+     603,
+     4109,
+     33
+    ],
+    [
+     16,
+     16,
+     402,
+     660,
+     4770,
+     36
+    ],
+    [
+     17,
+     12,
+     291,
+     446,
+     3554,
+     28
+    ],
+    [
+     18,
+     16,
+     385,
+     616,
+     4577,
+     32
+    ],
+    [
+     19,
+     16,
+     375,
+     589,
+     4355,
+     29
+    ],
+    [
+     20,
+     16,
+     373,
+     640,
+     4057,
+     24
+    ],
+    [
+     21,
+     16,
+     401,
+     627,
+     4633,
+     40
+    ],
+    [
+     22,
+     17,
+     485,
+     739,
+     5316,
+     43
+    ],
+    [
+     23,
+     17,
+     490,
+     752,
+     4694,
+     25
+    ]
+   ],
+   "draft_round": 6,
+   "draft_pick": 199,
+   "contracts": [
+    [
+     2000,
+     1,
+     "Patriots",
+     3.0,
+     0.9,
+     0.005,
+     true
+    ],
+    [
+     2002,
+     3,
+     "Patriots",
+     4.0,
+     29.6,
+     0.104,
+     true
+    ],
+    [
+     2005,
+     6,
+     "Patriots",
+     4.0,
+     48.0,
+     0.14,
+     true
+    ],
+    [
+     2010,
+     11,
+     "Patriots",
+     4.0,
+     72.0,
+     0.14,
+     true
+    ],
+    [
+     2013,
+     14,
+     "Patriots",
+     5.0,
+     57.0,
+     0.093,
+     true
+    ],
+    [
+     2016,
+     17,
+     "Patriots",
+     2.0,
+     41.0,
+     0.132,
+     true
+    ],
+    [
+     2019,
+     20,
+     "Patriots",
+     1.0,
+     23.0,
+     0.122,
+     true
+    ],
+    [
+     2020,
+     21,
+     "Buccaneers",
+     2.0,
+     50.0,
+     0.126,
+     false
+    ],
+    [
+     2021,
+     22,
+     "Buccaneers",
+     1.0,
+     25.0,
+     0.137,
+     false
+    ]
+   ]
   },
   "00-0019599": {
    "name": "Marc Bulger",
@@ -1517,7 +2602,68 @@
    "best_after": null,
    "early": 0.09,
    "later": -0.025,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     3,
+     15,
+     336,
+     568,
+     3845,
+     22
+    ],
+    [
+     4,
+     14,
+     321,
+     523,
+     3964,
+     21
+    ],
+    [
+     5,
+     8,
+     192,
+     313,
+     2297,
+     14
+    ],
+    [
+     6,
+     16,
+     370,
+     629,
+     4301,
+     24
+    ],
+    [
+     7,
+     12,
+     221,
+     413,
+     2392,
+     11
+    ],
+    [
+     8,
+     15,
+     252,
+     479,
+     2727,
+     11
+    ],
+    [
+     9,
+     9,
+     140,
+     260,
+     1469,
+     5
+    ]
+   ],
+   "draft_round": 6,
+   "draft_pick": 168,
+   "contracts": []
   },
   "00-0019623": {
    "name": "Tim Rattay",
@@ -1621,7 +2767,20 @@
    "best_after": null,
    "early": null,
    "later": -0.093,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     5,
+     9,
+     198,
+     361,
+     2169,
+     10
+    ]
+   ],
+   "draft_round": 7,
+   "draft_pick": 212,
+   "contracts": []
   },
   "00-0020245": {
    "name": "Mike Vick",
@@ -1780,7 +2939,132 @@
    },
    "early": 0.081,
    "later": 0.025,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     15,
+     231,
+     454,
+     2936,
+     16
+    ],
+    [
+     4,
+     15,
+     181,
+     365,
+     2313,
+     14
+    ],
+    [
+     5,
+     15,
+     214,
+     421,
+     2412,
+     15
+    ],
+    [
+     6,
+     16,
+     205,
+     434,
+     2474,
+     20
+    ],
+    [
+     10,
+     12,
+     233,
+     404,
+     3018,
+     21
+    ],
+    [
+     11,
+     13,
+     253,
+     441,
+     3303,
+     18
+    ],
+    [
+     12,
+     10,
+     204,
+     377,
+     2362,
+     12
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2001,
+     1,
+     "Falcons",
+     6.0,
+     37.3,
+     0.092,
+     true
+    ],
+    [
+     2004,
+     4,
+     "Falcons",
+     7.0,
+     91.0,
+     0.161,
+     true
+    ],
+    [
+     2009,
+     9,
+     "Eagles",
+     2.0,
+     6.9,
+     0.028,
+     false
+    ],
+    [
+     2011,
+     11,
+     "Eagles",
+     5.0,
+     80.0,
+     0.133,
+     false
+    ],
+    [
+     2013,
+     13,
+     "Eagles",
+     1.0,
+     7.5,
+     0.061,
+     false
+    ],
+    [
+     2014,
+     14,
+     "Jets",
+     1.0,
+     4.0,
+     0.03,
+     false
+    ],
+    [
+     2015,
+     15,
+     "Steelers",
+     1.0,
+     1.0,
+     0.007,
+     false
+    ]
+   ]
   },
   "00-0020404": {
    "name": "Quincy Carter",
@@ -1844,7 +3128,28 @@
    "best_after": null,
    "early": -0.069,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     8,
+     90,
+     186,
+     1072,
+     5
+    ],
+    [
+     3,
+     16,
+     292,
+     541,
+     3302,
+     17
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 53,
+   "contracts": []
   },
   "00-0020434": {
    "name": "Chris Weinke",
@@ -1918,7 +3223,20 @@
    "best_after": null,
    "early": -0.157,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     15,
+     293,
+     566,
+     2931,
+     11
+    ]
+   ],
+   "draft_round": 4,
+   "draft_pick": 106,
+   "contracts": []
   },
   "00-0020531": {
    "name": "Drew Brees",
@@ -2147,7 +3465,228 @@
    },
    "early": -0.063,
    "later": 0.161,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     16,
+     320,
+     550,
+     3284,
+     17
+    ],
+    [
+     3,
+     11,
+     205,
+     373,
+     2108,
+     11
+    ],
+    [
+     4,
+     15,
+     262,
+     416,
+     3159,
+     27
+    ],
+    [
+     5,
+     16,
+     323,
+     524,
+     3576,
+     24
+    ],
+    [
+     6,
+     16,
+     357,
+     571,
+     4424,
+     26
+    ],
+    [
+     7,
+     16,
+     443,
+     668,
+     4428,
+     28
+    ],
+    [
+     8,
+     16,
+     413,
+     642,
+     5069,
+     34
+    ],
+    [
+     9,
+     15,
+     363,
+     533,
+     4388,
+     34
+    ],
+    [
+     10,
+     16,
+     448,
+     681,
+     4620,
+     33
+    ],
+    [
+     11,
+     16,
+     471,
+     680,
+     5535,
+     46
+    ],
+    [
+     12,
+     16,
+     422,
+     693,
+     5177,
+     43
+    ],
+    [
+     13,
+     16,
+     446,
+     686,
+     5162,
+     39
+    ],
+    [
+     14,
+     16,
+     456,
+     682,
+     4952,
+     33
+    ],
+    [
+     15,
+     15,
+     428,
+     656,
+     4870,
+     32
+    ],
+    [
+     16,
+     16,
+     471,
+     693,
+     5208,
+     37
+    ],
+    [
+     17,
+     16,
+     386,
+     553,
+     4334,
+     23
+    ],
+    [
+     18,
+     15,
+     364,
+     506,
+     3992,
+     32
+    ],
+    [
+     19,
+     11,
+     281,
+     385,
+     2979,
+     27
+    ],
+    [
+     20,
+     12,
+     275,
+     401,
+     2942,
+     24
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 32,
+   "contracts": [
+    [
+     2001,
+     1,
+     "Chargers",
+     4.0,
+     3.6,
+     0.013,
+     true
+    ],
+    [
+     2005,
+     5,
+     "Chargers",
+     1.0,
+     8.1,
+     0.094,
+     true
+    ],
+    [
+     2006,
+     6,
+     "Saints",
+     5.0,
+     60.0,
+     0.098,
+     false
+    ],
+    [
+     2012,
+     12,
+     "Saints",
+     5.0,
+     100.0,
+     0.166,
+     false
+    ],
+    [
+     2016,
+     16,
+     "Saints",
+     1.0,
+     24.2,
+     0.156,
+     false
+    ],
+    [
+     2018,
+     18,
+     "Saints",
+     2.0,
+     50.0,
+     0.141,
+     false
+    ],
+    [
+     2020,
+     20,
+     "Saints",
+     2.0,
+     50.0,
+     0.126,
+     false
+    ]
+   ]
   },
   "00-0020562": {
    "name": "Chad Hutchinson",
@@ -2201,7 +3740,20 @@
    "best_after": null,
    "early": -0.351,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     9,
+     127,
+     283,
+     1555,
+     7
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": []
   },
   "00-0020608": {
    "name": "David Carr",
@@ -2325,7 +3877,125 @@
    "best_after": null,
    "early": -0.094,
    "later": -0.083,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     16,
+     233,
+     520,
+     2592,
+     9
+    ],
+    [
+     2,
+     12,
+     167,
+     308,
+     2013,
+     9
+    ],
+    [
+     3,
+     16,
+     286,
+     513,
+     3539,
+     16
+    ],
+    [
+     4,
+     16,
+     256,
+     488,
+     2488,
+     14
+    ],
+    [
+     5,
+     16,
+     302,
+     480,
+     2765,
+     11
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2002,
+     1,
+     "Texans",
+     7.0,
+     48.8,
+     0.098,
+     true
+    ],
+    [
+     2007,
+     6,
+     "Panthers",
+     2.0,
+     6.2,
+     0.028,
+     false
+    ],
+    [
+     2008,
+     7,
+     "Giants",
+     1.0,
+     1.0,
+     0.009,
+     false
+    ],
+    [
+     2009,
+     8,
+     "Giants",
+     1.0,
+     2.1,
+     0.017,
+     false
+    ],
+    [
+     2010,
+     9,
+     "49ers",
+     2.0,
+     6.2,
+     0.024,
+     false
+    ],
+    [
+     2011,
+     10,
+     "Giants",
+     1.0,
+     0.9,
+     0.007,
+     false
+    ],
+    [
+     2012,
+     11,
+     "Giants",
+     1.0,
+     1.0,
+     0.008,
+     false
+    ],
+    [
+     2013,
+     12,
+     "Giants",
+     1.0,
+     1.1,
+     0.009,
+     false
+    ]
+   ]
   },
   "00-0020679": {
    "name": "Shaun Hill",
@@ -2444,7 +4114,109 @@
    },
    "early": null,
    "later": -0.01,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     7,
+     9,
+     181,
+     307,
+     2046,
+     13
+    ],
+    [
+     9,
+     11,
+     257,
+     430,
+     2686,
+     16
+    ],
+    [
+     13,
+     8,
+     145,
+     247,
+     1657,
+     8
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": [
+    [
+     2002,
+     1,
+     "Vikings",
+     3.0,
+     0.9,
+     0.004,
+     false
+    ],
+    [
+     2005,
+     4,
+     "Vikings",
+     1.0,
+     0.7,
+     0.008,
+     false
+    ],
+    [
+     2006,
+     5,
+     "49ers",
+     2.0,
+     1.2,
+     0.006,
+     true
+    ],
+    [
+     2008,
+     7,
+     "49ers",
+     3.0,
+     6.0,
+     0.017,
+     true
+    ],
+    [
+     2010,
+     9,
+     "Lions",
+     3.0,
+     10.8,
+     0.028,
+     false
+    ],
+    [
+     2012,
+     11,
+     "Lions",
+     2.0,
+     5.5,
+     0.023,
+     false
+    ],
+    [
+     2014,
+     13,
+     "Rams",
+     1.0,
+     1.8,
+     0.013,
+     false
+    ],
+    [
+     2015,
+     14,
+     "Vikings",
+     2.0,
+     6.5,
+     0.023,
+     false
+    ]
+   ]
   },
   "00-0021141": {
    "name": "Joey Harrington",
@@ -2533,7 +4305,60 @@
    },
    "early": -0.143,
    "later": -0.125,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     14,
+     215,
+     437,
+     2294,
+     12
+    ],
+    [
+     2,
+     16,
+     309,
+     561,
+     2880,
+     17
+    ],
+    [
+     3,
+     16,
+     274,
+     519,
+     3047,
+     19
+    ],
+    [
+     4,
+     12,
+     189,
+     354,
+     2021,
+     12
+    ],
+    [
+     5,
+     11,
+     223,
+     400,
+     2236,
+     12
+    ],
+    [
+     6,
+     12,
+     215,
+     380,
+     2215,
+     7
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 3,
+   "contracts": []
   },
   "00-0021206": {
    "name": "Josh McCown",
@@ -2702,7 +4527,188 @@
    },
    "early": -0.104,
    "later": -0.054,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     3,
+     14,
+     233,
+     439,
+     2511,
+     11
+    ],
+    [
+     6,
+     9,
+     111,
+     206,
+     1151,
+     10
+    ],
+    [
+     13,
+     11,
+     184,
+     359,
+     2206,
+     11
+    ],
+    [
+     14,
+     8,
+     186,
+     315,
+     2109,
+     12
+    ],
+    [
+     16,
+     13,
+     267,
+     431,
+     2926,
+     18
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 81,
+   "contracts": [
+    [
+     2002,
+     1,
+     "Cardinals",
+     3.0,
+     1.4,
+     0.007,
+     true
+    ],
+    [
+     2005,
+     4,
+     "Cardinals",
+     1.0,
+     1.4,
+     0.017,
+     true
+    ],
+    [
+     2006,
+     5,
+     "LV/DET",
+     2.0,
+     6.0,
+     0.029,
+     false
+    ],
+    [
+     2008,
+     7,
+     "CAR/MIA",
+     2.0,
+     6.2,
+     0.027,
+     false
+    ],
+    [
+     2011,
+     10,
+     "CHI/SF",
+     1.0,
+     0.8,
+     0.007,
+     false
+    ],
+    [
+     2012,
+     11,
+     "Bears",
+     1.0,
+     0.9,
+     0.007,
+     false
+    ],
+    [
+     2012,
+     11,
+     "Bears",
+     1.0,
+     0.8,
+     0.007,
+     false
+    ],
+    [
+     2013,
+     12,
+     "Bears",
+     1.0,
+     0.9,
+     0.007,
+     false
+    ],
+    [
+     2014,
+     13,
+     "Buccaneers",
+     2.0,
+     10.0,
+     0.038,
+     false
+    ],
+    [
+     2015,
+     14,
+     "Browns",
+     3.0,
+     14.0,
+     0.033,
+     false
+    ],
+    [
+     2017,
+     16,
+     "Jets",
+     1.0,
+     6.0,
+     0.036,
+     false
+    ],
+    [
+     2018,
+     17,
+     "Jets",
+     1.0,
+     10.0,
+     0.056,
+     false
+    ],
+    [
+     2019,
+     18,
+     "Eagles",
+     1.0,
+     2.0,
+     0.011,
+     false
+    ],
+    [
+     2020,
+     19,
+     "Texans",
+     2.0,
+     2.1,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     19,
+     "Eagles",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0021231": {
    "name": "David Garrard",
@@ -2816,7 +4822,62 @@
    "best_after": null,
    "early": null,
    "later": 0.045,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     5,
+     10,
+     145,
+     261,
+     1735,
+     10
+    ],
+    [
+     6,
+     12,
+     208,
+     344,
+     2509,
+     18
+    ],
+    [
+     7,
+     16,
+     335,
+     575,
+     3620,
+     15
+    ],
+    [
+     8,
+     16,
+     314,
+     555,
+     3597,
+     15
+    ],
+    [
+     9,
+     14,
+     236,
+     397,
+     2734,
+     23
+    ]
+   ],
+   "draft_round": 4,
+   "draft_pick": 108,
+   "contracts": [
+    [
+     0,
+     -2001,
+     "Jets",
+     1.0,
+     1.0,
+     0.0,
+     false
+    ]
+   ]
   },
   "00-0021379": {
    "name": "Patrick Ramsey",
@@ -2910,7 +4971,20 @@
    "best_after": null,
    "early": -0.053,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     11,
+     180,
+     368,
+     2169,
+     14
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 32,
+   "contracts": []
   },
   "00-0021429": {
    "name": "Carson Palmer",
@@ -3079,7 +5153,155 @@
    },
    "early": 0.07,
    "later": 0.047,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     13,
+     263,
+     451,
+     2897,
+     18
+    ],
+    [
+     3,
+     16,
+     345,
+     529,
+     3836,
+     32
+    ],
+    [
+     4,
+     16,
+     324,
+     552,
+     4036,
+     28
+    ],
+    [
+     5,
+     16,
+     373,
+     589,
+     4130,
+     26
+    ],
+    [
+     7,
+     16,
+     282,
+     488,
+     3094,
+     21
+    ],
+    [
+     8,
+     16,
+     362,
+     610,
+     3970,
+     26
+    ],
+    [
+     9,
+     10,
+     199,
+     343,
+     2753,
+     13
+    ],
+    [
+     10,
+     15,
+     345,
+     587,
+     4018,
+     22
+    ],
+    [
+     11,
+     16,
+     362,
+     612,
+     4274,
+     24
+    ],
+    [
+     13,
+     16,
+     342,
+     556,
+     4671,
+     35
+    ],
+    [
+     14,
+     15,
+     364,
+     635,
+     4233,
+     26
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2003,
+     1,
+     "Bengals",
+     6.0,
+     40.0,
+     0.089,
+     true
+    ],
+    [
+     2005,
+     3,
+     "Bengals",
+     6.0,
+     97.0,
+     0.189,
+     true
+    ],
+    [
+     2011,
+     9,
+     "Raiders",
+     4.0,
+     43.0,
+     0.089,
+     false
+    ],
+    [
+     2013,
+     11,
+     "Cardinals",
+     2.0,
+     17.0,
+     0.069,
+     false
+    ],
+    [
+     2014,
+     12,
+     "Cardinals",
+     3.0,
+     49.5,
+     0.124,
+     false
+    ],
+    [
+     2016,
+     14,
+     "Cardinals",
+     1.0,
+     21.0,
+     0.135,
+     false
+    ]
+   ]
   },
   "00-0021678": {
    "name": "Tony Romo",
@@ -3223,7 +5445,122 @@
    "best_after": null,
    "early": null,
    "later": 0.135,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     4,
+     13,
+     220,
+     358,
+     2903,
+     19
+    ],
+    [
+     5,
+     16,
+     335,
+     544,
+     4211,
+     36
+    ],
+    [
+     6,
+     13,
+     276,
+     470,
+     3448,
+     26
+    ],
+    [
+     7,
+     16,
+     347,
+     582,
+     4483,
+     26
+    ],
+    [
+     9,
+     16,
+     346,
+     554,
+     4184,
+     31
+    ],
+    [
+     10,
+     16,
+     425,
+     681,
+     4903,
+     28
+    ],
+    [
+     11,
+     15,
+     342,
+     569,
+     3828,
+     31
+    ],
+    [
+     12,
+     15,
+     304,
+     463,
+     3705,
+     34
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": [
+    [
+     2003,
+     1,
+     "Cowboys",
+     2.0,
+     0.5,
+     0.004,
+     true
+    ],
+    [
+     2005,
+     3,
+     "Cowboys",
+     2.0,
+     1.9,
+     0.011,
+     true
+    ],
+    [
+     2006,
+     4,
+     "Cowboys",
+     1.0,
+     3.0,
+     0.029,
+     true
+    ],
+    [
+     2007,
+     5,
+     "Cowboys",
+     6.0,
+     67.5,
+     0.103,
+     true
+    ],
+    [
+     2013,
+     11,
+     "Cowboys",
+     6.0,
+     108.0,
+     0.146,
+     true
+    ]
+   ]
   },
   "00-0022005": {
    "name": "Chris Simms",
@@ -3297,7 +5634,20 @@
    "best_after": null,
    "early": -0.071,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     3,
+     11,
+     191,
+     338,
+     2035,
+     10
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 97,
+   "contracts": []
   },
   "00-0022026": {
    "name": "Brooks Bollinger",
@@ -3371,7 +5721,20 @@
    "best_after": null,
    "early": -0.151,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     3,
+     11,
+     150,
+     299,
+     1558,
+     7
+    ]
+   ],
+   "draft_round": 6,
+   "draft_pick": 200,
+   "contracts": []
   },
   "00-0022121": {
    "name": "Rex Grossman",
@@ -3490,7 +5853,38 @@
    },
    "early": null,
    "later": -0.065,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     4,
+     16,
+     262,
+     500,
+     3197,
+     23
+    ],
+    [
+     9,
+     13,
+     265,
+     481,
+     3151,
+     16
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 22,
+   "contracts": [
+    [
+     2015,
+     13,
+     "Falcons",
+     1.0,
+     1.0,
+     0.007,
+     false
+    ]
+   ]
   },
   "00-0022164": {
    "name": "Kyle Boller",
@@ -3594,7 +5988,44 @@
    "best_after": null,
    "early": -0.137,
    "later": -0.106,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     10,
+     116,
+     237,
+     1260,
+     7
+    ],
+    [
+     2,
+     16,
+     258,
+     490,
+     2559,
+     13
+    ],
+    [
+     3,
+     9,
+     171,
+     314,
+     1799,
+     11
+    ],
+    [
+     5,
+     12,
+     168,
+     295,
+     1743,
+     9
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 19,
+   "contracts": []
   },
   "00-0022177": {
    "name": "Byron Leftwich",
@@ -3708,7 +6139,36 @@
    "best_after": null,
    "early": 0.003,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     15,
+     239,
+     437,
+     2819,
+     14
+    ],
+    [
+     2,
+     14,
+     267,
+     466,
+     2941,
+     15
+    ],
+    [
+     3,
+     11,
+     175,
+     323,
+     2123,
+     15
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 7,
+   "contracts": []
   },
   "00-0022787": {
    "name": "Matt Schaub",
@@ -3887,7 +6347,141 @@
    },
    "early": null,
    "later": 0.068,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     4,
+     11,
+     192,
+     301,
+     2241,
+     9
+    ],
+    [
+     5,
+     11,
+     251,
+     398,
+     3043,
+     15
+    ],
+    [
+     6,
+     16,
+     396,
+     604,
+     4770,
+     29
+    ],
+    [
+     7,
+     16,
+     365,
+     602,
+     4370,
+     24
+    ],
+    [
+     8,
+     10,
+     178,
+     306,
+     2479,
+     15
+    ],
+    [
+     9,
+     16,
+     350,
+     571,
+     4008,
+     22
+    ],
+    [
+     10,
+     10,
+     219,
+     379,
+     2310,
+     10
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 90,
+   "contracts": [
+    [
+     2004,
+     1,
+     "Falcons",
+     3.0,
+     1.4,
+     0.006,
+     true
+    ],
+    [
+     2007,
+     4,
+     "Texans",
+     6.0,
+     48.0,
+     0.073,
+     false
+    ],
+    [
+     2012,
+     9,
+     "Texans",
+     4.0,
+     62.0,
+     0.129,
+     false
+    ],
+    [
+     2014,
+     11,
+     "Raiders",
+     2.0,
+     13.5,
+     0.051,
+     false
+    ],
+    [
+     2015,
+     12,
+     "Ravens",
+     1.0,
+     2.0,
+     0.014,
+     false
+    ],
+    [
+     2016,
+     13,
+     "Falcons",
+     1.0,
+     1.8,
+     0.011,
+     true
+    ],
+    [
+     2017,
+     14,
+     "Falcons",
+     1.0,
+     8.0,
+     0.024,
+     true
+    ],
+    [
+     2019,
+     16,
+     "Falcons",
+     2.0,
+     3.8,
+     0.01,
+     true
+    ]
+   ]
   },
   "00-0022803": {
    "name": "Eli Manning",
@@ -4071,7 +6665,152 @@
    "best_after": null,
    "early": 0.023,
    "later": 0.003,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     16,
+     294,
+     585,
+     3762,
+     24
+    ],
+    [
+     3,
+     16,
+     301,
+     544,
+     3244,
+     24
+    ],
+    [
+     4,
+     16,
+     297,
+     553,
+     3336,
+     23
+    ],
+    [
+     5,
+     16,
+     289,
+     505,
+     3238,
+     21
+    ],
+    [
+     6,
+     16,
+     317,
+     537,
+     4021,
+     27
+    ],
+    [
+     7,
+     16,
+     339,
+     554,
+     4002,
+     31
+    ],
+    [
+     8,
+     16,
+     359,
+     617,
+     4933,
+     29
+    ],
+    [
+     9,
+     16,
+     321,
+     555,
+     3948,
+     26
+    ],
+    [
+     10,
+     16,
+     317,
+     590,
+     3818,
+     18
+    ],
+    [
+     11,
+     16,
+     379,
+     628,
+     4410,
+     30
+    ],
+    [
+     12,
+     16,
+     387,
+     644,
+     4432,
+     35
+    ],
+    [
+     13,
+     16,
+     377,
+     619,
+     4027,
+     26
+    ],
+    [
+     14,
+     15,
+     352,
+     603,
+     3468,
+     19
+    ],
+    [
+     15,
+     16,
+     380,
+     622,
+     4299,
+     21
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2004,
+     1,
+     "Giants",
+     6.0,
+     48.0,
+     0.099,
+     true
+    ],
+    [
+     2009,
+     6,
+     "Giants",
+     6.0,
+     97.5,
+     0.132,
+     true
+    ],
+    [
+     2015,
+     12,
+     "Giants",
+     4.0,
+     84.0,
+     0.147,
+     true
+    ]
+   ]
   },
   "00-0022912": {
    "name": "J.P. Losman",
@@ -4165,7 +6904,28 @@
    "best_after": null,
    "early": -0.08,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     9,
+     114,
+     251,
+     1340,
+     8
+    ],
+    [
+     3,
+     16,
+     269,
+     475,
+     3050,
+     19
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 22,
+   "contracts": []
   },
   "00-0022924": {
    "name": "Ben Roethlisberger",
@@ -4369,7 +7129,194 @@
    "best_after": null,
    "early": 0.123,
    "later": 0.087,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     14,
+     196,
+     324,
+     2621,
+     17
+    ],
+    [
+     2,
+     12,
+     168,
+     291,
+     2385,
+     17
+    ],
+    [
+     3,
+     15,
+     281,
+     511,
+     3528,
+     18
+    ],
+    [
+     4,
+     15,
+     265,
+     449,
+     3158,
+     32
+    ],
+    [
+     5,
+     16,
+     282,
+     513,
+     3314,
+     17
+    ],
+    [
+     6,
+     15,
+     337,
+     555,
+     4328,
+     26
+    ],
+    [
+     7,
+     12,
+     240,
+     413,
+     3200,
+     17
+    ],
+    [
+     8,
+     15,
+     324,
+     551,
+     4077,
+     21
+    ],
+    [
+     9,
+     13,
+     284,
+     473,
+     3265,
+     26
+    ],
+    [
+     10,
+     16,
+     375,
+     620,
+     4261,
+     28
+    ],
+    [
+     11,
+     16,
+     408,
+     632,
+     4952,
+     32
+    ],
+    [
+     12,
+     12,
+     319,
+     488,
+     3938,
+     21
+    ],
+    [
+     13,
+     14,
+     328,
+     523,
+     3819,
+     29
+    ],
+    [
+     14,
+     15,
+     361,
+     579,
+     4259,
+     28
+    ],
+    [
+     15,
+     16,
+     452,
+     696,
+     5129,
+     34
+    ],
+    [
+     17,
+     15,
+     399,
+     621,
+     3803,
+     33
+    ],
+    [
+     18,
+     16,
+     390,
+     641,
+     3740,
+     22
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 11,
+   "contracts": [
+    [
+     2004,
+     1,
+     "Steelers",
+     6.0,
+     25.2,
+     0.052,
+     true
+    ],
+    [
+     2008,
+     5,
+     "Steelers",
+     6.0,
+     88.0,
+     0.126,
+     true
+    ],
+    [
+     2015,
+     12,
+     "Steelers",
+     4.0,
+     87.4,
+     0.152,
+     true
+    ],
+    [
+     2019,
+     16,
+     "Steelers",
+     2.0,
+     68.0,
+     0.181,
+     true
+    ],
+    [
+     2021,
+     18,
+     "Steelers",
+     1.0,
+     14.0,
+     0.077,
+     true
+    ]
+   ]
   },
   "00-0022942": {
    "name": "Philip Rivers",
@@ -4578,7 +7525,187 @@
    },
    "early": 0.151,
    "later": 0.114,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     3,
+     16,
+     284,
+     487,
+     3387,
+     22
+    ],
+    [
+     4,
+     16,
+     277,
+     482,
+     3152,
+     21
+    ],
+    [
+     5,
+     16,
+     312,
+     503,
+     4004,
+     34
+    ],
+    [
+     6,
+     16,
+     317,
+     509,
+     4254,
+     28
+    ],
+    [
+     7,
+     16,
+     357,
+     578,
+     4710,
+     30
+    ],
+    [
+     8,
+     16,
+     366,
+     609,
+     4624,
+     27
+    ],
+    [
+     9,
+     16,
+     338,
+     574,
+     3606,
+     26
+    ],
+    [
+     10,
+     16,
+     378,
+     573,
+     4478,
+     32
+    ],
+    [
+     11,
+     16,
+     379,
+     605,
+     4286,
+     31
+    ],
+    [
+     12,
+     16,
+     437,
+     700,
+     4792,
+     29
+    ],
+    [
+     13,
+     16,
+     349,
+     613,
+     4386,
+     33
+    ],
+    [
+     14,
+     16,
+     360,
+     591,
+     4515,
+     28
+    ],
+    [
+     15,
+     16,
+     347,
+     540,
+     4308,
+     32
+    ],
+    [
+     16,
+     16,
+     390,
+     622,
+     4615,
+     23
+    ],
+    [
+     17,
+     16,
+     369,
+     559,
+     4169,
+     24
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 4,
+   "contracts": [
+    [
+     2004,
+     1,
+     "Chargers",
+     6.0,
+     41.2,
+     0.085,
+     true
+    ],
+    [
+     2009,
+     6,
+     "Chargers",
+     6.0,
+     91.8,
+     0.124,
+     true
+    ],
+    [
+     2015,
+     12,
+     "Chargers",
+     4.0,
+     83.2,
+     0.145,
+     true
+    ],
+    [
+     2020,
+     17,
+     "Colts",
+     1.0,
+     25.0,
+     0.126,
+     false
+    ],
+    [
+     2025,
+     22,
+     "Colts",
+     1.0,
+     1.3,
+     0.004,
+     false
+    ],
+    [
+     2025,
+     22,
+     "Colts",
+     1.0,
+     0.4,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0023436": {
    "name": "Alex Smith",
@@ -4747,7 +7874,155 @@
    },
    "early": -0.057,
    "later": 0.034,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     16,
+     259,
+     476,
+     2901,
+     16
+    ],
+    [
+     5,
+     11,
+     225,
+     393,
+     2350,
+     18
+    ],
+    [
+     6,
+     11,
+     204,
+     364,
+     2370,
+     14
+    ],
+    [
+     7,
+     16,
+     273,
+     489,
+     3144,
+     17
+    ],
+    [
+     8,
+     10,
+     153,
+     242,
+     1737,
+     13
+    ],
+    [
+     9,
+     15,
+     308,
+     543,
+     3313,
+     23
+    ],
+    [
+     10,
+     15,
+     303,
+     509,
+     3265,
+     18
+    ],
+    [
+     11,
+     16,
+     307,
+     515,
+     3486,
+     20
+    ],
+    [
+     12,
+     15,
+     328,
+     516,
+     3502,
+     15
+    ],
+    [
+     13,
+     15,
+     341,
+     539,
+     4042,
+     26
+    ],
+    [
+     14,
+     10,
+     205,
+     348,
+     2180,
+     10
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2005,
+     1,
+     "49ers",
+     6.0,
+     49.5,
+     0.096,
+     true
+    ],
+    [
+     2009,
+     5,
+     "49ers",
+     2.0,
+     6.5,
+     0.026,
+     true
+    ],
+    [
+     2011,
+     7,
+     "49ers",
+     1.0,
+     4.0,
+     0.033,
+     true
+    ],
+    [
+     2012,
+     8,
+     "SF/KC",
+     3.0,
+     24.0,
+     0.066,
+     true
+    ],
+    [
+     2014,
+     10,
+     "Chiefs",
+     4.0,
+     68.0,
+     0.128,
+     false
+    ],
+    [
+     2018,
+     14,
+     "Commanders",
+     4.0,
+     94.0,
+     0.133,
+     false
+    ]
+   ]
   },
   "00-0023459": {
    "name": "Aaron Rodgers",
@@ -4986,7 +8261,204 @@
    },
    "early": null,
    "later": 0.133,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     4,
+     16,
+     341,
+     565,
+     4038,
+     28
+    ],
+    [
+     5,
+     16,
+     350,
+     587,
+     4434,
+     30
+    ],
+    [
+     6,
+     15,
+     312,
+     504,
+     3922,
+     28
+    ],
+    [
+     7,
+     15,
+     342,
+     535,
+     4636,
+     45
+    ],
+    [
+     8,
+     16,
+     371,
+     600,
+     4295,
+     39
+    ],
+    [
+     9,
+     9,
+     193,
+     310,
+     2536,
+     17
+    ],
+    [
+     10,
+     16,
+     341,
+     548,
+     4381,
+     38
+    ],
+    [
+     11,
+     16,
+     347,
+     617,
+     3821,
+     31
+    ],
+    [
+     12,
+     16,
+     401,
+     643,
+     4428,
+     40
+    ],
+    [
+     14,
+     16,
+     372,
+     644,
+     4442,
+     25
+    ],
+    [
+     15,
+     16,
+     353,
+     604,
+     4002,
+     26
+    ],
+    [
+     16,
+     16,
+     372,
+     543,
+     4299,
+     48
+    ],
+    [
+     17,
+     16,
+     366,
+     558,
+     4115,
+     37
+    ],
+    [
+     18,
+     17,
+     350,
+     572,
+     3695,
+     26
+    ],
+    [
+     20,
+     17,
+     368,
+     624,
+     3897,
+     28
+    ],
+    [
+     21,
+     16,
+     327,
+     524,
+     3322,
+     24
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 24,
+   "contracts": [
+    [
+     2005,
+     1,
+     "Packers",
+     5.0,
+     7.7,
+     0.018,
+     true
+    ],
+    [
+     2008,
+     4,
+     "Packers",
+     5.0,
+     63.5,
+     0.11,
+     true
+    ],
+    [
+     2013,
+     9,
+     "Packers",
+     5.0,
+     110.0,
+     0.179,
+     true
+    ],
+    [
+     2018,
+     14,
+     "Packers",
+     4.0,
+     134.0,
+     0.189,
+     true
+    ],
+    [
+     2022,
+     18,
+     "NYJ/GB",
+     3.0,
+     150.8,
+     0.241,
+     true
+    ],
+    [
+     2023,
+     19,
+     "Jets",
+     3.0,
+     112.5,
+     0.167,
+     false
+    ],
+    [
+     2025,
+     21,
+     "Steelers",
+     1.0,
+     13.7,
+     0.049,
+     false
+    ]
+   ]
   },
   "00-0023460": {
    "name": "Jason Campbell",
@@ -5105,7 +8577,107 @@
    },
    "early": 0.024,
    "later": -0.02,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     3,
+     13,
+     250,
+     433,
+     2700,
+     12
+    ],
+    [
+     4,
+     16,
+     315,
+     541,
+     3245,
+     13
+    ],
+    [
+     5,
+     16,
+     327,
+     547,
+     3618,
+     20
+    ],
+    [
+     6,
+     13,
+     194,
+     359,
+     2387,
+     13
+    ],
+    [
+     9,
+     9,
+     180,
+     332,
+     2015,
+     11
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 25,
+   "contracts": [
+    [
+     2005,
+     1,
+     "Commanders",
+     5.0,
+     7.5,
+     0.088,
+     true
+    ],
+    [
+     2010,
+     6,
+     "Raiders",
+     1.0,
+     4.6,
+     0.036,
+     false
+    ],
+    [
+     2010,
+     6,
+     "Commanders",
+     1.0,
+     3.1,
+     0.024,
+     true
+    ],
+    [
+     2012,
+     8,
+     "Bears",
+     1.0,
+     3.5,
+     0.029,
+     false
+    ],
+    [
+     2013,
+     9,
+     "Browns",
+     2.0,
+     3.8,
+     0.015,
+     false
+    ],
+    [
+     2014,
+     10,
+     "Bengals",
+     1.0,
+     1.5,
+     0.011,
+     false
+    ]
+   ]
   },
   "00-0023502": {
    "name": "Charlie Frye",
@@ -5179,7 +8751,20 @@
    "best_after": null,
    "early": -0.147,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     13,
+     251,
+     433,
+     2449,
+     10
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 67,
+   "contracts": []
   },
   "00-0023504": {
    "name": "Andrew Walter",
@@ -5233,7 +8818,20 @@
    "best_after": null,
    "early": -0.356,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     12,
+     147,
+     321,
+     1677,
+     3
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 69,
+   "contracts": []
   },
   "00-0023541": {
    "name": "Kyle Orton",
@@ -5352,7 +8950,115 @@
    },
    "early": -0.273,
    "later": -0.017,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     15,
+     190,
+     398,
+     1869,
+     9
+    ],
+    [
+     4,
+     15,
+     273,
+     491,
+     2979,
+     18
+    ],
+    [
+     5,
+     16,
+     336,
+     569,
+     3802,
+     21
+    ],
+    [
+     6,
+     13,
+     293,
+     530,
+     3652,
+     20
+    ],
+    [
+     7,
+     9,
+     150,
+     261,
+     1758,
+     9
+    ],
+    [
+     10,
+     12,
+     287,
+     478,
+     3018,
+     18
+    ]
+   ],
+   "draft_round": 4,
+   "draft_pick": 106,
+   "contracts": [
+    [
+     2005,
+     1,
+     "Bears",
+     4.0,
+     1.8,
+     0.005,
+     true
+    ],
+    [
+     2008,
+     4,
+     "DEN/CHI",
+     2.0,
+     3.0,
+     0.026,
+     true
+    ],
+    [
+     2010,
+     6,
+     "DEN/KC",
+     1.0,
+     8.4,
+     0.065,
+     false
+    ],
+    [
+     2010,
+     6,
+     "Broncos",
+     1.0,
+     2.6,
+     0.02,
+     false
+    ],
+    [
+     2012,
+     8,
+     "Cowboys",
+     3.0,
+     10.5,
+     0.029,
+     false
+    ],
+    [
+     2014,
+     10,
+     "Bills",
+     2.0,
+     11.0,
+     0.041,
+     false
+    ]
+   ]
   },
   "00-0023645": {
    "name": "Derek Anderson",
@@ -5501,7 +9207,127 @@
    },
    "early": 0.062,
    "later": -0.165,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     3,
+     16,
+     298,
+     534,
+     3786,
+     29
+    ],
+    [
+     4,
+     10,
+     142,
+     298,
+     1615,
+     9
+    ],
+    [
+     6,
+     12,
+     169,
+     352,
+     2065,
+     7
+    ]
+   ],
+   "draft_round": 6,
+   "draft_pick": 213,
+   "contracts": [
+    [
+     2005,
+     1,
+     "CLE/BAL",
+     3.0,
+     1.0,
+     0.004,
+     true
+    ],
+    [
+     2008,
+     4,
+     "Browns",
+     3.0,
+     24.0,
+     0.069,
+     true
+    ],
+    [
+     2010,
+     6,
+     "Cardinals",
+     2.0,
+     7.2,
+     0.028,
+     false
+    ],
+    [
+     2011,
+     7,
+     "Panthers",
+     1.0,
+     0.7,
+     0.006,
+     false
+    ],
+    [
+     2012,
+     8,
+     "Panthers",
+     1.0,
+     0.9,
+     0.007,
+     false
+    ],
+    [
+     2013,
+     9,
+     "Panthers",
+     1.0,
+     0.9,
+     0.007,
+     false
+    ],
+    [
+     2014,
+     10,
+     "Panthers",
+     2.0,
+     2.6,
+     0.01,
+     false
+    ],
+    [
+     2015,
+     11,
+     "Panthers",
+     2.0,
+     4.5,
+     0.016,
+     false
+    ],
+    [
+     2018,
+     14,
+     "Bills",
+     1.0,
+     1.1,
+     0.006,
+     false
+    ],
+    [
+     2019,
+     15,
+     "Bills",
+     1.0,
+     1.1,
+     0.006,
+     false
+    ]
+   ]
   },
   "00-0023662": {
    "name": "Matt Cassel",
@@ -5670,7 +9496,134 @@
    },
    "early": null,
    "later": -0.03,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     4,
+     16,
+     328,
+     559,
+     3693,
+     21
+    ],
+    [
+     5,
+     15,
+     272,
+     532,
+     2924,
+     16
+    ],
+    [
+     6,
+     15,
+     262,
+     471,
+     3116,
+     27
+    ],
+    [
+     7,
+     9,
+     160,
+     290,
+     1713,
+     10
+    ],
+    [
+     8,
+     9,
+     161,
+     289,
+     1796,
+     6
+    ]
+   ],
+   "draft_round": 7,
+   "draft_pick": 230,
+   "contracts": [
+    [
+     2005,
+     1,
+     "Patriots",
+     4.0,
+     1.4,
+     0.004,
+     true
+    ],
+    [
+     2009,
+     5,
+     "Chiefs",
+     6.0,
+     63.0,
+     0.085,
+     false
+    ],
+    [
+     2013,
+     9,
+     "Vikings",
+     1.0,
+     3.7,
+     0.03,
+     false
+    ],
+    [
+     2014,
+     10,
+     "MIN/BUF",
+     2.0,
+     10.5,
+     0.039,
+     false
+    ],
+    [
+     2015,
+     11,
+     "Cowboys",
+     1.0,
+     2.0,
+     0.014,
+     false
+    ],
+    [
+     2015,
+     11,
+     "Bills",
+     1.0,
+     2.0,
+     0.014,
+     false
+    ],
+    [
+     2016,
+     12,
+     "Titans",
+     1.0,
+     2.0,
+     0.013,
+     false
+    ],
+    [
+     2017,
+     13,
+     "Titans",
+     2.0,
+     5.2,
+     0.016,
+     false
+    ],
+    [
+     2018,
+     14,
+     "Lions",
+     1.0,
+     1.1,
+     0.006,
+     false
+    ]
+   ]
   },
   "00-0023682": {
    "name": "Ryan Fitzpatrick",
@@ -5859,7 +9812,192 @@
    },
    "early": null,
    "later": -0.029,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     4,
+     12,
+     221,
+     408,
+     1905,
+     8
+    ],
+    [
+     5,
+     10,
+     127,
+     248,
+     1422,
+     9
+    ],
+    [
+     6,
+     13,
+     255,
+     464,
+     2992,
+     23
+    ],
+    [
+     7,
+     16,
+     353,
+     587,
+     3832,
+     24
+    ],
+    [
+     8,
+     16,
+     306,
+     533,
+     3400,
+     24
+    ],
+    [
+     9,
+     11,
+     217,
+     368,
+     2454,
+     14
+    ],
+    [
+     10,
+     12,
+     197,
+     332,
+     2483,
+     17
+    ],
+    [
+     11,
+     16,
+     335,
+     581,
+     3905,
+     31
+    ],
+    [
+     12,
+     14,
+     228,
+     422,
+     2710,
+     12
+    ],
+    [
+     15,
+     15,
+     311,
+     539,
+     3529,
+     20
+    ]
+   ],
+   "draft_round": 7,
+   "draft_pick": 250,
+   "contracts": [
+    [
+     2005,
+     1,
+     "CIN/LAR",
+     3.0,
+     1.0,
+     0.004,
+     true
+    ],
+    [
+     2008,
+     4,
+     "Bengals",
+     1.0,
+     0.9,
+     0.008,
+     false
+    ],
+    [
+     2009,
+     5,
+     "Bills",
+     3.0,
+     8.2,
+     0.022,
+     false
+    ],
+    [
+     2011,
+     7,
+     "Bills",
+     6.0,
+     59.0,
+     0.082,
+     false
+    ],
+    [
+     2013,
+     9,
+     "Titans",
+     2.0,
+     6.5,
+     0.026,
+     false
+    ],
+    [
+     2014,
+     10,
+     "HOU/NYJ",
+     2.0,
+     7.2,
+     0.027,
+     false
+    ],
+    [
+     2016,
+     12,
+     "Jets",
+     1.0,
+     12.0,
+     0.077,
+     false
+    ],
+    [
+     2017,
+     13,
+     "Buccaneers",
+     1.0,
+     3.0,
+     0.018,
+     false
+    ],
+    [
+     2018,
+     14,
+     "Buccaneers",
+     1.0,
+     3.3,
+     0.019,
+     false
+    ],
+    [
+     2019,
+     15,
+     "Dolphins",
+     2.0,
+     11.0,
+     0.029,
+     false
+    ],
+    [
+     2021,
+     17,
+     "Commanders",
+     1.0,
+     10.0,
+     0.055,
+     false
+    ]
+   ]
   },
   "00-0024218": {
    "name": "Vince Young",
@@ -5943,7 +10081,90 @@
    "best_after": null,
    "early": -0.037,
    "later": 0.094,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     15,
+     184,
+     378,
+     2199,
+     12
+    ],
+    [
+     2,
+     15,
+     238,
+     406,
+     2546,
+     9
+    ],
+    [
+     4,
+     12,
+     152,
+     267,
+     1879,
+     10
+    ],
+    [
+     5,
+     9,
+     93,
+     169,
+     1255,
+     10
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 3,
+   "contracts": [
+    [
+     2006,
+     1,
+     "Titans",
+     4.0,
+     48.0,
+     0.078,
+     true
+    ],
+    [
+     2011,
+     6,
+     "Eagles",
+     1.0,
+     4.0,
+     0.033,
+     false
+    ],
+    [
+     2012,
+     7,
+     "Bills",
+     1.0,
+     2.0,
+     0.017,
+     false
+    ],
+    [
+     2013,
+     8,
+     "Packers",
+     1.0,
+     0.8,
+     0.007,
+     false
+    ],
+    [
+     2014,
+     9,
+     "Browns",
+     1.0,
+     0.9,
+     0.006,
+     false
+    ]
+   ]
   },
   "00-0024225": {
    "name": "Matt Leinart",
@@ -6027,7 +10248,66 @@
    "best_after": null,
    "early": 0.007,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     12,
+     213,
+     389,
+     2542,
+     11
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 10,
+   "contracts": [
+    [
+     2006,
+     1,
+     "Cardinals",
+     6.0,
+     32.9,
+     0.054,
+     true
+    ],
+    [
+     2010,
+     5,
+     "Texans",
+     1.0,
+     1.0,
+     0.008,
+     false
+    ],
+    [
+     2011,
+     6,
+     "Texans",
+     2.0,
+     5.5,
+     0.023,
+     false
+    ],
+    [
+     2012,
+     7,
+     "Raiders",
+     1.0,
+     0.8,
+     0.006,
+     false
+    ],
+    [
+     2013,
+     8,
+     "Bills",
+     1.0,
+     0.8,
+     0.007,
+     false
+    ]
+   ]
   },
   "00-0024226": {
    "name": "Jay Cutler",
@@ -6176,7 +10456,129 @@
    },
    "early": 0.12,
    "later": -0.053,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     16,
+     297,
+     491,
+     3497,
+     20
+    ],
+    [
+     3,
+     16,
+     384,
+     623,
+     4525,
+     25
+    ],
+    [
+     4,
+     16,
+     336,
+     584,
+     3666,
+     27
+    ],
+    [
+     5,
+     15,
+     261,
+     484,
+     3274,
+     23
+    ],
+    [
+     6,
+     10,
+     182,
+     337,
+     2319,
+     13
+    ],
+    [
+     7,
+     15,
+     255,
+     472,
+     3033,
+     19
+    ],
+    [
+     8,
+     11,
+     224,
+     370,
+     2621,
+     19
+    ],
+    [
+     9,
+     15,
+     370,
+     599,
+     3812,
+     28
+    ],
+    [
+     10,
+     15,
+     311,
+     511,
+     3659,
+     21
+    ],
+    [
+     12,
+     14,
+     266,
+     449,
+     2666,
+     19
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 11,
+   "contracts": [
+    [
+     2006,
+     1,
+     "Broncos",
+     6.0,
+     34.1,
+     0.056,
+     true
+    ],
+    [
+     2009,
+     4,
+     "Bears",
+     2.0,
+     28.9,
+     0.118,
+     false
+    ],
+    [
+     2014,
+     9,
+     "Bears",
+     7.0,
+     126.7,
+     0.136,
+     false
+    ],
+    [
+     2017,
+     12,
+     "Dolphins",
+     1.0,
+     10.0,
+     0.06,
+     false
+    ]
+   ]
   },
   "00-0024264": {
    "name": "Kellen Clemens",
@@ -6325,7 +10727,39 @@
    },
    "early": null,
    "later": -0.123,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     8,
+     10,
+     142,
+     262,
+     1673,
+     8
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 49,
+   "contracts": [
+    [
+     2017,
+     12,
+     "Chargers",
+     1.0,
+     1.1,
+     0.006,
+     false
+    ],
+    [
+     2017,
+     12,
+     "Chargers",
+     1.0,
+     1.0,
+     0.006,
+     false
+    ]
+   ]
   },
   "00-0024279": {
    "name": "Tarvaris Jackson",
@@ -6444,7 +10878,38 @@
    },
    "early": -0.029,
    "later": -0.07,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     12,
+     171,
+     306,
+     1911,
+     9
+    ],
+    [
+     6,
+     15,
+     271,
+     490,
+     3091,
+     14
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 64,
+   "contracts": [
+    [
+     2015,
+     10,
+     "Seahawks",
+     1.0,
+     1.5,
+     0.01,
+     false
+    ]
+   ]
   },
   "00-0024408": {
    "name": "Bruce Gradkowski",
@@ -6538,7 +11003,30 @@
    "best_after": null,
    "early": -0.22,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     13,
+     177,
+     351,
+     1661,
+     9
+    ]
+   ],
+   "draft_round": 6,
+   "draft_pick": 194,
+   "contracts": [
+    [
+     2016,
+     11,
+     "Steelers",
+     1.0,
+     1.0,
+     0.006,
+     false
+    ]
+   ]
   },
   "00-0025388": {
    "name": "JaMarcus Russell",
@@ -6592,7 +11080,28 @@
    "best_after": null,
    "early": -0.253,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     15,
+     198,
+     396,
+     2423,
+     13
+    ],
+    [
+     3,
+     12,
+     121,
+     278,
+     1290,
+     3
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": []
   },
   "00-0025409": {
    "name": "Brady Quinn",
@@ -6661,7 +11170,38 @@
    },
    "early": -0.156,
    "later": -0.379,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     3,
+     10,
+     136,
+     275,
+     1339,
+     8
+    ],
+    [
+     6,
+     10,
+     112,
+     218,
+     1141,
+     2
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 22,
+   "contracts": [
+    [
+     0,
+     -2006,
+     "Rams",
+     1.0,
+     0.9,
+     0.0,
+     false
+    ]
+   ]
   },
   "00-0025423": {
    "name": "Kevin Kolb",
@@ -6750,7 +11290,57 @@
    },
    "early": null,
    "later": -0.066,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     5,
+     9,
+     146,
+     282,
+     1955,
+     9
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 36,
+   "contracts": [
+    [
+     2007,
+     1,
+     "Eagles",
+     4.0,
+     4.3,
+     0.01,
+     true
+    ],
+    [
+     2010,
+     4,
+     "Eagles",
+     1.0,
+     12.2,
+     0.095,
+     true
+    ],
+    [
+     2011,
+     5,
+     "Cardinals",
+     5.0,
+     62.1,
+     0.103,
+     false
+    ],
+    [
+     2013,
+     7,
+     "Bills",
+     2.0,
+     6.1,
+     0.025,
+     false
+    ]
+   ]
   },
   "00-0025479": {
    "name": "Trent Edwards",
@@ -6824,7 +11414,38 @@
    "best_after": null,
    "early": -0.056,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     10,
+     151,
+     279,
+     1630,
+     7
+    ],
+    [
+     2,
+     14,
+     245,
+     396,
+     2699,
+     11
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 92,
+   "contracts": [
+    [
+     0,
+     -2006,
+     "Raiders",
+     1.0,
+     0.7,
+     0.0,
+     false
+    ]
+   ]
   },
   "00-0025604": {
    "name": "Tyler Thigpen",
@@ -6908,7 +11529,30 @@
    "best_after": null,
    "early": -0.027,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     14,
+     230,
+     442,
+     2608,
+     18
+    ]
+   ],
+   "draft_round": 7,
+   "draft_pick": 217,
+   "contracts": [
+    [
+     0,
+     -2006,
+     "Browns",
+     1.0,
+     0.7,
+     0.0,
+     false
+    ]
+   ]
   },
   "00-0025708": {
    "name": "Matt Moore",
@@ -7047,7 +11691,111 @@
    },
    "early": null,
    "later": -0.07,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     5,
+     13,
+     210,
+     383,
+     2497,
+     16
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": [
+    [
+     2007,
+     1,
+     "CAR/DAL",
+     3.0,
+     1.1,
+     0.003,
+     true
+    ],
+    [
+     2010,
+     4,
+     "Panthers",
+     1.0,
+     3.0,
+     0.024,
+     true
+    ],
+    [
+     2011,
+     5,
+     "Dolphins",
+     2.0,
+     5.0,
+     0.021,
+     false
+    ],
+    [
+     2013,
+     7,
+     "Dolphins",
+     2.0,
+     8.0,
+     0.033,
+     false
+    ],
+    [
+     2015,
+     9,
+     "Dolphins",
+     1.0,
+     2.6,
+     0.018,
+     false
+    ],
+    [
+     2016,
+     10,
+     "Dolphins",
+     2.0,
+     3.5,
+     0.011,
+     false
+    ],
+    [
+     2019,
+     13,
+     "Chiefs",
+     1.0,
+     1.0,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     14,
+     "Chiefs",
+     1.0,
+     1.2,
+     0.006,
+     false
+    ],
+    [
+     2020,
+     14,
+     "Chiefs",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2020,
+     14,
+     "Chiefs",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0026143": {
    "name": "Matt Ryan",
@@ -7226,7 +11974,160 @@
    },
    "early": 0.11,
    "later": 0.06,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     265,
+     449,
+     3440,
+     16
+    ],
+    [
+     2,
+     14,
+     263,
+     465,
+     2916,
+     22
+    ],
+    [
+     3,
+     16,
+     357,
+     593,
+     3705,
+     28
+    ],
+    [
+     4,
+     16,
+     347,
+     586,
+     4177,
+     29
+    ],
+    [
+     5,
+     16,
+     422,
+     643,
+     4719,
+     32
+    ],
+    [
+     6,
+     16,
+     439,
+     694,
+     4515,
+     26
+    ],
+    [
+     7,
+     16,
+     415,
+     654,
+     4694,
+     28
+    ],
+    [
+     8,
+     16,
+     407,
+     644,
+     4591,
+     21
+    ],
+    [
+     9,
+     16,
+     373,
+     571,
+     4944,
+     38
+    ],
+    [
+     10,
+     16,
+     342,
+     550,
+     4095,
+     20
+    ],
+    [
+     11,
+     16,
+     422,
+     649,
+     4924,
+     35
+    ],
+    [
+     12,
+     15,
+     408,
+     663,
+     4466,
+     26
+    ],
+    [
+     13,
+     16,
+     407,
+     666,
+     4581,
+     26
+    ],
+    [
+     14,
+     17,
+     375,
+     599,
+     3968,
+     20
+    ],
+    [
+     15,
+     12,
+     309,
+     498,
+     3057,
+     14
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 3,
+   "contracts": [
+    [
+     2008,
+     1,
+     "Falcons",
+     6.0,
+     67.5,
+     0.097,
+     true
+    ],
+    [
+     2013,
+     6,
+     "Falcons",
+     5.0,
+     103.8,
+     0.169,
+     true
+    ],
+    [
+     2018,
+     11,
+     "ATL/IND",
+     5.0,
+     150.0,
+     0.169,
+     true
+    ]
+   ]
   },
   "00-0026158": {
    "name": "Joe Flacco",
@@ -7435,7 +12336,216 @@
    },
    "early": 0.031,
    "later": -0.039,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     257,
+     460,
+     2971,
+     14
+    ],
+    [
+     2,
+     16,
+     315,
+     534,
+     3613,
+     21
+    ],
+    [
+     3,
+     16,
+     306,
+     529,
+     3622,
+     25
+    ],
+    [
+     4,
+     16,
+     312,
+     573,
+     3610,
+     20
+    ],
+    [
+     5,
+     16,
+     317,
+     566,
+     3817,
+     22
+    ],
+    [
+     6,
+     16,
+     362,
+     661,
+     3912,
+     19
+    ],
+    [
+     7,
+     16,
+     344,
+     567,
+     3986,
+     27
+    ],
+    [
+     8,
+     10,
+     266,
+     425,
+     2791,
+     14
+    ],
+    [
+     9,
+     16,
+     436,
+     698,
+     4317,
+     20
+    ],
+    [
+     10,
+     16,
+     352,
+     573,
+     3141,
+     18
+    ],
+    [
+     11,
+     9,
+     232,
+     392,
+     2465,
+     12
+    ],
+    [
+     12,
+     8,
+     171,
+     287,
+     1822,
+     6
+    ],
+    [
+     18,
+     13,
+     251,
+     430,
+     2479,
+     15
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 18,
+   "contracts": [
+    [
+     2008,
+     1,
+     "Ravens",
+     5.0,
+     23.8,
+     0.041,
+     true
+    ],
+    [
+     2013,
+     6,
+     "Ravens",
+     6.0,
+     120.6,
+     0.163,
+     true
+    ],
+    [
+     2016,
+     9,
+     "BAL/DEN",
+     3.0,
+     66.4,
+     0.143,
+     true
+    ],
+    [
+     2020,
+     13,
+     "Jets",
+     1.0,
+     1.5,
+     0.008,
+     false
+    ],
+    [
+     2021,
+     14,
+     "PHI/NYJ",
+     1.0,
+     3.5,
+     0.019,
+     false
+    ],
+    [
+     2022,
+     15,
+     "Jets",
+     1.0,
+     3.5,
+     0.017,
+     false
+    ],
+    [
+     2023,
+     16,
+     "Browns",
+     1.0,
+     2.2,
+     0.01,
+     false
+    ],
+    [
+     2023,
+     16,
+     "Browns",
+     1.0,
+     0.4,
+     0.002,
+     false
+    ],
+    [
+     2023,
+     16,
+     "Browns",
+     1.0,
+     0.4,
+     0.002,
+     false
+    ],
+    [
+     2024,
+     17,
+     "Colts",
+     1.0,
+     4.5,
+     0.018,
+     false
+    ],
+    [
+     2025,
+     18,
+     "CLE/CIN",
+     1.0,
+     4.2,
+     0.015,
+     false
+    ]
+   ]
   },
   "00-0026197": {
    "name": "Chad Henne",
@@ -7584,7 +12694,109 @@
    },
    "early": -0.021,
    "later": -0.127,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     14,
+     274,
+     474,
+     2878,
+     12
+    ],
+    [
+     3,
+     15,
+     302,
+     519,
+     3298,
+     15
+    ],
+    [
+     6,
+     15,
+     305,
+     540,
+     3241,
+     13
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 57,
+   "contracts": [
+    [
+     2008,
+     1,
+     "Dolphins",
+     4.0,
+     3.4,
+     0.007,
+     true
+    ],
+    [
+     2012,
+     5,
+     "Jaguars",
+     2.0,
+     6.8,
+     0.028,
+     false
+    ],
+    [
+     2014,
+     7,
+     "Jaguars",
+     2.0,
+     8.0,
+     0.03,
+     false
+    ],
+    [
+     2016,
+     9,
+     "Jaguars",
+     2.0,
+     8.0,
+     0.026,
+     false
+    ],
+    [
+     2017,
+     10,
+     "Jaguars",
+     1.0,
+     3.5,
+     0.021,
+     false
+    ],
+    [
+     2018,
+     11,
+     "Chiefs",
+     2.0,
+     6.7,
+     0.019,
+     false
+    ],
+    [
+     2020,
+     13,
+     "Chiefs",
+     2.0,
+     3.2,
+     0.008,
+     false
+    ],
+    [
+     2022,
+     15,
+     "Chiefs",
+     1.0,
+     2.0,
+     0.01,
+     false
+    ]
+   ]
   },
   "00-0026498": {
    "name": "Matthew Stafford",
@@ -7783,7 +12995,186 @@
    },
    "early": -0.009,
    "later": 0.045,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     10,
+     201,
+     393,
+     2267,
+     13
+    ],
+    [
+     3,
+     16,
+     428,
+     711,
+     5100,
+     41
+    ],
+    [
+     4,
+     16,
+     435,
+     752,
+     4967,
+     20
+    ],
+    [
+     5,
+     16,
+     371,
+     654,
+     4650,
+     29
+    ],
+    [
+     6,
+     16,
+     363,
+     644,
+     4257,
+     22
+    ],
+    [
+     7,
+     16,
+     398,
+     636,
+     4262,
+     32
+    ],
+    [
+     8,
+     16,
+     388,
+     628,
+     4327,
+     24
+    ],
+    [
+     9,
+     16,
+     371,
+     612,
+     4446,
+     29
+    ],
+    [
+     10,
+     16,
+     367,
+     594,
+     3777,
+     21
+    ],
+    [
+     11,
+     8,
+     187,
+     307,
+     2499,
+     19
+    ],
+    [
+     12,
+     16,
+     339,
+     559,
+     4084,
+     26
+    ],
+    [
+     13,
+     17,
+     404,
+     631,
+     4886,
+     41
+    ],
+    [
+     14,
+     9,
+     206,
+     332,
+     2087,
+     10
+    ],
+    [
+     15,
+     15,
+     326,
+     548,
+     3965,
+     24
+    ],
+    [
+     16,
+     16,
+     340,
+     544,
+     3762,
+     20
+    ],
+    [
+     17,
+     17,
+     388,
+     617,
+     4707,
+     46
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2009,
+     1,
+     "Lions",
+     6.0,
+     72.0,
+     0.098,
+     true
+    ],
+    [
+     2013,
+     5,
+     "Lions",
+     3.0,
+     53.0,
+     0.144,
+     true
+    ],
+    [
+     2017,
+     9,
+     "LAR/DET",
+     5.0,
+     135.0,
+     0.162,
+     true
+    ],
+    [
+     2022,
+     14,
+     "Rams",
+     4.0,
+     160.0,
+     0.192,
+     false
+    ],
+    [
+     2025,
+     17,
+     "Rams",
+     2.0,
+     80.0,
+     0.143,
+     false
+    ]
+   ]
   },
   "00-0026625": {
    "name": "Brian Hoyer",
@@ -7962,7 +13353,182 @@
    },
    "early": null,
    "later": -0.032,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     6,
+     14,
+     242,
+     461,
+     3326,
+     12
+    ],
+    [
+     7,
+     11,
+     224,
+     394,
+     2606,
+     19
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": [
+    [
+     2009,
+     1,
+     "Patriots",
+     3.0,
+     1.2,
+     0.003,
+     true
+    ],
+    [
+     2012,
+     4,
+     "Patriots",
+     1.0,
+     1.9,
+     0.016,
+     true
+    ],
+    [
+     2012,
+     4,
+     "PIT/ARI",
+     1.0,
+     0.6,
+     0.005,
+     false
+    ],
+    [
+     2013,
+     5,
+     "Cardinals",
+     1.0,
+     2.0,
+     0.016,
+     false
+    ],
+    [
+     2013,
+     5,
+     "Browns",
+     2.0,
+     2.0,
+     0.008,
+     false
+    ],
+    [
+     2015,
+     7,
+     "Texans",
+     2.0,
+     10.5,
+     0.037,
+     false
+    ],
+    [
+     2016,
+     8,
+     "Bears",
+     1.0,
+     2.0,
+     0.013,
+     false
+    ],
+    [
+     2017,
+     9,
+     "49ers",
+     2.0,
+     12.0,
+     0.036,
+     false
+    ],
+    [
+     2017,
+     9,
+     "Patriots",
+     3.0,
+     4.8,
+     0.01,
+     true
+    ],
+    [
+     2019,
+     11,
+     "Colts",
+     3.0,
+     12.0,
+     0.021,
+     false
+    ],
+    [
+     2020,
+     12,
+     "Patriots",
+     1.0,
+     1.1,
+     0.005,
+     true
+    ],
+    [
+     2021,
+     13,
+     "Patriots",
+     1.0,
+     1.1,
+     0.006,
+     true
+    ],
+    [
+     2021,
+     13,
+     "Patriots",
+     1.0,
+     1.1,
+     0.006,
+     true
+    ],
+    [
+     2021,
+     13,
+     "Patriots",
+     1.0,
+     0.3,
+     0.002,
+     true
+    ],
+    [
+     2021,
+     13,
+     "Patriots",
+     1.0,
+     0.3,
+     0.001,
+     true
+    ],
+    [
+     2022,
+     14,
+     "Patriots",
+     2.0,
+     4.0,
+     0.01,
+     true
+    ],
+    [
+     2023,
+     15,
+     "Raiders",
+     2.0,
+     4.5,
+     0.01,
+     false
+    ]
+   ]
   },
   "00-0026898": {
    "name": "Mark Sanchez",
@@ -8071,7 +13637,116 @@
    },
    "early": -0.111,
    "later": -0.125,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     15,
+     196,
+     387,
+     2444,
+     12
+    ],
+    [
+     2,
+     15,
+     278,
+     529,
+     3291,
+     17
+    ],
+    [
+     3,
+     16,
+     308,
+     579,
+     3474,
+     26
+    ],
+    [
+     4,
+     15,
+     246,
+     485,
+     2883,
+     13
+    ],
+    [
+     6,
+     9,
+     198,
+     332,
+     2418,
+     14
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 5,
+   "contracts": [
+    [
+     2009,
+     1,
+     "Jets",
+     5.0,
+     47.5,
+     0.077,
+     true
+    ],
+    [
+     2012,
+     4,
+     "Jets",
+     3.0,
+     40.5,
+     0.112,
+     true
+    ],
+    [
+     2014,
+     6,
+     "Eagles",
+     1.0,
+     2.2,
+     0.017,
+     false
+    ],
+    [
+     2015,
+     7,
+     "PHI/DEN",
+     2.0,
+     9.0,
+     0.031,
+     false
+    ],
+    [
+     2016,
+     8,
+     "Cowboys",
+     1.0,
+     2.0,
+     0.013,
+     false
+    ],
+    [
+     2017,
+     9,
+     "Bears",
+     1.0,
+     2.0,
+     0.012,
+     false
+    ],
+    [
+     2018,
+     10,
+     "Commanders",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ]
+   ]
   },
   "00-0026993": {
    "name": "Josh Freeman",
@@ -8155,7 +13830,99 @@
    "best_after": null,
    "early": -0.033,
    "later": 0.009,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     10,
+     159,
+     307,
+     1857,
+     10
+    ],
+    [
+     2,
+     16,
+     291,
+     502,
+     3451,
+     25
+    ],
+    [
+     3,
+     15,
+     346,
+     574,
+     3592,
+     16
+    ],
+    [
+     4,
+     16,
+     306,
+     582,
+     4065,
+     27
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 17,
+   "contracts": [
+    [
+     2009,
+     1,
+     "Buccaneers",
+     5.0,
+     13.5,
+     0.022,
+     true
+    ],
+    [
+     2013,
+     5,
+     "Vikings",
+     1.0,
+     2.8,
+     0.023,
+     false
+    ],
+    [
+     2014,
+     6,
+     "Giants",
+     1.0,
+     0.8,
+     0.006,
+     false
+    ],
+    [
+     2015,
+     7,
+     "Dolphins",
+     1.0,
+     0.8,
+     0.005,
+     false
+    ],
+    [
+     2015,
+     7,
+     "Colts",
+     2.0,
+     1.5,
+     0.005,
+     false
+    ],
+    [
+     2015,
+     7,
+     "Dolphins",
+     1.0,
+     0.7,
+     0.005,
+     false
+    ]
+   ]
   },
   "00-0027659": {
    "name": "Jimmy Clausen",
@@ -8209,7 +13976,30 @@
    "best_after": null,
    "early": -0.342,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     13,
+     157,
+     331,
+     1558,
+     3
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 48,
+   "contracts": [
+    [
+     2015,
+     6,
+     "Ravens",
+     1.0,
+     1.1,
+     0.008,
+     false
+    ]
+   ]
   },
   "00-0027688": {
    "name": "Colt McCoy",
@@ -8343,7 +14133,101 @@
    "best_after": null,
    "early": -0.055,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     8,
+     135,
+     244,
+     1576,
+     6
+    ],
+    [
+     2,
+     13,
+     265,
+     494,
+     2733,
+     14
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 85,
+   "contracts": [
+    [
+     2010,
+     1,
+     "Browns",
+     4.0,
+     2.5,
+     0.005,
+     true
+    ],
+    [
+     2014,
+     5,
+     "Commanders",
+     1.0,
+     0.8,
+     0.006,
+     false
+    ],
+    [
+     2015,
+     6,
+     "Commanders",
+     1.0,
+     1.5,
+     0.01,
+     false
+    ],
+    [
+     2016,
+     7,
+     "Commanders",
+     3.0,
+     9.0,
+     0.019,
+     false
+    ],
+    [
+     2018,
+     9,
+     "Commanders",
+     2.0,
+     6.5,
+     0.018,
+     false
+    ],
+    [
+     2020,
+     11,
+     "Giants",
+     1.0,
+     2.2,
+     0.011,
+     false
+    ],
+    [
+     2021,
+     12,
+     "Cardinals",
+     1.0,
+     1.2,
+     0.007,
+     false
+    ],
+    [
+     2022,
+     13,
+     "Cardinals",
+     2.0,
+     7.5,
+     0.016,
+     false
+    ]
+   ]
   },
   "00-0027854": {
    "name": "Sam Bradford",
@@ -8452,7 +14336,89 @@
    },
    "early": -0.127,
    "later": -0.035,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     354,
+     621,
+     3512,
+     18
+    ],
+    [
+     2,
+     10,
+     191,
+     393,
+     2164,
+     6
+    ],
+    [
+     3,
+     16,
+     328,
+     579,
+     3702,
+     21
+    ],
+    [
+     6,
+     14,
+     346,
+     559,
+     3725,
+     19
+    ],
+    [
+     7,
+     15,
+     395,
+     589,
+     3877,
+     20
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2010,
+     1,
+     "Rams",
+     5.0,
+     78.0,
+     0.101,
+     true
+    ],
+    [
+     2010,
+     1,
+     "Eagles",
+     1.0,
+     78.0,
+     0.093,
+     false
+    ],
+    [
+     2016,
+     7,
+     "PHI/MIN",
+     2.0,
+     35.0,
+     0.113,
+     false
+    ],
+    [
+     2018,
+     9,
+     "Cardinals",
+     2.0,
+     40.0,
+     0.113,
+     false
+    ]
+   ]
   },
   "00-0027876": {
    "name": "Tim Tebow",
@@ -8506,7 +14472,20 @@
    "best_after": null,
    "early": -0.148,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     13,
+     126,
+     301,
+     1729,
+     12
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 25,
+   "contracts": []
   },
   "00-0027939": {
    "name": "Cam Newton",
@@ -8645,7 +14624,130 @@
    },
    "early": 0.1,
    "later": 0.004,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     310,
+     549,
+     4051,
+     21
+    ],
+    [
+     2,
+     16,
+     280,
+     519,
+     3869,
+     19
+    ],
+    [
+     3,
+     16,
+     292,
+     513,
+     3379,
+     24
+    ],
+    [
+     4,
+     14,
+     262,
+     484,
+     3127,
+     18
+    ],
+    [
+     5,
+     16,
+     296,
+     526,
+     3837,
+     35
+    ],
+    [
+     6,
+     15,
+     270,
+     543,
+     3509,
+     19
+    ],
+    [
+     7,
+     16,
+     291,
+     525,
+     3302,
+     22
+    ],
+    [
+     8,
+     14,
+     320,
+     497,
+     3395,
+     24
+    ],
+    [
+     10,
+     15,
+     242,
+     397,
+     2657,
+     8
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2011,
+     1,
+     "Panthers",
+     4.0,
+     22.0,
+     0.046,
+     true
+    ],
+    [
+     2015,
+     5,
+     "Panthers",
+     5.0,
+     103.8,
+     0.145,
+     true
+    ],
+    [
+     2020,
+     10,
+     "Patriots",
+     1.0,
+     1.8,
+     0.009,
+     false
+    ],
+    [
+     2021,
+     11,
+     "Panthers",
+     1.0,
+     8.2,
+     0.045,
+     true
+    ],
+    [
+     2021,
+     11,
+     "Patriots",
+     1.0,
+     5.1,
+     0.028,
+     false
+    ]
+   ]
   },
   "00-0027946": {
    "name": "Jake Locker",
@@ -8709,7 +14811,30 @@
    "best_after": null,
    "early": -0.086,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     11,
+     177,
+     339,
+     2176,
+     10
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 8,
+   "contracts": [
+    [
+     2011,
+     1,
+     "Titans",
+     4.0,
+     12.6,
+     0.026,
+     true
+    ]
+   ]
   },
   "00-0027948": {
    "name": "Blaine Gabbert",
@@ -8858,7 +14983,118 @@
    },
    "early": -0.232,
    "later": -0.128,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     15,
+     210,
+     452,
+     2214,
+     12
+    ],
+    [
+     2,
+     10,
+     162,
+     300,
+     1662,
+     9
+    ],
+    [
+     5,
+     8,
+     178,
+     307,
+     2031,
+     10
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 10,
+   "contracts": [
+    [
+     2011,
+     1,
+     "SF/JAX",
+     4.0,
+     12.0,
+     0.025,
+     true
+    ],
+    [
+     2015,
+     5,
+     "49ers",
+     2.0,
+     4.0,
+     0.014,
+     false
+    ],
+    [
+     2017,
+     7,
+     "Cardinals",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2018,
+     8,
+     "Titans",
+     2.0,
+     4.0,
+     0.011,
+     false
+    ],
+    [
+     2019,
+     9,
+     "Buccaneers",
+     1.0,
+     1.6,
+     0.009,
+     false
+    ],
+    [
+     2020,
+     10,
+     "Buccaneers",
+     1.0,
+     1.2,
+     0.006,
+     false
+    ],
+    [
+     2021,
+     11,
+     "Buccaneers",
+     1.0,
+     2.0,
+     0.011,
+     false
+    ],
+    [
+     2022,
+     12,
+     "Buccaneers",
+     1.0,
+     2.2,
+     0.011,
+     false
+    ],
+    [
+     2023,
+     13,
+     "Chiefs",
+     1.0,
+     1.3,
+     0.006,
+     false
+    ]
+   ]
   },
   "00-0027950": {
    "name": "Christian Ponder",
@@ -8922,7 +15158,73 @@
    "best_after": null,
    "early": -0.096,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     11,
+     158,
+     321,
+     1853,
+     13
+    ],
+    [
+     2,
+     16,
+     300,
+     515,
+     2935,
+     18
+    ],
+    [
+     3,
+     9,
+     152,
+     266,
+     1648,
+     7
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 12,
+   "contracts": [
+    [
+     2011,
+     1,
+     "Vikings",
+     4.0,
+     10.2,
+     0.021,
+     true
+    ],
+    [
+     2015,
+     5,
+     "Raiders",
+     1.0,
+     2.2,
+     0.016,
+     false
+    ],
+    [
+     2015,
+     5,
+     "Broncos",
+     1.0,
+     0.7,
+     0.005,
+     false
+    ],
+    [
+     2016,
+     6,
+     "49ers",
+     1.0,
+     0.8,
+     0.005,
+     false
+    ]
+   ]
   },
   "00-0027973": {
    "name": "Andy Dalton",
@@ -9101,7 +15403,164 @@
    },
    "early": 0.003,
    "later": -0.011,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     300,
+     540,
+     3398,
+     20
+    ],
+    [
+     2,
+     16,
+     329,
+     571,
+     3669,
+     27
+    ],
+    [
+     3,
+     16,
+     363,
+     614,
+     4293,
+     33
+    ],
+    [
+     4,
+     16,
+     309,
+     502,
+     3398,
+     19
+    ],
+    [
+     5,
+     13,
+     255,
+     406,
+     3250,
+     25
+    ],
+    [
+     6,
+     16,
+     364,
+     602,
+     4206,
+     18
+    ],
+    [
+     7,
+     16,
+     297,
+     534,
+     3320,
+     25
+    ],
+    [
+     8,
+     11,
+     226,
+     383,
+     2566,
+     21
+    ],
+    [
+     9,
+     13,
+     314,
+     558,
+     3494,
+     16
+    ],
+    [
+     10,
+     11,
+     216,
+     357,
+     2170,
+     14
+    ],
+    [
+     12,
+     14,
+     252,
+     403,
+     2871,
+     18
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 35,
+   "contracts": [
+    [
+     2011,
+     1,
+     "Bengals",
+     4.0,
+     5.2,
+     0.011,
+     true
+    ],
+    [
+     2014,
+     4,
+     "Bengals",
+     6.0,
+     96.0,
+     0.12,
+     true
+    ],
+    [
+     2020,
+     10,
+     "Cowboys",
+     1.0,
+     3.0,
+     0.015,
+     false
+    ],
+    [
+     2021,
+     11,
+     "Bears",
+     1.0,
+     10.0,
+     0.055,
+     false
+    ],
+    [
+     2022,
+     12,
+     "Saints",
+     1.0,
+     3.0,
+     0.014,
+     false
+    ],
+    [
+     2023,
+     13,
+     "Panthers",
+     2.0,
+     10.0,
+     0.022,
+     false
+    ],
+    [
+     2025,
+     15,
+     "CAR/PHI",
+     2.0,
+     8.0,
+     0.014,
+     false
+    ]
+   ]
   },
   "00-0027974": {
    "name": "Colin Kaepernick",
@@ -9185,7 +15644,72 @@
    "best_after": null,
    "early": 0.104,
    "later": -0.049,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     3,
+     16,
+     243,
+     455,
+     3197,
+     21
+    ],
+    [
+     4,
+     16,
+     289,
+     530,
+     3369,
+     19
+    ],
+    [
+     5,
+     9,
+     144,
+     272,
+     1615,
+     6
+    ],
+    [
+     6,
+     11,
+     196,
+     366,
+     2241,
+     16
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 36,
+   "contracts": [
+    [
+     2011,
+     1,
+     "49ers",
+     4.0,
+     5.1,
+     0.011,
+     true
+    ],
+    [
+     2014,
+     4,
+     "49ers",
+     6.0,
+     114.0,
+     0.143,
+     true
+    ],
+    [
+     2016,
+     6,
+     "49ers",
+     2.0,
+     31.2,
+     0.1,
+     true
+    ]
+   ]
   },
   "00-0028118": {
    "name": "Tyrod Taylor",
@@ -9364,7 +15888,109 @@
    },
    "early": null,
    "later": 0.06,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     5,
+     14,
+     242,
+     416,
+     3035,
+     20
+    ],
+    [
+     6,
+     15,
+     269,
+     477,
+     3023,
+     17
+    ],
+    [
+     7,
+     15,
+     263,
+     466,
+     2799,
+     14
+    ]
+   ],
+   "draft_round": 6,
+   "draft_pick": 180,
+   "contracts": [
+    [
+     2011,
+     1,
+     "Ravens",
+     4.0,
+     2.1,
+     0.004,
+     true
+    ],
+    [
+     2015,
+     5,
+     "Bills",
+     3.0,
+     3.4,
+     0.008,
+     false
+    ],
+    [
+     2016,
+     6,
+     "Bills",
+     5.0,
+     90.0,
+     0.116,
+     false
+    ],
+    [
+     2017,
+     7,
+     "CLE/BUF",
+     2.0,
+     30.5,
+     0.091,
+     false
+    ],
+    [
+     2019,
+     9,
+     "Chargers",
+     2.0,
+     11.0,
+     0.029,
+     false
+    ],
+    [
+     2021,
+     11,
+     "Texans",
+     1.0,
+     5.5,
+     0.03,
+     false
+    ],
+    [
+     2022,
+     12,
+     "Giants",
+     2.0,
+     11.0,
+     0.026,
+     false
+    ],
+    [
+     2024,
+     14,
+     "Jets",
+     2.0,
+     12.0,
+     0.023,
+     false
+    ]
+   ]
   },
   "00-0028825": {
    "name": "Terrelle Pryor",
@@ -9438,7 +16064,20 @@
    "best_after": null,
    "early": -0.114,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     3,
+     11,
+     156,
+     302,
+     1798,
+     7
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": []
   },
   "00-0028986": {
    "name": "Case Keenum",
@@ -9577,7 +16216,170 @@
    },
    "early": -0.144,
    "later": -0.035,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     8,
+     137,
+     269,
+     1760,
+     9
+    ],
+    [
+     5,
+     10,
+     196,
+     345,
+     2201,
+     9
+    ],
+    [
+     6,
+     15,
+     325,
+     503,
+     3547,
+     22
+    ],
+    [
+     7,
+     16,
+     365,
+     618,
+     3890,
+     18
+    ],
+    [
+     8,
+     9,
+     160,
+     260,
+     1707,
+     11
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Texans",
+     3.0,
+     1.5,
+     0.004,
+     true
+    ],
+    [
+     2012,
+     1,
+     "Texans",
+     1.0,
+     0.1,
+     0.001,
+     true
+    ],
+    [
+     2013,
+     2,
+     "HOU/LAR",
+     2.0,
+     0.9,
+     0.004,
+     true
+    ],
+    [
+     2014,
+     3,
+     "Texans",
+     1.0,
+     0.5,
+     0.004,
+     true
+    ],
+    [
+     2014,
+     3,
+     "Rams",
+     1.0,
+     0.1,
+     0.001,
+     false
+    ],
+    [
+     2015,
+     4,
+     "HOU/LAR",
+     1.0,
+     0.6,
+     0.004,
+     true
+    ],
+    [
+     2017,
+     6,
+     "Vikings",
+     1.0,
+     2.0,
+     0.012,
+     false
+    ],
+    [
+     2018,
+     7,
+     "Broncos",
+     2.0,
+     36.0,
+     0.102,
+     false
+    ],
+    [
+     2019,
+     8,
+     "Commanders",
+     1.0,
+     7.5,
+     0.04,
+     false
+    ],
+    [
+     2020,
+     9,
+     "CLE/BUF",
+     3.0,
+     18.0,
+     0.03,
+     false
+    ],
+    [
+     2022,
+     11,
+     "Bills",
+     1.0,
+     3.5,
+     0.017,
+     false
+    ],
+    [
+     2023,
+     12,
+     "Texans",
+     2.0,
+     6.2,
+     0.014,
+     true
+    ],
+    [
+     2025,
+     14,
+     "Bears",
+     1.0,
+     2.2,
+     0.008,
+     false
+    ]
+   ]
   },
   "00-0029263": {
    "name": "Russell Wilson",
@@ -9746,7 +16548,171 @@
    },
    "early": 0.131,
    "later": 0.037,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     252,
+     426,
+     3118,
+     26
+    ],
+    [
+     2,
+     16,
+     257,
+     449,
+     3357,
+     26
+    ],
+    [
+     3,
+     16,
+     285,
+     493,
+     3475,
+     20
+    ],
+    [
+     4,
+     16,
+     329,
+     526,
+     4024,
+     34
+    ],
+    [
+     5,
+     16,
+     353,
+     585,
+     4219,
+     21
+    ],
+    [
+     6,
+     16,
+     339,
+     592,
+     3983,
+     34
+    ],
+    [
+     7,
+     16,
+     280,
+     470,
+     3448,
+     35
+    ],
+    [
+     8,
+     16,
+     341,
+     561,
+     4110,
+     31
+    ],
+    [
+     9,
+     16,
+     384,
+     604,
+     4212,
+     40
+    ],
+    [
+     10,
+     14,
+     259,
+     433,
+     3113,
+     25
+    ],
+    [
+     11,
+     15,
+     292,
+     537,
+     3524,
+     16
+    ],
+    [
+     12,
+     15,
+     297,
+     488,
+     3070,
+     26
+    ],
+    [
+     13,
+     11,
+     214,
+     367,
+     2482,
+     16
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 75,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Seahawks",
+     4.0,
+     3.0,
+     0.006,
+     true
+    ],
+    [
+     2015,
+     4,
+     "Seahawks",
+     4.0,
+     87.6,
+     0.153,
+     true
+    ],
+    [
+     2019,
+     8,
+     "SEA/DEN",
+     4.0,
+     140.0,
+     0.186,
+     true
+    ],
+    [
+     2022,
+     11,
+     "Broncos",
+     5.0,
+     245.0,
+     0.235,
+     false
+    ],
+    [
+     2024,
+     13,
+     "Steelers",
+     1.0,
+     1.2,
+     0.005,
+     false
+    ],
+    [
+     2025,
+     14,
+     "Giants",
+     1.0,
+     10.5,
+     0.038,
+     false
+    ]
+   ]
   },
   "00-0029567": {
    "name": "Nick Foles",
@@ -9885,7 +16851,109 @@
    },
    "early": 0.116,
    "later": -0.331,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     13,
+     203,
+     345,
+     2891,
+     27
+    ],
+    [
+     3,
+     8,
+     186,
+     319,
+     2163,
+     13
+    ],
+    [
+     4,
+     11,
+     190,
+     349,
+     2052,
+     7
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 88,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Eagles",
+     4.0,
+     2.8,
+     0.006,
+     true
+    ],
+    [
+     2015,
+     4,
+     "Rams",
+     2.0,
+     25.0,
+     0.085,
+     false
+    ],
+    [
+     2016,
+     5,
+     "Chiefs",
+     2.0,
+     8.5,
+     0.027,
+     false
+    ],
+    [
+     2017,
+     6,
+     "Eagles",
+     2.0,
+     11.0,
+     0.033,
+     true
+    ],
+    [
+     2018,
+     7,
+     "Eagles",
+     2.0,
+     29.0,
+     0.082,
+     true
+    ],
+    [
+     2019,
+     8,
+     "JAX/CHI",
+     4.0,
+     88.0,
+     0.117,
+     false
+    ],
+    [
+     2020,
+     9,
+     "Bears",
+     3.0,
+     24.0,
+     0.04,
+     false
+    ],
+    [
+     2022,
+     11,
+     "Colts",
+     2.0,
+     6.2,
+     0.015,
+     false
+    ]
+   ]
   },
   "00-0029604": {
    "name": "Kirk Cousins",
@@ -10054,7 +17122,164 @@
    },
    "early": null,
    "later": 0.039,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     4,
+     16,
+     379,
+     569,
+     4166,
+     29
+    ],
+    [
+     5,
+     16,
+     406,
+     626,
+     4917,
+     25
+    ],
+    [
+     6,
+     16,
+     347,
+     581,
+     4093,
+     27
+    ],
+    [
+     7,
+     16,
+     425,
+     643,
+     4298,
+     30
+    ],
+    [
+     8,
+     15,
+     307,
+     472,
+     3603,
+     26
+    ],
+    [
+     9,
+     16,
+     349,
+     552,
+     4265,
+     35
+    ],
+    [
+     10,
+     16,
+     372,
+     584,
+     4221,
+     33
+    ],
+    [
+     11,
+     17,
+     424,
+     686,
+     4547,
+     29
+    ],
+    [
+     12,
+     8,
+     216,
+     326,
+     2331,
+     18
+    ],
+    [
+     13,
+     14,
+     303,
+     477,
+     3508,
+     18
+    ],
+    [
+     14,
+     10,
+     166,
+     279,
+     1721,
+     10
+    ]
+   ],
+   "draft_round": 4,
+   "draft_pick": 102,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Commanders",
+     4.0,
+     2.6,
+     0.005,
+     true
+    ],
+    [
+     2016,
+     5,
+     "Commanders",
+     1.0,
+     20.0,
+     0.129,
+     true
+    ],
+    [
+     2017,
+     6,
+     "Commanders",
+     1.0,
+     23.9,
+     0.143,
+     true
+    ],
+    [
+     2018,
+     7,
+     "Vikings",
+     3.0,
+     84.0,
+     0.158,
+     false
+    ],
+    [
+     2020,
+     9,
+     "Vikings",
+     2.0,
+     66.0,
+     0.166,
+     false
+    ],
+    [
+     2022,
+     11,
+     "Vikings",
+     1.0,
+     35.0,
+     0.168,
+     false
+    ],
+    [
+     2024,
+     13,
+     "Falcons",
+     4.0,
+     180.0,
+     0.176,
+     false
+    ]
+   ]
   },
   "00-0029665": {
    "name": "Robert Griffin III",
@@ -10148,7 +17373,65 @@
    "best_after": null,
    "early": 0.078,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     15,
+     258,
+     421,
+     3200,
+     20
+    ],
+    [
+     2,
+     13,
+     274,
+     492,
+     3203,
+     16
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 2,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Commanders",
+     5.0,
+     21.1,
+     0.044,
+     true
+    ],
+    [
+     2016,
+     5,
+     "Browns",
+     2.0,
+     15.0,
+     0.048,
+     false
+    ],
+    [
+     2018,
+     7,
+     "Ravens",
+     1.0,
+     1.1,
+     0.006,
+     false
+    ],
+    [
+     2019,
+     8,
+     "Ravens",
+     2.0,
+     4.0,
+     0.011,
+     false
+    ]
+   ]
   },
   "00-0029668": {
    "name": "Andrew Luck",
@@ -10232,7 +17515,71 @@
    "best_after": null,
    "early": 0.051,
    "later": 0.065,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     339,
+     660,
+     4374,
+     23
+    ],
+    [
+     2,
+     16,
+     343,
+     602,
+     3822,
+     23
+    ],
+    [
+     3,
+     16,
+     380,
+     643,
+     4761,
+     40
+    ],
+    [
+     5,
+     15,
+     346,
+     583,
+     4240,
+     31
+    ],
+    [
+     7,
+     16,
+     430,
+     655,
+     4593,
+     39
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Colts",
+     4.0,
+     22.1,
+     0.046,
+     true
+    ],
+    [
+     2016,
+     5,
+     "Colts",
+     5.0,
+     123.0,
+     0.158,
+     true
+    ]
+   ]
   },
   "00-0029677": {
    "name": "Brandon Weeden",
@@ -10296,7 +17643,66 @@
    "best_after": null,
    "early": -0.082,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     15,
+     297,
+     544,
+     3385,
+     14
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 22,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Browns",
+     4.0,
+     8.1,
+     0.017,
+     true
+    ],
+    [
+     2014,
+     3,
+     "DAL/HOU",
+     2.0,
+     1.2,
+     0.005,
+     false
+    ],
+    [
+     2016,
+     5,
+     "Texans",
+     2.0,
+     4.0,
+     0.013,
+     false
+    ],
+    [
+     2017,
+     6,
+     "Titans",
+     1.0,
+     1.0,
+     0.006,
+     false
+    ],
+    [
+     2018,
+     7,
+     "Texans",
+     1.0,
+     0.8,
+     0.004,
+     false
+    ]
+   ]
   },
   "00-0029682": {
    "name": "Brock Osweiler",
@@ -10395,7 +17801,57 @@
    },
    "early": null,
    "later": -0.118,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     5,
+     15,
+     301,
+     534,
+     2957,
+     15
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 57,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Broncos",
+     4.0,
+     3.5,
+     0.007,
+     true
+    ],
+    [
+     2016,
+     5,
+     "HOU/CLE",
+     4.0,
+     72.0,
+     0.116,
+     false
+    ],
+    [
+     2017,
+     6,
+     "Broncos",
+     1.0,
+     0.8,
+     0.005,
+     true
+    ],
+    [
+     2018,
+     7,
+     "Dolphins",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ]
+   ]
   },
   "00-0029701": {
    "name": "Ryan Tannehill",
@@ -10534,7 +17990,137 @@
    },
    "early": -0.03,
    "later": 0.018,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     282,
+     517,
+     3294,
+     12
+    ],
+    [
+     2,
+     16,
+     355,
+     642,
+     3913,
+     24
+    ],
+    [
+     3,
+     16,
+     392,
+     635,
+     4045,
+     27
+    ],
+    [
+     4,
+     16,
+     363,
+     629,
+     4208,
+     24
+    ],
+    [
+     5,
+     13,
+     261,
+     416,
+     2995,
+     19
+    ],
+    [
+     7,
+     11,
+     176,
+     308,
+     1979,
+     17
+    ],
+    [
+     8,
+     11,
+     201,
+     314,
+     2742,
+     22
+    ],
+    [
+     9,
+     16,
+     315,
+     505,
+     3819,
+     33
+    ],
+    [
+     10,
+     17,
+     357,
+     577,
+     3734,
+     21
+    ],
+    [
+     11,
+     12,
+     212,
+     357,
+     2536,
+     13
+    ],
+    [
+     12,
+     9,
+     149,
+     260,
+     1616,
+     4
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 8,
+   "contracts": [
+    [
+     2012,
+     1,
+     "Dolphins",
+     4.0,
+     12.7,
+     0.026,
+     true
+    ],
+    [
+     2015,
+     4,
+     "Dolphins",
+     4.0,
+     77.0,
+     0.134,
+     true
+    ],
+    [
+     2019,
+     8,
+     "MIA/TEN",
+     1.0,
+     7.0,
+     0.037,
+     true
+    ],
+    [
+     2020,
+     9,
+     "Titans",
+     4.0,
+     118.0,
+     0.149,
+     false
+    ]
+   ]
   },
   "00-0030520": {
    "name": "Mike Glennon",
@@ -10638,7 +18224,111 @@
    "best_after": null,
    "early": -0.122,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     13,
+     247,
+     456,
+     2608,
+     19
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 73,
+   "contracts": [
+    [
+     2013,
+     1,
+     "Buccaneers",
+     4.0,
+     3.1,
+     0.006,
+     true
+    ],
+    [
+     2017,
+     5,
+     "Bears",
+     3.0,
+     45.0,
+     0.09,
+     false
+    ],
+    [
+     2018,
+     6,
+     "Cardinals",
+     2.0,
+     8.0,
+     0.023,
+     false
+    ],
+    [
+     2019,
+     7,
+     "Raiders",
+     1.0,
+     1.9,
+     0.01,
+     false
+    ],
+    [
+     2020,
+     8,
+     "Jaguars",
+     1.0,
+     1.2,
+     0.006,
+     false
+    ],
+    [
+     2020,
+     8,
+     "Jaguars",
+     1.0,
+     1.1,
+     0.006,
+     false
+    ],
+    [
+     2020,
+     8,
+     "Jaguars",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ],
+    [
+     2021,
+     9,
+     "Giants",
+     1.0,
+     1.4,
+     0.008,
+     false
+    ],
+    [
+     2022,
+     10,
+     "Dolphins",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2022,
+     10,
+     "Dolphins",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0030526": {
    "name": "EJ Manuel",
@@ -10712,7 +18402,57 @@
    "best_after": null,
    "early": -0.148,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     10,
+     180,
+     333,
+     1972,
+     11
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 16,
+   "contracts": [
+    [
+     2013,
+     1,
+     "Bills",
+     4.0,
+     8.9,
+     0.018,
+     true
+    ],
+    [
+     2017,
+     5,
+     "Raiders",
+     1.0,
+     0.8,
+     0.005,
+     false
+    ],
+    [
+     2018,
+     6,
+     "Raiders",
+     1.0,
+     1.0,
+     0.006,
+     false
+    ],
+    [
+     2019,
+     7,
+     "Chiefs",
+     1.0,
+     0.8,
+     0.004,
+     false
+    ]
+   ]
   },
   "00-0030565": {
    "name": "Geno Smith",
@@ -10861,7 +18601,151 @@
    },
    "early": -0.099,
    "later": -0.031,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     247,
+     485,
+     3046,
+     12
+    ],
+    [
+     2,
+     14,
+     219,
+     394,
+     2525,
+     13
+    ],
+    [
+     10,
+     17,
+     399,
+     617,
+     4282,
+     30
+    ],
+    [
+     11,
+     15,
+     323,
+     526,
+     3624,
+     20
+    ],
+    [
+     12,
+     17,
+     407,
+     626,
+     4320,
+     21
+    ],
+    [
+     13,
+     15,
+     302,
+     501,
+     3025,
+     19
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 39,
+   "contracts": [
+    [
+     2013,
+     1,
+     "Jets",
+     4.0,
+     5.0,
+     0.01,
+     true
+    ],
+    [
+     2017,
+     5,
+     "Giants",
+     1.0,
+     1.2,
+     0.007,
+     false
+    ],
+    [
+     2018,
+     6,
+     "Chargers",
+     1.0,
+     1.0,
+     0.006,
+     false
+    ],
+    [
+     2019,
+     7,
+     "Seahawks",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2019,
+     7,
+     "Seahawks",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     8,
+     "Seahawks",
+     1.0,
+     1.2,
+     0.006,
+     false
+    ],
+    [
+     2021,
+     9,
+     "Seahawks",
+     1.0,
+     1.2,
+     0.007,
+     false
+    ],
+    [
+     2022,
+     10,
+     "Seahawks",
+     1.0,
+     3.5,
+     0.017,
+     false
+    ],
+    [
+     2023,
+     11,
+     "LV/SEA",
+     3.0,
+     75.0,
+     0.111,
+     false
+    ],
+    [
+     2025,
+     13,
+     "Raiders",
+     2.0,
+     75.0,
+     0.134,
+     false
+    ]
+   ]
   },
   "00-0031237": {
    "name": "Teddy Bridgewater",
@@ -10980,7 +18864,126 @@
    },
    "early": -0.007,
    "later": 0.046,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     13,
+     259,
+     436,
+     2919,
+     14
+    ],
+    [
+     2,
+     16,
+     292,
+     491,
+     3231,
+     14
+    ],
+    [
+     7,
+     15,
+     340,
+     521,
+     3733,
+     15
+    ],
+    [
+     8,
+     14,
+     285,
+     457,
+     3052,
+     18
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 32,
+   "contracts": [
+    [
+     2014,
+     1,
+     "Vikings",
+     4.0,
+     6.8,
+     0.013,
+     true
+    ],
+    [
+     2018,
+     5,
+     "NO/NYJ",
+     1.0,
+     6.0,
+     0.034,
+     false
+    ],
+    [
+     2019,
+     6,
+     "Saints",
+     1.0,
+     7.2,
+     0.039,
+     false
+    ],
+    [
+     2020,
+     7,
+     "Panthers",
+     3.0,
+     63.0,
+     0.106,
+     false
+    ],
+    [
+     2021,
+     8,
+     "DEN/CAR",
+     1.0,
+     11.5,
+     0.063,
+     false
+    ],
+    [
+     2022,
+     9,
+     "Dolphins",
+     1.0,
+     6.5,
+     0.031,
+     false
+    ],
+    [
+     2023,
+     10,
+     "Lions",
+     1.0,
+     3.0,
+     0.013,
+     false
+    ],
+    [
+     2024,
+     11,
+     "Lions",
+     1.0,
+     1.2,
+     0.005,
+     false
+    ],
+    [
+     2025,
+     12,
+     "Buccaneers",
+     1.0,
+     1.3,
+     0.004,
+     false
+    ]
+   ]
   },
   "00-0031280": {
    "name": "Derek Carr",
@@ -11119,7 +19122,137 @@
    },
    "early": -0.052,
    "later": 0.019,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     348,
+     617,
+     3270,
+     21
+    ],
+    [
+     2,
+     16,
+     350,
+     603,
+     3987,
+     32
+    ],
+    [
+     3,
+     15,
+     357,
+     574,
+     3937,
+     28
+    ],
+    [
+     4,
+     15,
+     323,
+     535,
+     3496,
+     22
+    ],
+    [
+     5,
+     16,
+     381,
+     597,
+     4049,
+     19
+    ],
+    [
+     6,
+     16,
+     361,
+     540,
+     4054,
+     21
+    ],
+    [
+     7,
+     16,
+     348,
+     539,
+     4103,
+     27
+    ],
+    [
+     8,
+     17,
+     428,
+     663,
+     4804,
+     23
+    ],
+    [
+     9,
+     15,
+     305,
+     529,
+     3522,
+     24
+    ],
+    [
+     10,
+     17,
+     375,
+     579,
+     3878,
+     25
+    ],
+    [
+     11,
+     10,
+     189,
+     287,
+     2145,
+     15
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 36,
+   "contracts": [
+    [
+     2014,
+     1,
+     "Raiders",
+     4.0,
+     5.4,
+     0.01,
+     true
+    ],
+    [
+     2017,
+     4,
+     "Raiders",
+     5.0,
+     125.0,
+     0.15,
+     true
+    ],
+    [
+     2022,
+     9,
+     "Raiders",
+     3.0,
+     121.4,
+     0.194,
+     true
+    ],
+    [
+     2023,
+     10,
+     "Saints",
+     4.0,
+     150.0,
+     0.167,
+     false
+    ]
+   ]
   },
   "00-0031345": {
    "name": "Jimmy Garoppolo",
@@ -11258,7 +19391,91 @@
    },
    "early": null,
    "later": 0.126,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     6,
+     16,
+     329,
+     510,
+     3978,
+     27
+    ],
+    [
+     8,
+     15,
+     301,
+     467,
+     3810,
+     20
+    ],
+    [
+     9,
+     11,
+     207,
+     326,
+     2437,
+     16
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 62,
+   "contracts": [
+    [
+     2014,
+     1,
+     "SF/NE",
+     4.0,
+     3.5,
+     0.007,
+     true
+    ],
+    [
+     2018,
+     5,
+     "49ers",
+     5.0,
+     137.5,
+     0.155,
+     false
+    ],
+    [
+     2022,
+     9,
+     "49ers",
+     1.0,
+     7.0,
+     0.034,
+     false
+    ],
+    [
+     2023,
+     10,
+     "Raiders",
+     3.0,
+     72.8,
+     0.108,
+     false
+    ],
+    [
+     2024,
+     11,
+     "Rams",
+     1.0,
+     3.2,
+     0.012,
+     false
+    ],
+    [
+     2025,
+     12,
+     "Rams",
+     1.0,
+     3.0,
+     0.011,
+     false
+    ]
+   ]
   },
   "00-0031407": {
    "name": "Blake Bortles",
@@ -11342,7 +19559,143 @@
    "best_after": null,
    "early": -0.103,
    "later": -0.001,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     14,
+     280,
+     529,
+     2908,
+     11
+    ],
+    [
+     2,
+     16,
+     355,
+     654,
+     4428,
+     35
+    ],
+    [
+     3,
+     16,
+     368,
+     659,
+     3905,
+     23
+    ],
+    [
+     4,
+     16,
+     315,
+     546,
+     3687,
+     21
+    ],
+    [
+     5,
+     13,
+     243,
+     434,
+     2718,
+     13
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 3,
+   "contracts": [
+    [
+     2014,
+     1,
+     "Jaguars",
+     4.0,
+     20.7,
+     0.039,
+     true
+    ],
+    [
+     2018,
+     5,
+     "Jaguars",
+     2.0,
+     34.9,
+     0.099,
+     true
+    ],
+    [
+     2019,
+     6,
+     "Rams",
+     1.0,
+     1.0,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     7,
+     "Broncos",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     7,
+     "Rams",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     7,
+     "Broncos",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ],
+    [
+     2021,
+     8,
+     "Packers",
+     1.0,
+     1.1,
+     0.006,
+     false
+    ],
+    [
+     2021,
+     8,
+     "Packers",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2021,
+     8,
+     "Saints",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2022,
+     9,
+     "Saints",
+     1.0,
+     1.1,
+     0.005,
+     false
+    ]
+   ]
   },
   "00-0031503": {
    "name": "Jameis Winston",
@@ -11476,7 +19829,116 @@
    "best_after": null,
    "early": 0.041,
    "later": 0.047,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     312,
+     560,
+     4042,
+     22
+    ],
+    [
+     2,
+     16,
+     345,
+     602,
+     4090,
+     28
+    ],
+    [
+     3,
+     13,
+     282,
+     472,
+     3504,
+     19
+    ],
+    [
+     4,
+     11,
+     244,
+     404,
+     2992,
+     19
+    ],
+    [
+     5,
+     16,
+     380,
+     671,
+     5109,
+     33
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2015,
+     1,
+     "Buccaneers",
+     4.0,
+     25.4,
+     0.044,
+     true
+    ],
+    [
+     2020,
+     6,
+     "Saints",
+     1.0,
+     1.1,
+     0.006,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Saints",
+     1.0,
+     5.5,
+     0.03,
+     false
+    ],
+    [
+     2022,
+     8,
+     "Saints",
+     2.0,
+     28.0,
+     0.067,
+     false
+    ],
+    [
+     2023,
+     9,
+     "Saints",
+     1.0,
+     4.0,
+     0.018,
+     false
+    ],
+    [
+     2024,
+     10,
+     "Browns",
+     1.0,
+     4.0,
+     0.016,
+     false
+    ],
+    [
+     2025,
+     11,
+     "Giants",
+     2.0,
+     8.0,
+     0.014,
+     false
+    ]
+   ]
   },
   "00-0031589": {
    "name": "Brett Hundley",
@@ -11530,7 +19992,138 @@
    "best_after": null,
    "early": -0.163,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     3,
+     11,
+     192,
+     345,
+     1836,
+     9
+    ]
+   ],
+   "draft_round": 5,
+   "draft_pick": 147,
+   "contracts": [
+    [
+     2015,
+     1,
+     "GB/SEA",
+     4.0,
+     2.5,
+     0.004,
+     true
+    ],
+    [
+     2019,
+     5,
+     "Cardinals",
+     1.0,
+     1.9,
+     0.01,
+     false
+    ],
+    [
+     2020,
+     6,
+     "Cardinals",
+     1.0,
+     1.0,
+     0.005,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Colts",
+     1.0,
+     1.0,
+     0.005,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Colts",
+     1.0,
+     1.0,
+     0.005,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Colts",
+     1.0,
+     0.3,
+     0.002,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Colts",
+     1.0,
+     0.3,
+     0.002,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Colts",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Colts",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2022,
+     8,
+     "Ravens",
+     1.0,
+     1.1,
+     0.005,
+     false
+    ],
+    [
+     2022,
+     8,
+     "Ravens",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2022,
+     8,
+     "Saints",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2022,
+     8,
+     "Ravens",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0031800": {
    "name": "Taylor Heinicke",
@@ -11629,7 +20222,137 @@
    },
    "early": null,
    "later": -0.086,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     7,
+     16,
+     321,
+     529,
+     3419,
+     20
+    ],
+    [
+     8,
+     9,
+     161,
+     276,
+     1859,
+     12
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": [
+    [
+     2015,
+     1,
+     "Vikings",
+     3.0,
+     1.6,
+     0.004,
+     false
+    ],
+    [
+     2017,
+     3,
+     "Panthers",
+     2.0,
+     1.3,
+     0.004,
+     false
+    ],
+    [
+     2017,
+     3,
+     "Texans",
+     2.0,
+     1.3,
+     0.004,
+     true
+    ],
+    [
+     2017,
+     3,
+     "Patriots",
+     1.0,
+     0.3,
+     0.002,
+     false
+    ],
+    [
+     2017,
+     3,
+     "Texans",
+     1.0,
+     0.1,
+     0.001,
+     true
+    ],
+    [
+     2019,
+     5,
+     "Panthers",
+     1.0,
+     0.8,
+     0.004,
+     false
+    ],
+    [
+     2020,
+     6,
+     "Commanders",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     6,
+     "Commanders",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Commanders",
+     2.0,
+     4.8,
+     0.013,
+     false
+    ],
+    [
+     2023,
+     9,
+     "Falcons",
+     2.0,
+     14.0,
+     0.031,
+     false
+    ],
+    [
+     2024,
+     10,
+     "LAC/ATL",
+     1.0,
+     2.5,
+     0.01,
+     false
+    ],
+    [
+     2025,
+     11,
+     "Chargers",
+     1.0,
+     2.5,
+     0.009,
+     false
+    ]
+   ]
   },
   "00-0032156": {
    "name": "Trevor Siemian",
@@ -11713,7 +20436,173 @@
    "best_after": null,
    "early": -0.096,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     14,
+     289,
+     517,
+     3401,
+     18
+    ],
+    [
+     3,
+     11,
+     206,
+     382,
+     2285,
+     12
+    ]
+   ],
+   "draft_round": 7,
+   "draft_pick": 250,
+   "contracts": [
+    [
+     2015,
+     1,
+     "DEN/MIN",
+     4.0,
+     2.3,
+     0.004,
+     true
+    ],
+    [
+     2019,
+     5,
+     "Jets",
+     1.0,
+     2.0,
+     0.011,
+     false
+    ],
+    [
+     2020,
+     6,
+     "Titans",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     6,
+     "Saints",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2020,
+     6,
+     "Titans",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ],
+    [
+     2020,
+     6,
+     "Saints",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Saints",
+     1.0,
+     1.0,
+     0.005,
+     false
+    ],
+    [
+     2022,
+     8,
+     "Bears",
+     2.0,
+     4.0,
+     0.01,
+     false
+    ],
+    [
+     2023,
+     9,
+     "Bengals",
+     1.0,
+     1.3,
+     0.006,
+     false
+    ],
+    [
+     2023,
+     9,
+     "Jets",
+     1.0,
+     1.2,
+     0.005,
+     false
+    ],
+    [
+     2023,
+     9,
+     "Jets",
+     1.0,
+     0.4,
+     0.002,
+     false
+    ],
+    [
+     2024,
+     10,
+     "Titans",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2024,
+     10,
+     "Titans",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2024,
+     10,
+     "Titans",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2025,
+     11,
+     "Titans",
+     1.0,
+     1.3,
+     0.004,
+     false
+    ],
+    [
+     2025,
+     11,
+     "Titans",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0032268": {
    "name": "Marcus Mariota",
@@ -11852,7 +20741,116 @@
    },
    "early": 0.004,
    "later": -0.008,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     12,
+     230,
+     405,
+     2818,
+     19
+    ],
+    [
+     2,
+     15,
+     276,
+     471,
+     3426,
+     26
+    ],
+    [
+     3,
+     15,
+     281,
+     479,
+     3232,
+     13
+    ],
+    [
+     4,
+     14,
+     228,
+     373,
+     2528,
+     11
+    ],
+    [
+     8,
+     13,
+     184,
+     324,
+     2219,
+     15
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 2,
+   "contracts": [
+    [
+     2015,
+     1,
+     "Titans",
+     4.0,
+     24.2,
+     0.042,
+     true
+    ],
+    [
+     2020,
+     6,
+     "Raiders",
+     2.0,
+     17.6,
+     0.044,
+     false
+    ],
+    [
+     2021,
+     7,
+     "Raiders",
+     1.0,
+     3.5,
+     0.019,
+     false
+    ],
+    [
+     2022,
+     8,
+     "Falcons",
+     2.0,
+     18.8,
+     0.045,
+     false
+    ],
+    [
+     2023,
+     9,
+     "Eagles",
+     1.0,
+     5.0,
+     0.022,
+     false
+    ],
+    [
+     2024,
+     10,
+     "Commanders",
+     1.0,
+     6.0,
+     0.023,
+     false
+    ],
+    [
+     2025,
+     11,
+     "Commanders",
+     1.0,
+     8.0,
+     0.029,
+     false
+    ]
+   ]
   },
   "00-0032950": {
    "name": "Carson Wentz",
@@ -11981,7 +20979,106 @@
    },
    "early": 0.06,
    "later": -0.065,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     379,
+     638,
+     3782,
+     16
+    ],
+    [
+     2,
+     13,
+     265,
+     468,
+     3296,
+     33
+    ],
+    [
+     3,
+     11,
+     279,
+     430,
+     3074,
+     21
+    ],
+    [
+     4,
+     16,
+     388,
+     643,
+     4039,
+     27
+    ],
+    [
+     5,
+     12,
+     251,
+     486,
+     2620,
+     16
+    ],
+    [
+     6,
+     17,
+     322,
+     548,
+     3563,
+     27
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 2,
+   "contracts": [
+    [
+     2016,
+     1,
+     "Eagles",
+     4.0,
+     26.7,
+     0.043,
+     true
+    ],
+    [
+     2019,
+     4,
+     "WAS/IND/PHI",
+     4.0,
+     128.0,
+     0.17,
+     true
+    ],
+    [
+     2023,
+     8,
+     "Rams",
+     1.0,
+     1.3,
+     0.006,
+     false
+    ],
+    [
+     2024,
+     9,
+     "Chiefs",
+     1.0,
+     2.5,
+     0.01,
+     false
+    ],
+    [
+     2025,
+     10,
+     "Vikings",
+     1.0,
+     1.4,
+     0.005,
+     false
+    ]
+   ]
   },
   "00-0033077": {
    "name": "Dak Prescott",
@@ -12105,7 +21202,121 @@
    "best_after": null,
    "early": 0.06,
    "later": 0.117,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     311,
+     482,
+     3667,
+     23
+    ],
+    [
+     2,
+     16,
+     308,
+     520,
+     3324,
+     22
+    ],
+    [
+     3,
+     16,
+     356,
+     582,
+     3885,
+     22
+    ],
+    [
+     4,
+     16,
+     388,
+     618,
+     4902,
+     30
+    ],
+    [
+     6,
+     16,
+     410,
+     626,
+     4449,
+     37
+    ],
+    [
+     7,
+     12,
+     261,
+     414,
+     2860,
+     23
+    ],
+    [
+     8,
+     17,
+     410,
+     629,
+     4516,
+     36
+    ],
+    [
+     9,
+     8,
+     185,
+     305,
+     1978,
+     11
+    ],
+    [
+     10,
+     17,
+     404,
+     628,
+     4552,
+     30
+    ]
+   ],
+   "draft_round": 4,
+   "draft_pick": 135,
+   "contracts": [
+    [
+     2016,
+     1,
+     "Cowboys",
+     4.0,
+     2.7,
+     0.004,
+     true
+    ],
+    [
+     2020,
+     5,
+     "Cowboys",
+     1.0,
+     31.4,
+     0.158,
+     true
+    ],
+    [
+     2021,
+     6,
+     "Cowboys",
+     4.0,
+     160.0,
+     0.219,
+     true
+    ],
+    [
+     2024,
+     9,
+     "Cowboys",
+     4.0,
+     240.0,
+     0.235,
+     true
+    ]
+   ]
   },
   "00-0033106": {
    "name": "Jared Goff",
@@ -12234,7 +21445,112 @@
    },
    "early": 0.134,
    "later": 0.069,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     15,
+     296,
+     500,
+     3804,
+     28
+    ],
+    [
+     3,
+     16,
+     364,
+     592,
+     4688,
+     32
+    ],
+    [
+     4,
+     16,
+     394,
+     647,
+     4638,
+     22
+    ],
+    [
+     5,
+     15,
+     370,
+     573,
+     3952,
+     20
+    ],
+    [
+     6,
+     14,
+     332,
+     524,
+     3245,
+     19
+    ],
+    [
+     7,
+     17,
+     382,
+     609,
+     4438,
+     29
+    ],
+    [
+     8,
+     17,
+     407,
+     631,
+     4575,
+     30
+    ],
+    [
+     9,
+     17,
+     390,
+     567,
+     4629,
+     37
+    ],
+    [
+     10,
+     17,
+     393,
+     614,
+     4564,
+     34
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2016,
+     1,
+     "Rams",
+     4.0,
+     27.9,
+     0.045,
+     true
+    ],
+    [
+     2019,
+     4,
+     "LAR/DET",
+     4.0,
+     134.0,
+     0.178,
+     true
+    ],
+    [
+     2024,
+     9,
+     "Lions",
+     4.0,
+     212.0,
+     0.208,
+     false
+    ]
+   ]
   },
   "00-0033119": {
    "name": "Jacoby Brissett",
@@ -12363,7 +21679,108 @@
    },
    "early": -0.097,
    "later": 0.004,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     16,
+     276,
+     518,
+     3098,
+     13
+    ],
+    [
+     4,
+     15,
+     272,
+     471,
+     2942,
+     18
+    ],
+    [
+     7,
+     14,
+     236,
+     390,
+     2608,
+     12
+    ],
+    [
+     10,
+     14,
+     315,
+     527,
+     3366,
+     23
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 91,
+   "contracts": [
+    [
+     2016,
+     1,
+     "IND/NE",
+     4.0,
+     3.4,
+     0.005,
+     true
+    ],
+    [
+     2019,
+     4,
+     "Colts",
+     1.0,
+     28.0,
+     0.149,
+     false
+    ],
+    [
+     2021,
+     6,
+     "Dolphins",
+     1.0,
+     5.0,
+     0.027,
+     false
+    ],
+    [
+     2022,
+     7,
+     "Browns",
+     1.0,
+     4.7,
+     0.022,
+     false
+    ],
+    [
+     2023,
+     8,
+     "Commanders",
+     1.0,
+     8.0,
+     0.036,
+     false
+    ],
+    [
+     2024,
+     9,
+     "Patriots",
+     1.0,
+     8.0,
+     0.031,
+     true
+    ],
+    [
+     2025,
+     10,
+     "Cardinals",
+     2.0,
+     12.5,
+     0.022,
+     false
+    ]
+   ]
   },
   "00-0033537": {
    "name": "Deshaun Watson",
@@ -12457,7 +21874,64 @@
    "best_after": null,
    "early": 0.085,
    "later": 0.125,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     16,
+     345,
+     561,
+     4165,
+     26
+    ],
+    [
+     3,
+     15,
+     333,
+     537,
+     3852,
+     26
+    ],
+    [
+     4,
+     16,
+     382,
+     591,
+     4823,
+     33
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 12,
+   "contracts": [
+    [
+     2017,
+     1,
+     "Texans",
+     4.0,
+     13.9,
+     0.021,
+     true
+    ],
+    [
+     2020,
+     4,
+     "Texans",
+     4.0,
+     156.0,
+     0.197,
+     true
+    ],
+    [
+     2022,
+     6,
+     "Browns",
+     5.0,
+     230.0,
+     0.221,
+     false
+    ]
+   ]
   },
   "00-0033869": {
    "name": "Mitchell Trubisky",
@@ -12571,7 +22045,90 @@
    "best_after": null,
    "early": -0.037,
    "later": 0.019,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     12,
+     196,
+     360,
+     2193,
+     7
+    ],
+    [
+     2,
+     14,
+     289,
+     457,
+     3223,
+     24
+    ],
+    [
+     3,
+     15,
+     326,
+     551,
+     3138,
+     17
+    ],
+    [
+     4,
+     10,
+     199,
+     315,
+     2055,
+     16
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 2,
+   "contracts": [
+    [
+     2017,
+     1,
+     "Bears",
+     4.0,
+     29.0,
+     0.043,
+     true
+    ],
+    [
+     2021,
+     5,
+     "Bills",
+     1.0,
+     2.5,
+     0.014,
+     false
+    ],
+    [
+     2022,
+     6,
+     "Steelers",
+     2.0,
+     14.3,
+     0.036,
+     false
+    ],
+    [
+     2023,
+     7,
+     "Steelers",
+     2.0,
+     11.2,
+     0.025,
+     false
+    ],
+    [
+     2024,
+     8,
+     "Bills",
+     2.0,
+     5.2,
+     0.01,
+     false
+    ]
+   ]
   },
   "00-0033873": {
    "name": "Patrick Mahomes",
@@ -12685,7 +22242,95 @@
    "best_after": null,
    "early": 0.276,
    "later": 0.167,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     16,
+     383,
+     605,
+     5097,
+     50
+    ],
+    [
+     3,
+     14,
+     319,
+     501,
+     4031,
+     26
+    ],
+    [
+     4,
+     15,
+     390,
+     609,
+     4740,
+     38
+    ],
+    [
+     5,
+     17,
+     436,
+     686,
+     4839,
+     37
+    ],
+    [
+     6,
+     17,
+     435,
+     674,
+     5250,
+     41
+    ],
+    [
+     7,
+     16,
+     401,
+     622,
+     4183,
+     27
+    ],
+    [
+     8,
+     16,
+     392,
+     615,
+     3928,
+     26
+    ],
+    [
+     9,
+     14,
+     315,
+     534,
+     3587,
+     22
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 10,
+   "contracts": [
+    [
+     2017,
+     1,
+     "Chiefs",
+     4.0,
+     16.4,
+     0.025,
+     true
+    ],
+    [
+     2020,
+     4,
+     "Chiefs",
+     10.0,
+     450.0,
+     0.227,
+     true
+    ]
+   ]
   },
   "00-0033899": {
    "name": "DeShone Kizer",
@@ -12729,7 +22374,66 @@
    "best_after": null,
    "early": -0.201,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     15,
+     255,
+     513,
+     2894,
+     11
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 52,
+   "contracts": [
+    [
+     2017,
+     1,
+     "CLE/GB/LV",
+     4.0,
+     4.9,
+     0.007,
+     true
+    ],
+    [
+     2020,
+     4,
+     "Raiders",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ],
+    [
+     2020,
+     4,
+     "Titans",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ],
+    [
+     2021,
+     5,
+     "Titans",
+     1.0,
+     0.9,
+     0.005,
+     false
+    ],
+    [
+     2021,
+     5,
+     "Titans",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0033949": {
    "name": "Joshua Dobbs",
@@ -12818,7 +22522,102 @@
    },
    "early": null,
    "later": -0.12,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     7,
+     13,
+     262,
+     447,
+     2464,
+     13
+    ]
+   ],
+   "draft_round": 4,
+   "draft_pick": 135,
+   "contracts": [
+    [
+     2017,
+     1,
+     "PIT/JAX",
+     4.0,
+     3.0,
+     0.004,
+     true
+    ],
+    [
+     2021,
+     5,
+     "Steelers",
+     1.0,
+     1.0,
+     0.006,
+     true
+    ],
+    [
+     2022,
+     6,
+     "Browns",
+     1.0,
+     1.2,
+     0.006,
+     false
+    ],
+    [
+     2022,
+     6,
+     "Titans",
+     1.0,
+     1.0,
+     0.005,
+     false
+    ],
+    [
+     2022,
+     6,
+     "Lions",
+     1.0,
+     0.4,
+     0.002,
+     false
+    ],
+    [
+     2023,
+     7,
+     "Cardinals",
+     1.0,
+     2.0,
+     0.009,
+     false
+    ],
+    [
+     2023,
+     7,
+     "CLE/MIN",
+     1.0,
+     2.0,
+     0.009,
+     false
+    ],
+    [
+     2024,
+     8,
+     "49ers",
+     1.0,
+     2.2,
+     0.009,
+     false
+    ],
+    [
+     2025,
+     9,
+     "Patriots",
+     2.0,
+     8.0,
+     0.014,
+     false
+    ]
+   ]
   },
   "00-0034343": {
    "name": "Josh Rosen",
@@ -12872,7 +22671,84 @@
    "best_after": null,
    "early": -0.381,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     14,
+     217,
+     437,
+     2278,
+     11
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 10,
+   "contracts": [
+    [
+     2018,
+     1,
+     "MIA/ARI",
+     4.0,
+     17.6,
+     0.025,
+     true
+    ],
+    [
+     2020,
+     3,
+     "49ers",
+     1.0,
+     0.8,
+     0.004,
+     false
+    ],
+    [
+     2020,
+     3,
+     "Buccaneers",
+     1.0,
+     0.1,
+     0.001,
+     false
+    ],
+    [
+     2021,
+     4,
+     "ATL/SF",
+     1.0,
+     0.8,
+     0.005,
+     false
+    ],
+    [
+     2022,
+     5,
+     "Browns",
+     1.0,
+     1.0,
+     0.005,
+     false
+    ],
+    [
+     2022,
+     5,
+     "Vikings",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2022,
+     5,
+     "Browns",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0034577": {
    "name": "Kyle Allen",
@@ -12966,7 +22842,111 @@
    "best_after": null,
    "early": -0.085,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     13,
+     303,
+     534,
+     3322,
+     17
+    ]
+   ],
+   "draft_round": null,
+   "draft_pick": null,
+   "contracts": [
+    [
+     2018,
+     1,
+     "Panthers",
+     3.0,
+     1.7,
+     0.003,
+     true
+    ],
+    [
+     2018,
+     1,
+     "Panthers",
+     2.0,
+     1.0,
+     0.003,
+     true
+    ],
+    [
+     2018,
+     1,
+     "Panthers",
+     1.0,
+     0.1,
+     0.001,
+     true
+    ],
+    [
+     2018,
+     1,
+     "Panthers",
+     1.0,
+     0.1,
+     0.001,
+     true
+    ],
+    [
+     2020,
+     3,
+     "WAS/CAR",
+     1.0,
+     0.6,
+     0.003,
+     true
+    ],
+    [
+     2021,
+     4,
+     "Commanders",
+     1.0,
+     0.8,
+     0.005,
+     false
+    ],
+    [
+     2022,
+     5,
+     "Texans",
+     1.0,
+     2.5,
+     0.012,
+     false
+    ],
+    [
+     2023,
+     6,
+     "Bills",
+     1.0,
+     1.2,
+     0.005,
+     false
+    ],
+    [
+     2024,
+     7,
+     "Steelers",
+     1.0,
+     1.3,
+     0.005,
+     false
+    ],
+    [
+     2025,
+     8,
+     "Lions",
+     1.0,
+     1.3,
+     0.005,
+     false
+    ]
+   ]
   },
   "00-0034771": {
    "name": "Mason Rudolph",
@@ -13050,7 +23030,66 @@
    "best_after": null,
    "early": -0.162,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     10,
+     176,
+     298,
+     1765,
+     13
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 76,
+   "contracts": [
+    [
+     2018,
+     1,
+     "Steelers",
+     4.0,
+     3.9,
+     0.006,
+     true
+    ],
+    [
+     2021,
+     4,
+     "Steelers",
+     1.0,
+     5.0,
+     0.027,
+     true
+    ],
+    [
+     2023,
+     6,
+     "Steelers",
+     1.0,
+     1.1,
+     0.005,
+     true
+    ],
+    [
+     2024,
+     7,
+     "Titans",
+     1.0,
+     2.9,
+     0.011,
+     false
+    ],
+    [
+     2025,
+     8,
+     "Steelers",
+     2.0,
+     7.5,
+     0.013,
+     true
+    ]
+   ]
   },
   "00-0034796": {
    "name": "Lamar Jackson",
@@ -13154,7 +23193,96 @@
    "best_after": null,
    "early": 0.217,
    "later": 0.109,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     15,
+     265,
+     422,
+     3127,
+     36
+    ],
+    [
+     3,
+     15,
+     242,
+     402,
+     2757,
+     26
+    ],
+    [
+     4,
+     12,
+     246,
+     416,
+     2882,
+     16
+    ],
+    [
+     5,
+     12,
+     203,
+     351,
+     2242,
+     17
+    ],
+    [
+     6,
+     16,
+     307,
+     493,
+     3678,
+     24
+    ],
+    [
+     7,
+     17,
+     316,
+     492,
+     4172,
+     41
+    ],
+    [
+     8,
+     13,
+     192,
+     336,
+     2549,
+     21
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 32,
+   "contracts": [
+    [
+     2018,
+     1,
+     "Ravens",
+     4.0,
+     9.5,
+     0.013,
+     true
+    ],
+    [
+     2023,
+     6,
+     "Ravens",
+     5.0,
+     260.0,
+     0.231,
+     true
+    ],
+    [
+     2023,
+     6,
+     "Ravens",
+     1.0,
+     32.4,
+     0.144,
+     true
+    ]
+   ]
   },
   "00-0034855": {
    "name": "Baker Mayfield",
@@ -13263,7 +23391,113 @@
    },
    "early": 0.005,
    "later": 0.021,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     14,
+     310,
+     508,
+     3725,
+     27
+    ],
+    [
+     2,
+     16,
+     317,
+     572,
+     3827,
+     22
+    ],
+    [
+     3,
+     16,
+     305,
+     507,
+     3563,
+     26
+    ],
+    [
+     4,
+     14,
+     253,
+     459,
+     3010,
+     17
+    ],
+    [
+     5,
+     12,
+     201,
+     370,
+     2163,
+     10
+    ],
+    [
+     6,
+     17,
+     364,
+     606,
+     4044,
+     28
+    ],
+    [
+     7,
+     17,
+     407,
+     609,
+     4500,
+     41
+    ],
+    [
+     8,
+     17,
+     343,
+     578,
+     3693,
+     26
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2018,
+     1,
+     "Browns",
+     4.0,
+     32.7,
+     0.046,
+     true
+    ],
+    [
+     2022,
+     5,
+     "LAR/CAR",
+     1.0,
+     15.4,
+     0.074,
+     false
+    ],
+    [
+     2023,
+     6,
+     "Buccaneers",
+     1.0,
+     4.0,
+     0.018,
+     false
+    ],
+    [
+     2024,
+     7,
+     "Buccaneers",
+     3.0,
+     100.0,
+     0.131,
+     false
+    ]
+   ]
   },
   "00-0034857": {
    "name": "Josh Allen",
@@ -13367,7 +23601,104 @@
    "best_after": null,
    "early": 0.055,
    "later": 0.184,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     12,
+     168,
+     347,
+     2044,
+     10
+    ],
+    [
+     2,
+     16,
+     271,
+     496,
+     3089,
+     20
+    ],
+    [
+     3,
+     16,
+     396,
+     598,
+     4544,
+     37
+    ],
+    [
+     4,
+     17,
+     409,
+     672,
+     4407,
+     36
+    ],
+    [
+     5,
+     16,
+     359,
+     599,
+     4283,
+     35
+    ],
+    [
+     6,
+     17,
+     385,
+     601,
+     4306,
+     29
+    ],
+    [
+     7,
+     16,
+     307,
+     496,
+     3731,
+     28
+    ],
+    [
+     8,
+     16,
+     319,
+     499,
+     3668,
+     25
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 7,
+   "contracts": [
+    [
+     2018,
+     1,
+     "Bills",
+     4.0,
+     21.2,
+     0.03,
+     true
+    ],
+    [
+     2021,
+     4,
+     "Bills",
+     6.0,
+     258.0,
+     0.236,
+     true
+    ],
+    [
+     2025,
+     8,
+     "Bills",
+     6.0,
+     330.0,
+     0.197,
+     true
+    ]
+   ]
   },
   "00-0034869": {
    "name": "Sam Darnold",
@@ -13476,7 +23807,97 @@
    },
    "early": -0.138,
    "later": -0.026,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     13,
+     239,
+     443,
+     2865,
+     17
+    ],
+    [
+     2,
+     13,
+     273,
+     472,
+     3024,
+     19
+    ],
+    [
+     3,
+     12,
+     217,
+     396,
+     2208,
+     9
+    ],
+    [
+     4,
+     12,
+     243,
+     441,
+     2527,
+     9
+    ],
+    [
+     7,
+     17,
+     361,
+     592,
+     4319,
+     35
+    ],
+    [
+     8,
+     17,
+     323,
+     500,
+     4048,
+     25
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 3,
+   "contracts": [
+    [
+     2018,
+     1,
+     "CAR/NYJ",
+     4.0,
+     30.2,
+     0.043,
+     true
+    ],
+    [
+     2023,
+     6,
+     "49ers",
+     1.0,
+     4.5,
+     0.02,
+     false
+    ],
+    [
+     2024,
+     7,
+     "Vikings",
+     1.0,
+     10.0,
+     0.039,
+     false
+    ],
+    [
+     2025,
+     8,
+     "Seahawks",
+     3.0,
+     100.5,
+     0.12,
+     false
+    ]
+   ]
   },
   "00-0035228": {
    "name": "Kyler Murray",
@@ -13570,7 +23991,79 @@
    "best_after": null,
    "early": 0.017,
    "later": 0.018,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     16,
+     349,
+     586,
+     3722,
+     20
+    ],
+    [
+     2,
+     16,
+     375,
+     577,
+     3971,
+     26
+    ],
+    [
+     3,
+     14,
+     333,
+     512,
+     3787,
+     24
+    ],
+    [
+     4,
+     11,
+     259,
+     412,
+     2368,
+     14
+    ],
+    [
+     5,
+     8,
+     176,
+     285,
+     1799,
+     10
+    ],
+    [
+     6,
+     17,
+     372,
+     570,
+     3851,
+     21
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2019,
+     1,
+     "Cardinals",
+     4.0,
+     35.2,
+     0.047,
+     true
+    ],
+    [
+     2022,
+     4,
+     "Cardinals",
+     5.0,
+     230.5,
+     0.221,
+     true
+    ]
+   ]
   },
   "00-0035289": {
    "name": "Gardner Minshew",
@@ -13669,7 +24162,81 @@
    },
    "early": -0.036,
    "later": -0.077,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     14,
+     285,
+     502,
+     3271,
+     21
+    ],
+    [
+     2,
+     9,
+     216,
+     353,
+     2259,
+     16
+    ],
+    [
+     5,
+     16,
+     305,
+     524,
+     3305,
+     15
+    ],
+    [
+     6,
+     10,
+     203,
+     332,
+     2013,
+     9
+    ]
+   ],
+   "draft_round": 6,
+   "draft_pick": 178,
+   "contracts": [
+    [
+     2019,
+     1,
+     "JAX/PHI",
+     4.0,
+     2.7,
+     0.004,
+     true
+    ],
+    [
+     2023,
+     5,
+     "Colts",
+     1.0,
+     3.5,
+     0.016,
+     false
+    ],
+    [
+     2024,
+     6,
+     "Raiders",
+     2.0,
+     25.0,
+     0.049,
+     false
+    ],
+    [
+     2025,
+     7,
+     "Chiefs",
+     1.0,
+     1.2,
+     0.004,
+     false
+    ]
+   ]
   },
   "00-0035704": {
    "name": "Drew Lock",
@@ -13753,7 +24320,57 @@
    "best_after": null,
    "early": -0.161,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     13,
+     254,
+     460,
+     2933,
+     16
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 42,
+   "contracts": [
+    [
+     2019,
+     1,
+     "SEA/DEN",
+     4.0,
+     7.0,
+     0.009,
+     true
+    ],
+    [
+     2023,
+     5,
+     "Seahawks",
+     1.0,
+     4.0,
+     0.018,
+     false
+    ],
+    [
+     2024,
+     6,
+     "Giants",
+     1.0,
+     5.0,
+     0.02,
+     false
+    ],
+    [
+     2025,
+     7,
+     "Seahawks",
+     2.0,
+     5.0,
+     0.009,
+     false
+    ]
+   ]
   },
   "00-0035710": {
    "name": "Daniel Jones",
@@ -13852,7 +24469,106 @@
    },
    "early": -0.093,
    "later": 0.045,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     13,
+     284,
+     497,
+     3027,
+     24
+    ],
+    [
+     2,
+     14,
+     280,
+     491,
+     2943,
+     11
+    ],
+    [
+     3,
+     11,
+     232,
+     382,
+     2428,
+     10
+    ],
+    [
+     4,
+     16,
+     317,
+     511,
+     3205,
+     15
+    ],
+    [
+     6,
+     10,
+     216,
+     366,
+     2070,
+     8
+    ],
+    [
+     7,
+     13,
+     261,
+     404,
+     3101,
+     19
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 6,
+   "contracts": [
+    [
+     2019,
+     1,
+     "Giants",
+     4.0,
+     25.7,
+     0.034,
+     true
+    ],
+    [
+     2023,
+     5,
+     "Giants",
+     4.0,
+     160.0,
+     0.178,
+     true
+    ],
+    [
+     2024,
+     6,
+     "Vikings",
+     1.0,
+     1.1,
+     0.004,
+     false
+    ],
+    [
+     2024,
+     6,
+     "Vikings",
+     1.0,
+     0.4,
+     0.002,
+     false
+    ],
+    [
+     2025,
+     7,
+     "Colts",
+     1.0,
+     14.0,
+     0.05,
+     false
+    ]
+   ]
   },
   "00-0036212": {
    "name": "Tua Tagovailoa",
@@ -13936,7 +24652,79 @@
    "best_after": null,
    "early": 0.038,
    "later": 0.092,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     10,
+     186,
+     307,
+     1814,
+     11
+    ],
+    [
+     2,
+     13,
+     263,
+     407,
+     2653,
+     16
+    ],
+    [
+     3,
+     13,
+     259,
+     420,
+     3548,
+     25
+    ],
+    [
+     4,
+     17,
+     388,
+     587,
+     4624,
+     29
+    ],
+    [
+     5,
+     11,
+     291,
+     418,
+     2867,
+     19
+    ],
+    [
+     6,
+     14,
+     260,
+     412,
+     2660,
+     20
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 5,
+   "contracts": [
+    [
+     2020,
+     1,
+     "Dolphins",
+     4.0,
+     30.3,
+     0.038,
+     true
+    ],
+    [
+     2024,
+     5,
+     "Dolphins",
+     4.0,
+     212.4,
+     0.208,
+     true
+    ]
+   ]
   },
   "00-0036264": {
    "name": "Jordan Love",
@@ -14010,7 +24798,64 @@
    "best_after": null,
    "early": null,
    "later": 0.148,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     4,
+     17,
+     372,
+     607,
+     4159,
+     32
+    ],
+    [
+     5,
+     15,
+     268,
+     439,
+     3389,
+     25
+    ],
+    [
+     6,
+     15,
+     291,
+     459,
+     3381,
+     23
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 26,
+   "contracts": [
+    [
+     2020,
+     1,
+     "Packers",
+     4.0,
+     12.4,
+     0.016,
+     true
+    ],
+    [
+     2023,
+     4,
+     "Packers",
+     1.0,
+     13.5,
+     0.06,
+     true
+    ],
+    [
+     2024,
+     5,
+     "Packers",
+     4.0,
+     220.0,
+     0.215,
+     true
+    ]
+   ]
   },
   "00-0036355": {
    "name": "Justin Herbert",
@@ -14094,7 +24939,79 @@
    "best_after": null,
    "early": 0.071,
    "later": 0.046,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     15,
+     396,
+     623,
+     4336,
+     31
+    ],
+    [
+     2,
+     17,
+     443,
+     702,
+     5014,
+     38
+    ],
+    [
+     3,
+     17,
+     477,
+     735,
+     4739,
+     25
+    ],
+    [
+     4,
+     13,
+     297,
+     485,
+     3134,
+     20
+    ],
+    [
+     5,
+     17,
+     332,
+     542,
+     3870,
+     23
+    ],
+    [
+     6,
+     16,
+     340,
+     566,
+     3727,
+     26
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 6,
+   "contracts": [
+    [
+     2020,
+     1,
+     "Chargers",
+     4.0,
+     26.6,
+     0.034,
+     true
+    ],
+    [
+     2023,
+     4,
+     "Chargers",
+     5.0,
+     262.5,
+     0.234,
+     true
+    ]
+   ]
   },
   "00-0036389": {
    "name": "Jalen Hurts",
@@ -14178,7 +25095,71 @@
    "best_after": null,
    "early": 0.104,
    "later": 0.095,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     15,
+     265,
+     456,
+     3144,
+     16
+    ],
+    [
+     3,
+     15,
+     306,
+     498,
+     3701,
+     22
+    ],
+    [
+     4,
+     17,
+     352,
+     574,
+     3858,
+     23
+    ],
+    [
+     5,
+     15,
+     248,
+     398,
+     2903,
+     18
+    ],
+    [
+     6,
+     16,
+     294,
+     484,
+     3224,
+     25
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 53,
+   "contracts": [
+    [
+     2020,
+     1,
+     "Eagles",
+     4.0,
+     6.0,
+     0.008,
+     true
+    ],
+    [
+     2023,
+     4,
+     "Eagles",
+     5.0,
+     255.0,
+     0.227,
+     true
+    ]
+   ]
   },
   "00-0036442": {
    "name": "Joe Burrow",
@@ -14262,7 +25243,79 @@
    "best_after": null,
    "early": 0.096,
    "later": 0.079,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     10,
+     264,
+     433,
+     2688,
+     13
+    ],
+    [
+     2,
+     16,
+     366,
+     569,
+     4611,
+     34
+    ],
+    [
+     3,
+     16,
+     414,
+     646,
+     4475,
+     35
+    ],
+    [
+     4,
+     10,
+     244,
+     388,
+     2309,
+     15
+    ],
+    [
+     5,
+     17,
+     460,
+     699,
+     4918,
+     43
+    ],
+    [
+     6,
+     8,
+     173,
+     276,
+     1809,
+     17
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2020,
+     1,
+     "Bengals",
+     4.0,
+     36.2,
+     0.046,
+     true
+    ],
+    [
+     2023,
+     4,
+     "Bengals",
+     5.0,
+     275.0,
+     0.245,
+     true
+    ]
+   ]
   },
   "00-0036898": {
    "name": "Davis Mills",
@@ -14336,7 +25389,56 @@
    "best_after": null,
    "early": -0.16,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     13,
+     263,
+     423,
+     2664,
+     16
+    ],
+    [
+     2,
+     15,
+     292,
+     509,
+     3118,
+     17
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 67,
+   "contracts": [
+    [
+     2021,
+     1,
+     "Texans",
+     4.0,
+     5.2,
+     0.007,
+     true
+    ],
+    [
+     2024,
+     4,
+     "Texans",
+     2.0,
+     8.1,
+     0.016,
+     true
+    ],
+    [
+     2025,
+     5,
+     "Texans",
+     1.0,
+     7.0,
+     0.025,
+     true
+    ]
+   ]
   },
   "00-0036945": {
    "name": "Justin Fields",
@@ -14410,7 +25512,64 @@
    "best_after": null,
    "early": -0.071,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     12,
+     159,
+     304,
+     1870,
+     7
+    ],
+    [
+     2,
+     15,
+     192,
+     373,
+     2242,
+     17
+    ],
+    [
+     3,
+     13,
+     227,
+     414,
+     2562,
+     16
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 11,
+   "contracts": [
+    [
+     2021,
+     1,
+     "PIT/CHI",
+     4.0,
+     18.9,
+     0.026,
+     true
+    ],
+    [
+     2025,
+     5,
+     "Jets",
+     2.0,
+     40.0,
+     0.072,
+     false
+    ],
+    [
+     2025,
+     5,
+     "Chiefs",
+     1.0,
+     11.0,
+     0.039,
+     false
+    ]
+   ]
   },
   "00-0036971": {
    "name": "Trevor Lawrence",
@@ -14484,7 +25643,71 @@
    "best_after": null,
    "early": -0.012,
    "later": 0.024,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     17,
+     359,
+     631,
+     3641,
+     12
+    ],
+    [
+     2,
+     17,
+     387,
+     609,
+     4113,
+     25
+    ],
+    [
+     3,
+     16,
+     370,
+     599,
+     4016,
+     21
+    ],
+    [
+     4,
+     10,
+     172,
+     301,
+     2045,
+     11
+    ],
+    [
+     5,
+     17,
+     341,
+     598,
+     4007,
+     29
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2021,
+     1,
+     "Jaguars",
+     4.0,
+     36.8,
+     0.05,
+     true
+    ],
+    [
+     2024,
+     4,
+     "Jaguars",
+     5.0,
+     275.0,
+     0.215,
+     true
+    ]
+   ]
   },
   "00-0036972": {
    "name": "Mac Jones",
@@ -14563,7 +25786,63 @@
    },
    "early": -0.067,
    "later": 0.101,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     1,
+     17,
+     352,
+     548,
+     3801,
+     22
+    ],
+    [
+     2,
+     14,
+     288,
+     474,
+     2997,
+     14
+    ],
+    [
+     3,
+     11,
+     224,
+     367,
+     2120,
+     10
+    ],
+    [
+     5,
+     9,
+     201,
+     302,
+     2151,
+     13
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 15,
+   "contracts": [
+    [
+     2021,
+     1,
+     "NE/JAX",
+     4.0,
+     15.6,
+     0.021,
+     true
+    ],
+    [
+     2025,
+     5,
+     "49ers",
+     2.0,
+     7.0,
+     0.013,
+     false
+    ]
+   ]
   },
   "00-0037013": {
    "name": "Zach Wilson",
@@ -14627,7 +25906,55 @@
    "best_after": null,
    "early": -0.221,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     13,
+     213,
+     426,
+     2334,
+     9
+    ],
+    [
+     2,
+     9,
+     132,
+     265,
+     1688,
+     6
+    ],
+    [
+     3,
+     12,
+     221,
+     411,
+     2271,
+     8
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 2,
+   "contracts": [
+    [
+     2021,
+     1,
+     "DEN/NYJ",
+     4.0,
+     35.2,
+     0.048,
+     true
+    ],
+    [
+     2025,
+     5,
+     "Dolphins",
+     1.0,
+     6.0,
+     0.021,
+     false
+    ]
+   ]
   },
   "00-0037077": {
    "name": "Sam Howell",
@@ -14681,7 +26008,30 @@
    "best_after": null,
    "early": -0.127,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     17,
+     388,
+     677,
+     3946,
+     21
+    ]
+   ],
+   "draft_round": 5,
+   "draft_pick": 144,
+   "contracts": [
+    [
+     2022,
+     1,
+     "WAS/PHI/SEA/MIN",
+     4.0,
+     4.0,
+     0.005,
+     true
+    ]
+   ]
   },
   "00-0037834": {
    "name": "Brock Purdy",
@@ -14745,7 +26095,55 @@
    "best_after": null,
    "early": 0.23,
    "later": 0.195,
-   "later_above_average": true
+   "later_above_average": true,
+   "box": [
+    [
+     2,
+     16,
+     308,
+     469,
+     4280,
+     31
+    ],
+    [
+     3,
+     15,
+     300,
+     481,
+     3864,
+     20
+    ],
+    [
+     4,
+     9,
+     197,
+     295,
+     2167,
+     20
+    ]
+   ],
+   "draft_round": 7,
+   "draft_pick": 262,
+   "contracts": [
+    [
+     2022,
+     1,
+     "49ers",
+     4.0,
+     3.7,
+     0.004,
+     true
+    ],
+    [
+     2025,
+     4,
+     "49ers",
+     5.0,
+     265.0,
+     0.19,
+     true
+    ]
+   ]
   },
   "00-0038102": {
    "name": "Kenny Pickett",
@@ -14809,7 +26207,38 @@
    "best_after": null,
    "early": -0.047,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     13,
+     245,
+     415,
+     2404,
+     7
+    ],
+    [
+     2,
+     12,
+     201,
+     346,
+     2070,
+     6
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 20,
+   "contracts": [
+    [
+     2022,
+     1,
+     "PIT/CLE/LV/PHI",
+     4.0,
+     14.1,
+     0.017,
+     true
+    ]
+   ]
   },
   "00-0038122": {
    "name": "Desmond Ridder",
@@ -14863,7 +26292,84 @@
    "best_after": null,
    "early": -0.098,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     15,
+     249,
+     417,
+     2836,
+     12
+    ]
+   ],
+   "draft_round": 3,
+   "draft_pick": 74,
+   "contracts": [
+    [
+     2022,
+     1,
+     "ATL/ARI",
+     4.0,
+     5.4,
+     0.006,
+     true
+    ],
+    [
+     2024,
+     3,
+     "Raiders",
+     1.0,
+     1.0,
+     0.004,
+     false
+    ],
+    [
+     2024,
+     3,
+     "Cardinals",
+     1.0,
+     0.2,
+     0.001,
+     false
+    ],
+    [
+     2025,
+     4,
+     "Packers",
+     2.0,
+     2.3,
+     0.004,
+     false
+    ],
+    [
+     2025,
+     4,
+     "CIN/MIN",
+     1.0,
+     1.1,
+     0.004,
+     false
+    ],
+    [
+     2025,
+     4,
+     "Packers",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ],
+    [
+     2025,
+     4,
+     "Vikings",
+     1.0,
+     0.3,
+     0.001,
+     false
+    ]
+   ]
   },
   "00-0038579": {
    "name": "Aidan O'Connell",
@@ -14917,7 +26423,30 @@
    "best_after": null,
    "early": -0.051,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     11,
+     213,
+     366,
+     2218,
+     12
+    ]
+   ],
+   "draft_round": 4,
+   "draft_pick": 135,
+   "contracts": [
+    [
+     2023,
+     1,
+     "Raiders",
+     4.0,
+     4.3,
+     0.005,
+     true
+    ]
+   ]
   },
   "00-0039150": {
    "name": "Bryce Young",
@@ -14971,7 +26500,46 @@
    "best_after": null,
    "early": -0.128,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     16,
+     315,
+     588,
+     2877,
+     11
+    ],
+    [
+     2,
+     14,
+     234,
+     413,
+     2403,
+     15
+    ],
+    [
+     3,
+     16,
+     304,
+     503,
+     3011,
+     23
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2023,
+     1,
+     "Panthers",
+     4.0,
+     38.0,
+     0.042,
+     true
+    ]
+   ]
   },
   "00-0039152": {
    "name": "Will Levis",
@@ -15015,7 +26583,30 @@
    "best_after": null,
    "early": -0.053,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     9,
+     149,
+     281,
+     1808,
+     8
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 33,
+   "contracts": [
+    [
+     2023,
+     1,
+     "Titans",
+     4.0,
+     9.5,
+     0.011,
+     true
+    ]
+   ]
   },
   "00-0039163": {
    "name": "C.J. Stroud",
@@ -15069,7 +26660,46 @@
    "best_after": null,
    "early": 0.038,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     15,
+     319,
+     531,
+     4108,
+     23
+    ],
+    [
+     2,
+     17,
+     336,
+     583,
+     3727,
+     20
+    ],
+    [
+     3,
+     14,
+     273,
+     443,
+     3041,
+     19
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 2,
+   "contracts": [
+    [
+     2023,
+     1,
+     "Texans",
+     4.0,
+     36.3,
+     0.04,
+     true
+    ]
+   ]
   },
   "00-0039732": {
    "name": "Bo Nix",
@@ -15113,7 +26743,38 @@
    "best_after": null,
    "early": 0.045,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     17,
+     376,
+     590,
+     3775,
+     29
+    ],
+    [
+     2,
+     17,
+     388,
+     633,
+     3931,
+     25
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 12,
+   "contracts": [
+    [
+     2024,
+     1,
+     "Broncos",
+     4.0,
+     18.6,
+     0.018,
+     true
+    ]
+   ]
   },
   "00-0039851": {
    "name": "Drake Maye",
@@ -15157,7 +26818,38 @@
    "best_after": null,
    "early": 0.121,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     13,
+     225,
+     371,
+     2276,
+     15
+    ],
+    [
+     2,
+     17,
+     354,
+     539,
+     4394,
+     31
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 3,
+   "contracts": [
+    [
+     2024,
+     1,
+     "Patriots",
+     4.0,
+     36.6,
+     0.036,
+     true
+    ]
+   ]
   },
   "00-0039910": {
    "name": "Jayden Daniels",
@@ -15201,7 +26893,30 @@
    "best_after": null,
    "early": 0.137,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     17,
+     331,
+     525,
+     3568,
+     25
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 2,
+   "contracts": [
+    [
+     2024,
+     1,
+     "Commanders",
+     4.0,
+     37.7,
+     0.037,
+     true
+    ]
+   ]
   },
   "00-0039917": {
    "name": "Michael Penix Jr.",
@@ -15245,7 +26960,30 @@
    "best_after": null,
    "early": -0.014,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     9,
+     166,
+     289,
+     1982,
+     9
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 8,
+   "contracts": [
+    [
+     2024,
+     1,
+     "Falcons",
+     4.0,
+     22.9,
+     0.022,
+     true
+    ]
+   ]
   },
   "00-0039918": {
    "name": "Caleb Williams",
@@ -15289,7 +27027,38 @@
    "best_after": null,
    "early": -0.031,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     17,
+     351,
+     626,
+     3541,
+     20
+    ],
+    [
+     2,
+     17,
+     330,
+     590,
+     3942,
+     27
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2024,
+     1,
+     "Bears",
+     4.0,
+     39.5,
+     0.039,
+     true
+    ]
+   ]
   },
   "00-0039923": {
    "name": "J.J. McCarthy",
@@ -15323,7 +27092,30 @@
    "best_after": null,
    "early": -0.179,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     2,
+     10,
+     140,
+     270,
+     1632,
+     11
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 10,
+   "contracts": [
+    [
+     2024,
+     1,
+     "Vikings",
+     4.0,
+     21.9,
+     0.021,
+     true
+    ]
+   ]
   },
   "00-0040676": {
    "name": "Cam Ward",
@@ -15357,7 +27149,30 @@
    "best_after": null,
    "early": -0.203,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     17,
+     323,
+     592,
+     3169,
+     15
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 1,
+   "contracts": [
+    [
+     2025,
+     1,
+     "Titans",
+     4.0,
+     48.8,
+     0.044,
+     true
+    ]
+   ]
   },
   "00-0040691": {
    "name": "Jaxson Dart",
@@ -15391,7 +27206,30 @@
    "best_after": null,
    "early": 0.033,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     14,
+     216,
+     373,
+     2272,
+     15
+    ]
+   ],
+   "draft_round": 1,
+   "draft_pick": 25,
+   "contracts": [
+    [
+     2025,
+     1,
+     "Giants",
+     4.0,
+     17.0,
+     0.015,
+     true
+    ]
+   ]
   },
   "00-0040743": {
    "name": "Tyler Shough",
@@ -15425,7 +27263,30 @@
    "best_after": null,
    "early": -0.041,
    "later": null,
-   "later_above_average": false
+   "later_above_average": false,
+   "box": [
+    [
+     1,
+     11,
+     221,
+     355,
+     2384,
+     10
+    ]
+   ],
+   "draft_round": 2,
+   "draft_pick": 40,
+   "contracts": [
+    [
+     2025,
+     1,
+     "Saints",
+     4.0,
+     10.8,
+     0.01,
+     true
+    ]
+   ]
   }
  }
 }

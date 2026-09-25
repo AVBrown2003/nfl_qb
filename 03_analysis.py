@@ -12,6 +12,8 @@ Definitions used throughout (all regular season only):
   EPA vs league     the QB's EPA per play minus that season's average EPA per play of every NFL QB
                     (so seasons from different eras compare fairly)
   original team     the first team the QB played for (handles draft-day trades like Rivers/Manning)
+  big 2nd contract  a contract after the rookie deal worth 10%+ of the salary cap per year
+                    (contracts from nflverse / OverTheCap, raw/historical_contracts.parquet)
 """
 import json
 from math import erf, sqrt
@@ -67,7 +69,8 @@ stats = d.groupby(["qb_id", "qb_name", "rookie_class", "career_year", "season"])
     drives=("drive", "size"), plays=("qb_plays", "sum"), epa=("qb_epa", "sum"),
     pass_attempts=("pass_attempts", "sum"), interceptions=("interceptions", "sum"),
     turnovers=("turnovers", "sum"), td_drives=("drive_result", lambda s: (s == "Touchdown").sum()),
-    scoring_drives=("scoring_drive", "sum"),
+    scoring_drives=("scoring_drive", "sum"), games=("game_id", "nunique"), completions=("completions", "sum"),
+    passing_yards=("passing_yards", "sum"), pass_tds=("pass_tds", "sum"),
 ).reset_index()
 # his team that season = the team he ran the most drives for
 team = (d.groupby(["qb_id", "season", "team"]).size().rename("n").reset_index()
@@ -117,16 +120,21 @@ FINDINGS["1_turnovers"] = [{
                                                          rookie.interceptions, rookie.pass_attempts), 4),
 } for y, r in t.iterrows()]
 
-# --- 2. QBs typically have their best season in Year 5 ------------------------------------------
+# --- 2. Best seasons in Year 5+ came from early write-offs and understudies ---------------------
 long_careers = set(qs[qs.career_year >= 8].qb_id)
 pool = S[S.qb_id.isin(long_careers) & (S.rookie_class <= FULL_CLASS)]
 best = pool.loc[pool.groupby("qb_id").epa_vs_league.idxmax()]
 # how each QB looked early: pooled EPA vs league over his starting seasons in Years 1-3 (any team).
-# "Looked like a write-off" = below league average then, or not a starter at all in Years 1-3.
+#   write-off  = started in Years 1-3 and was below league average
+#   understudy = no starting season in Years 1-3 (waiting behind a veteran, like Rodgers behind Favre)
+#   strong     = started in Years 1-3 and was at or above league average
 early_all = (S[(S.career_year <= 3) & (S.rookie_class <= FULL_CLASS)]
              .groupby("qb_id").apply(epa_vs_league, include_groups=False))
 best["early"] = best.qb_id.map(early_all)
-best["writeoff"] = best.early.isna() | (best.early < 0)
+best["profile"] = "strong"
+best.loc[best.early < 0, "profile"] = "writeoff"
+best.loc[best.early.isna(), "profile"] = "understudy"
+best["writeoff"] = best.profile != "strong"
 late = best[best.career_year >= 5]
 FINDINGS["2_best_season"] = {
     "qbs": len(best), "median_year": float(best.career_year.median()),
@@ -135,9 +143,8 @@ FINDINGS["2_best_season"] = {
     "late_breakouts": len(late), "late_writeoffs": int(late.writeoff.sum()),
     "late_below_average_early": int((late.early < 0).sum()), "late_not_starting_early": int(late.early.isna().sum()),
     "by_year": counts(best.career_year),
-    "by_year_detail": {int(y): {
-        "writeoff": sorted(x[x.writeoff].qb_name), "strong": sorted(x[~x.writeoff].qb_name)}
-        for y, x in best.groupby("career_year")},
+    "by_year_detail": {int(y): {k: sorted(x[x.profile == k].qb_name) for k in ["writeoff", "understudy", "strong"]}
+                       for y, x in best.groupby("career_year")},
 }
 
 # --- 3. A third of QBs who become above average don't get there until Year 4+ --------------------
@@ -179,16 +186,71 @@ FINDINGS["5_teams_move_on"] = {
     "share_done_by_year5": round((ended <= 5).mean(), 3),
     "by_year": counts(ended),
 }
-early = set(S[(S.career_year <= 2) & (S.rookie_class <= FULL_CLASS)].qb_id)
-FINDINGS["6_still_starting"] = {"qbs": len(early), "by_year": [{
-    "career_year": y,
-    "share_starting": round(S[(S.career_year == y) & S.qb_id.isin(early)].qb_id.nunique() / len(early), 3),
-    "share_starting_for_original_team": round(
-        S[(S.career_year == y) & S.qb_id.isin(early) & S.with_original_team].qb_id.nunique() / len(early), 3),
-} for y in range(1, 11)]}
-FINDINGS["7_seasons_given"] = {"qbs": len(seasons_given), "most_common": int(seasons_given.mode()[0]),
+qb_name = qs.drop_duplicates("qb_id").set_index("qb_id").qb_name
+FINDINGS["6_seasons_given"] = {"qbs": len(seasons_given), "most_common": int(seasons_given.mode()[0]),
                                "share_one_season": round((seasons_given == 1).mean(), 3),
-                               "by_seasons": counts(seasons_given)}
+                               "by_seasons": counts(seasons_given),
+                               "names_by_seasons": {int(n): sorted(qb_name[g.index])
+                                                    for n, g in seasons_given.groupby(seasons_given)}}
+
+# --- 7. Money: the rookie-deal clock, the price of a 2nd contract, and who gets paid -------------
+# Rookie classes 2011 on only: the 2011 labor deal set today's rookie wage scale (4-year deals plus a
+# 5th-year option for 1st-rounders), and contract records before about 2010 are incomplete.
+CONTRACT_FROM = 2011
+teams_file = pd.read_csv(RAW / "teams_colors_logos.csv")
+nick = {**dict(zip(teams_file.team_nick, teams_file.team_abbr)), **{a: a for a in teams_file.team_abbr},
+        "Redskins": "WAS", "Commanders": "WAS", "Football Team": "WAS", "OAK": "LV", "SD": "LAC", "STL": "LA", "LAR": "LA"}
+info = qs.drop_duplicates("qb_id").set_index("qb_id")[["rookie_class", "original_team"]]
+con = pd.read_parquet(RAW / "historical_contracts.parquet").drop(columns=["draft_round"])
+con = con[(con.position == "QB") & con.gsis_id.isin(info.index) & (con.year_signed <= 2025)].copy()
+# a traded contract lists every team, e.g. "CAR/NYJ"
+relocated = {"OAK": "LV", "SD": "LAC", "STL": "LA", "LAR": "LA"}   # nicknames map to old codes in the team file
+con["teams"] = con.team.map(lambda t: [relocated.get(nick.get(x.strip(), x.strip()), nick.get(x.strip(), x.strip()))
+                                       for x in str(t).split("/")])
+con = con.join(info, on="gsis_id")
+con["career_year"] = con.year_signed - con.rookie_class + 1
+con["with_original_team"] = con.apply(lambda r: r.original_team in r.teams, axis=1)
+con = con.sort_values(["gsis_id", "year_signed"])
+players_draft = (pd.read_parquet(RAW / "players.parquet", columns=["gsis_id", "draft_round", "draft_pick"])
+                 .set_index("gsis_id"))
+mc = con[con.rookie_class >= CONTRACT_FROM]
+rookie_deals = mc.groupby("gsis_id").head(1).set_index("gsis_id").join(players_draft)  # first contract = rookie deal
+big = mc[(mc.career_year > 1) & (mc.apy_cap_pct >= 0.10)]
+own_big = big[big.with_original_team].groupby("gsis_id").head(1)                         # first big deal from his own team
+windows = [(2014, 2016), (2017, 2019), (2020, 2022), (2023, 2025)]
+# who gets paid: original-team starters in Years 1-3, classes 2011-2021 (they have had time to reach a 2nd deal)
+paid_pool = S[S.with_original_team & (S.career_year <= 3) & S.rookie_class.between(CONTRACT_FROM, 2021)]
+pp = pd.DataFrame({"early": paid_pool.groupby("qb_id").apply(epa_vs_league, include_groups=False)}).join(players_draft)
+pp["paid"] = pp.index.isin(set(own_big.gsis_id))
+
+
+def paid_row(mask):
+    x = pp[mask]
+    return {"qbs": len(x), "paid": int(x.paid.sum()), "names_paid": sorted(qb_name[x[x.paid].index]),
+            "names_not_paid": sorted(qb_name[x[~x.paid].index])}
+
+
+all_teams = sorted(teams_file[~teams_file.team_abbr.isin(["OAK", "SD", "STL", "LAR"])].team_abbr)
+FINDINGS["7_contracts"] = {
+    "from_class": CONTRACT_FROM,
+    "rookie_deal_cap_pct": {
+        "round_1": round(float(rookie_deals[rookie_deals.draft_round == 1].apy_cap_pct.median()), 3),
+        "round_2": round(float(rookie_deals[rookie_deals.draft_round == 2].apy_cap_pct.median()), 3),
+        "round_3_plus": round(float(rookie_deals[rookie_deals.draft_round.fillna(8) >= 3].apy_cap_pct.median()), 3)},
+    "second_deals": len(own_big),
+    "signed_career_year": counts(own_big.career_year),
+    "signed_by_year4": int((own_big.career_year <= 4).sum()),
+    "price_by_window": [{"from": a, "to": b, "deals": int(own_big.year_signed.between(a, b).sum()),
+                         "median_cap_pct": round(float(own_big[own_big.year_signed.between(a, b)].apy_cap_pct.median()), 3)}
+                        for a, b in windows],
+    "deals": [{"qb": qb_name[r.gsis_id], "team": r.original_team, "year_signed": int(r.year_signed),
+               "career_year": int(r.career_year), "years": float(r.years), "value": round(float(r.value), 1),
+               "cap_pct": round(float(r.apy_cap_pct), 3), "guaranteed": round(float(r.guaranteed), 1)}
+              for r in own_big.itertuples()],
+    "who_paid": {"above_average_early": paid_row(pp.early >= 0), "below_average_early": paid_row(pp.early < 0),
+                 "round_1": paid_row(pp.draft_round == 1), "later_rounds": paid_row(pp.draft_round.fillna(8) > 1)},
+    "teams": {t: sorted(qb_name[own_big[own_big.original_team == t].gsis_id]) for t in all_teams},
+}
 
 # --- 8. Late bloomers: best season after leaving the original team -----------------------------
 multi = S.groupby("qb_id").filter(lambda x: x.with_original_team.any() and (~x.with_original_team).any())
@@ -208,26 +270,27 @@ bloomers.sort(key=lambda r: -r["best_epa_vs_league"])
 FINDINGS["8_late_bloomers"] = {"multi_team_qbs": int(multi.qb_id.nunique()), "count": len(bloomers),
                                "qbs": bloomers}
 
-# --- 9. Patience: QBs kept through below-average Years 1-3 ------------------------------------
-early_orig = S[S.with_original_team & (S.career_year <= 3) & (S.rookie_class <= FULL_CLASS)]
-ids = set(early_orig.qb_id)
-kept = set(S[S.with_original_team & (S.career_year >= 5) & S.qb_id.isin(ids)].qb_id)
-let_go = ids - kept
-early_epa = early_orig.groupby("qb_id").apply(epa_vs_league, include_groups=False)
-below = set(early_epa[early_epa < 0].index)
+# --- 9. Box scores: early strugglers who kept starting caught up ----------------------------------
+later_starters = set(S[(S.career_year >= 4) & (S.rookie_class <= FULL_CLASS)].qb_id)
+box_groups = {"strugglers": set(early_all[early_all < 0].index) & later_starters,
+              "good_early": set(early_all[early_all >= 0].index) & later_starters}
 
-kept_below = []
-for qb in sorted(kept & below):
-    x = S[S.qb_id == qb]
-    kept_below.append({"qb": x.qb_name.iloc[0], "rookie_class": int(x.rookie_class.iloc[0]),
-                       "years_1_3": round(epa_vs_league(x[x.career_year <= 3]), 3),
-                       "year_4_plus": round(epa_vs_league(x[x.career_year >= 4]), 3)})
-FINDINGS["9_patience"] = {
-    "kept_below_average_early": {"years_1_3": group_summary(early_orig[early_orig.qb_id.isin(kept & below)]),
-                                 "year_4_plus": group_summary(S[S.qb_id.isin(kept & below) & (S.career_year >= 4)])},
-    "let_go_below_average_early": {"years_1_3": group_summary(early_orig[early_orig.qb_id.isin(let_go & below)])},
-    "qbs": kept_below,
-}
+
+def box(x):
+    return {"qbs": int(x.qb_id.nunique()),
+            "completion_pct": round(float(x.completions.sum() / x.pass_attempts.sum()), 4),
+            "yards_per_game": round(float(x.passing_yards.sum() / x.games.sum()), 1),
+            "tds_per_game": round(float(x.pass_tds.sum() / x.games.sum()), 3)}
+
+
+FINDINGS["9_box_scores"] = {g: {
+    "years_1_3": box(S[S.qb_id.isin(ids) & (S.career_year <= 3)]),
+    "year_4_plus": box(S[S.qb_id.isin(ids) & (S.career_year >= 4)]),
+    "by_year": [{"career_year": int(y), **box(x)}
+                for y, x in S[S.qb_id.isin(ids) & (S.career_year <= 8)].groupby("career_year")],
+    "names": sorted(qb_name[list(ids)]),
+} for g, ids in box_groups.items()}
+
 # --- 10. Counterpoint: most early strugglers never become above average ------------------------
 later = S[(S.career_year >= 4) & (S.rookie_class <= FULL_CLASS)]
 later_good = set(later[later.epa_vs_league > 0].qb_id)
@@ -237,9 +300,23 @@ def outcomes(ids):
     return {"qbs": len(ids), "above_average_later": len(ids & later_good),
             "more_starts_never_above": len((ids & later_any) - later_good),
             "no_more_starting_seasons": len(ids - later_any)}
+rounds = players_draft.draft_round.reindex(early_all.index).fillna(8)  # undrafted counted as round 8
+strugglers = early_all[early_all < 0]
+
+
+def draft_group(lo, hi):
+    ids = strugglers.index[rounds[strugglers.index].between(lo, hi)]
+    o = outcomes(ids)
+    o["names_above_later"] = sorted(qb_name[list(set(ids) & later_good)])
+    o["names_no_more_starts"] = sorted(qb_name[list(set(ids) - later_any)])
+    return o
+
+
 FINDINGS["10_early_strugglers"] = {
     "below_average_early": outcomes(early_all[early_all < 0].index),
     "above_average_early": outcomes(early_all[early_all >= 0].index),
+    "strugglers_by_draft": {"round_1": draft_group(1, 1), "rounds_2_3": draft_group(2, 3),
+                            "round_4_plus": draft_group(4, 8)},
 }
 
 # --- Headline numbers --------------------------------------------------------------------------
@@ -281,6 +358,15 @@ for qb, x in qs.groupby("qb_id"):
         "early": None if e.empty else round(float(epa_vs_league(e)), 3),
         "later": None if l.empty else round(float(epa_vs_league(l)), 3),
         "later_above_average": bool((l.epa_vs_league > 0).any()),
+        # [career_year, games, completions, attempts, passing yards, passing TDs] for starting seasons
+        "box": [[int(r.career_year), int(r.games), int(r.completions), int(r.pass_attempts), int(r.passing_yards),
+                 int(r.pass_tds)] for r in xs.itertuples()],
+        "draft_round": None if pd.isna(players_draft.draft_round.get(qb)) else int(players_draft.draft_round[qb]),
+        "draft_pick": None if pd.isna(players_draft.draft_pick.get(qb)) else int(players_draft.draft_pick[qb]),
+        # [year signed, career year, team, years, total value ($M), share of cap per year, with original team]
+        "contracts": [[int(r.year_signed), int(r.career_year), r.team, float(r.years), round(float(r.value), 1),
+                       round(float(r.apy_cap_pct), 3), bool(r.with_original_team)]
+                      for r in con[con.gsis_id == qb].itertuples()],
     }
 FINDINGS["per_qb"] = per_qb
 
@@ -289,20 +375,21 @@ FINDINGS["per_qb"] = per_qb
 # --- Print a summary --------------------------------------------------------------------------
 f = FINDINGS
 print(f"QB-seasons: {len(qs):,} ({len(S):,} starting seasons)")
-print("1  INT% by year:", {r['career_year']: f"{r['int_pct']:.2%}" for r in f['1_turnovers']},
-      f"| Year 6 vs rookie p={f['1_turnovers'][5]['p_vs_rookie']}")
-print(f"2  best season: median Year {f['2_best_season']['median_year']:.0f}, "
-      f"{f['2_best_season']['share_year5_plus']:.0%} in Year 5+ ({f['2_best_season']['qbs']} QBs)")
+print("1  turnovers / 100 drives:", {r["career_year"]: r["turnovers_per_100_drives"] for r in f["1_turnovers"]},
+      f"| Year 6 vs rookie p={f['1_turnovers'][5]['p_vs_rookie_turnovers']}")
+print("2  best seasons in Year 5+:", {k: f["2_best_season"][k] for k in
+      ["late_breakouts", "late_below_average_early", "late_not_starting_early"]})
 print(f"3  first above-average season in Year 4+: {f['3_first_above_average']['share_year4_plus']:.0%}")
-print("4  EPA vs league, same", f['4_jump_vs_peak']['cohort_qbs'], "QBs:",
-      {r['career_year']: r['epa_vs_league'] for r in f['4_jump_vs_peak']['level_by_year']})
-print(f"5  original team done by Year 4: {f['5_teams_move_on']['share_done_by_year4']:.0%} "
-      f"(median Year {f['5_teams_move_on']['median_last_year']:.0f})")
-print(f"6  still starting for original team in Year 5: "
-      f"{f['6_still_starting']['by_year'][4]['share_starting_for_original_team']:.0%}")
-print(f"7  most common seasons given: {f['7_seasons_given']['most_common']} "
-      f"({f['7_seasons_given']['share_one_season']:.0%})")
+print("4  EPA vs league, same", f["4_jump_vs_peak"]["cohort_qbs"], "QBs:",
+      {r["career_year"]: r["epa_vs_league"] for r in f["4_jump_vs_peak"]["level_by_year"]})
+print(f"5  original team done by Year 4: {f['5_teams_move_on']['share_done_by_year4']:.0%}")
+print(f"6  most common seasons given: {f['6_seasons_given']['most_common']} ({f['6_seasons_given']['share_one_season']:.0%})")
+k = f["7_contracts"]
+print("7  rookie deal cap %:", k["rookie_deal_cap_pct"], "| 2nd deals:", k["second_deals"], k["signed_career_year"],
+      "| price:", [(w["from"], w["median_cap_pct"]) for w in k["price_by_window"]],
+      "| paid:", {g: (v["paid"], v["qbs"]) for g, v in k["who_paid"].items()})
 print(f"8  late bloomers: {f['headline']['late_bloomers']}")
-print("9  kept + below avg early:", f['9_patience']['kept_below_average_early'])
-print("2  late breakouts:", {k: f['2_best_season'][k] for k in ['late_breakouts', 'late_writeoffs', 'late_below_average_early', 'late_not_starting_early']})
-print("10", f['10_early_strugglers'])
+print("9  box scores:", {g: (v["years_1_3"], v["year_4_plus"]) for g, v in f["9_box_scores"].items()})
+print("10", {g: v for g, v in f["10_early_strugglers"].items() if g != "strugglers_by_draft"},
+      {g: (v["qbs"], v["above_average_later"], v["more_starts_never_above"], v["no_more_starting_seasons"])
+       for g, v in f["10_early_strugglers"]["strugglers_by_draft"].items()})
