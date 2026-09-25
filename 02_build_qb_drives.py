@@ -60,10 +60,24 @@ d["quarter"] = d.qtr.map({1: "Q1", 2: "Q2", 3: "Q3", 4: "Q4"}).fillna("OT")
 d["career_stage"] = d.career_year.map(lambda n: "Rookie" if n == 1 else f"Year {n}")
 d["scoring_drive"] = d.drive_result.isin(["Touchdown", "Field goal"]).astype(int)
 
+# game outcome from the QB's team's side, and whether he was the listed starting QB.
+# These repeat on every drive of the game, so count win records per game, not per row.
+games = pd.read_csv(Path(__file__).parent / "raw" / "games.csv",
+                    usecols=["game_id", "home_team", "home_score", "away_score",
+                             "home_qb_id", "away_qb_id"])
+d = d.merge(games, on="game_id", how="left", validate="m:1")
+home = d.team == d.home_team
+d["team_score"] = d.home_score.where(home, d.away_score).astype(int)
+d["opp_score"] = d.away_score.where(home, d.home_score).astype(int)
+d["game_result"] = "Tie"
+d.loc[d.team_score > d.opp_score, "game_result"] = "Win"
+d.loc[d.team_score < d.opp_score, "game_result"] = "Loss"
+d["started_game"] = (d.qb_id == d.home_qb_id.where(home, d.away_qb_id)).astype(int)
+
 ORDER = [
     "game_id", "game_date", "season", "week", "season_type", "qb_id", "qb_name",
     "rookie_class", "career_year", "career_stage", "team", "opponent", "home_away",
-    "quarter", "drive", "drive_result", "scoring_drive", "start_yards_to_goal",
+    "started_game", "game_result", "team_score", "opp_score", "quarter", "drive", "drive_result", "scoring_drive", "start_yards_to_goal",
     "drive_plays", "drive_yards",
     "qb_plays", "dropbacks", "pass_attempts", "completions", "passing_yards", "air_yards",
     "pass_tds", "interceptions", "sacks", "scrambles", "rush_attempts", "rushing_yards",

@@ -6,7 +6,7 @@ A two-page website (a report and a dashboard) that follows every NFL starting qu
 
 **Source:** [nflverse](https://github.com/nflverse/nflverse-data) play-by-play, game, and player data, free to use under CC-BY 4.0.
 
-**One row** is one quarterback on one offensive drive (possession) of one game. There are 105,864 rows and 37 columns, covering 135 quarterbacks over 26 seasons (2000–2025).
+**One row** is one quarterback on one offensive drive (possession) of one game. There are 105,864 rows and 41 columns, covering 135 quarterbacks over 26 seasons (2000–2025).
 
 **Which quarterbacks:** rookie season (first NFL season) in 2000 or later, and at least one season with 9 or more regular-season starts (more than half a season). Every drive of their career through 2025 is kept, including seasons spent as a backup. The 2026 season is left out because it is still in progress.
 
@@ -14,6 +14,7 @@ A two-page website (a report and a dashboard) that follows every NFL starting qu
 
 **What the columns describe:**
 - `drive_result`, `scoring_drive`, `start_yards_to_goal`, `drive_plays` and `drive_yards` describe the whole drive: every play on it, whoever ran it. `scoring_drive` is 1 when the drive ended in a touchdown or field goal. `start_yards_to_goal` is how far the offense had to go when the drive began (75 = its own 25-yard line).
+- `game_result` (Win/Loss/Tie), `team_score` and `opp_score` are the final result of the game from the QB's team's side, from the nflverse schedule file. They repeat on every drive of that game, so win records are counted once per game, not once per row. `started_game` is 1 when the QB was his team's listed starter. Win-loss records count only games the QB started.
 - All other counts (passes, yards, TDs, interceptions, sacks, scrambles, turnovers, `qb_epa`) cover only the QB's own plays on that drive.
 
 **Rows and plays dropped:**
