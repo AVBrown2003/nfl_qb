@@ -65,6 +65,8 @@ d["scoring_drive"] = d.drive_result.isin(["Touchdown", "Field goal"]).astype(int
 games = pd.read_csv(Path(__file__).parent / "raw" / "games.csv",
                     usecols=["game_id", "home_team", "home_score", "away_score",
                              "home_qb_id", "away_qb_id"])
+# the schedule file uses the team code of the time (OAK, SD, STL); play-by-play uses today's
+games["home_team"] = games.home_team.replace({"OAK": "LV", "SD": "LAC", "STL": "LA"})
 d = d.merge(games, on="game_id", how="left", validate="m:1")
 home = d.team == d.home_team
 d["team_score"] = d.home_score.where(home, d.away_score).astype(int)
