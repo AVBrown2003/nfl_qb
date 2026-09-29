@@ -29,21 +29,25 @@ A two-page website (a report and a dashboard), live at https://avbrown2003.githu
 | File | What it does |
 |---|---|
 | `index.html` | The report page: headline numbers, the career explorer, the 10 findings with their charts, and the data notes. |
-| `dashboard.html` | The dashboard page (placeholder until it is built). |
+| `dashboard.html` | The dashboard page: loads every drive and recomputes 6 summary numbers, 4 charts and a table in the browser as you change 9 filters (QB, seasons, rookie class, career year, quarter, game type, home/away, QB role, game result). Each chart has a measure switch (count / total / median / rate) and a split-by switch. |
 | `assets/style.css` | Shared fonts, colors, and layout for both pages. |
-| `assets/charts.js` | Small SVG chart helpers (columns, lines, dumbbells, bars) with hover tooltips and table views. |
+| `assets/charts.js` | Small SVG chart helpers (columns, lines, paired bars, horizontal bars, donut) with hover tooltips and table views. |
 | `assets/jersey.js` | Draws the career explorer's jersey and the five stat dials around it. |
+| `assets/dashboard.js` | Loads `data/dashboard_drives.csv`, applies the filters, computes every number on the dashboard, and keeps the current view in the page URL so it can be linked. |
 | `assets/report.js` | Loads `data/findings.json` and `data/careers.json` and draws everything on the report page. |
 | `01_build_qb_plays.py` | Reads the raw nflverse files, picks the qualifying QBs, and builds the play-level data (one row per QB play) with drive and career-year information attached. |
 | `02_build_qb_drives.py` | Rolls the plays up to one row per QB per drive and checks the result against the assignment requirements. |
 | `03_analysis.py` | Computes every number and chart in the report (the 10 findings and the headline numbers). Definitions are in the docstring at the top. |
 | `04_site_data.py` | Builds the career explorer data: every QB's seasons with team, jersey number, stats, how each stat ranks against all starting seasons, and approximate era jersey colors. |
+| `05_dashboard_data.py` | Builds the dashboard's data: the same drive rows as `qb_drives.csv`, trimmed to the columns the dashboard uses and written with short codes (listed in the script's docstring) to keep the file small. |
 | `data/qb_drives.csv` | **The project data set:** one row per QB per drive. |
 | `data/qb_drives.parquet` | The same data in a compressed format for Python. |
 | `data/qb_plays.parquet` | The play-level data that the drive file is built from. |
 | `data/qb_seasons.csv` | One row per QB per regular season (record, EPA vs league average, team, original team), built by `03_analysis.py`. |
 | `data/findings.json` | The headline numbers and the data behind each report chart, built by `03_analysis.py`. |
 | `data/careers.json` | Career explorer data for the report page, built by `04_site_data.py`. |
+| `data/dashboard_drives.csv` | The file the dashboard loads: one row per QB per drive (105,862 rows), built by `05_dashboard_data.py`. |
+| `data/dashboard_qbs.csv` | The QB code used in `dashboard_drives.csv`, with each QB's name and rookie class. |
 | `pyproject.toml`, `uv.lock` | The Python environment (pandas, pyarrow), managed with uv. |
 
 The raw nflverse downloads (`raw/`, about 550 MB) are not in the repository because of their size. They come from the nflverse-data releases (`pbp`, `schedules`, `players`, `rosters`, `teams`, and `contracts`, which is OverTheCap's contract history). QB names come from the players file, because play-by-play spells some names several ways.
@@ -55,4 +59,5 @@ uv run python 01_build_qb_plays.py
 uv run python 02_build_qb_drives.py
 uv run python 03_analysis.py
 uv run python 04_site_data.py
+uv run python 05_dashboard_data.py
 ```
