@@ -20,10 +20,15 @@ let F, CAREERS, byName, PER;
 
 /* =============================== page behavior =============================== */
 
-// sections and cards fade up the first time they scroll into view
+// sections and cards fade in as they scroll into view and fade back out once fully off screen,
+// so they build again each time (from below when scrolling down, from above when scrolling up)
 const revealer = new IntersectionObserver((entries) => entries.forEach((e) => {
-  if (e.isIntersecting) { e.target.classList.add("in"); revealer.unobserve(e.target); }
-}), { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  if (e.intersectionRatio >= 0.12) e.target.classList.add("in");
+  else if (!e.isIntersecting) {
+    e.target.classList.remove("in");
+    e.target.classList.toggle("above", e.boundingClientRect.top < 0);
+  }
+}), { threshold: [0, 0.12], rootMargin: "0px 0px -40px 0px" });
 document.querySelectorAll(".reveal").forEach((el) => revealer.observe(el));
 
 // reading progress bar in the nav
@@ -220,8 +225,8 @@ function openInExplorer(name, season) {
    - draw(el, qb, animate, mode) draws the chart, highlighting the looked-up QB (a per_qb record) if any
    - table(mode) returns [columns, rows] for the table view
    - readout(qb) returns the sentence shown under the chart for the looked-up QB
-   Cards with a switch (.toggle) pass the chosen view as `mode`. The chart is first drawn (animated)
-   when the card scrolls into view. */
+   Cards with a switch (.toggle) pass the chosen view as `mode`. The chart is drawn (animated)
+   each time the card scrolls back into view. */
 function setup(id, { draw, table, readout }) {
   const card = document.querySelector(`[data-chart="${id}"]`);
   const chart = card.querySelector(".chart") || card.querySelector(".qb-cards");
@@ -254,9 +259,12 @@ function setup(id, { draw, table, readout }) {
     link.textContent = tbl.hidden ? "Show table" : "Hide table";
     showTable();
   });
-  const io = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) { drawn = true; redraw(true); io.disconnect(); }
-  }, { threshold: 0.25 });
+  // the chart builds in each time the card comes back into view after leaving the screen
+  let away = true;
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.intersectionRatio >= 0.25 && away) { away = false; drawn = true; redraw(true); }
+    else if (!e.isIntersecting) away = true;
+  }), { threshold: [0, 0.25] });
   io.observe(card);
 }
 // a link like index.html?qb=Sam%20Darnold opens the page with that quarterback looked up everywhere
