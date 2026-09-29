@@ -155,7 +155,7 @@ g.row.on .row-label { fill: var(--c-compare); }
 .legend i.line { height: 3px; border-radius: 2px; width: 18px; }
 .legend i.dot { border-radius: 50%; width: 10px; height: 10px; }
 
-/* build-in animations (only on the first reveal of a chart) */
+/* build-in animations (each time a chart scrolls into view) */
 .anim .bar { transform-box: fill-box; transform-origin: 50% 100%; animation: grow-y .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 35ms); }
 .anim .bar.down { transform-origin: 50% 0; }
 .anim .hbar { transform-box: fill-box; transform-origin: 0 50%; animation: grow-x .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 60ms); }
@@ -187,6 +187,7 @@ table.data th:first-child, table.data td:first-child { text-align: left; }
 
 /* ---------- scroll reveal ---------- */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.above { transform: translateY(-28px); }
 .reveal.in { opacity: 1; transform: none; }
 .reveal.delay { transition-delay: .12s; }
 

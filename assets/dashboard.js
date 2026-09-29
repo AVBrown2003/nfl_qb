@@ -68,6 +68,28 @@ const TOGGLES = {
 const FILTER_KEYS = ["qb", "s0", "s1", "c0", "c1", "y0", "y1", "q", "gt", "ha", "role", "res"];
 const NUMERIC_KEYS = ["s0", "s1", "c0", "c1", "y0", "y1"];
 let DEFAULTS, state, view;
+
+// cards fade in as they scroll into view and back out once fully off screen, and each chart
+// builds in again every time its card comes back (from below scrolling down, from above scrolling up)
+let building = null;   // id of the chart card currently being drawn with its build-in animation
+function buildIn(el) {
+  const render = { c1: renderLine, c2: renderColumns, c3: renderBars, c4: renderLeaders }[el.id];
+  if (!render || !view) return;   // not a chart card, or the data hasn't loaded yet
+  building = el.id;
+  render(CHARTS.find((c) => c.id === el.id));
+  building = null;
+}
+const revealer = new IntersectionObserver((entries) => entries.forEach((e) => {
+  const el = e.target;
+  if (e.intersectionRatio >= 0.12) {
+    if (!el.classList.contains("in")) buildIn(el);
+    el.classList.add("in");
+  } else if (!e.isIntersecting) {
+    el.classList.remove("in");
+    el.classList.toggle("above", e.boundingClientRect.top < 0);
+  }
+}), { threshold: [0, 0.12], rootMargin: "0px 0px -40px 0px" });
+document.querySelectorAll(".reveal").forEach((el) => revealer.observe(el));
 const TABLES = {};
 
 // ---- formatting --------------------------------------------------------------------------------
@@ -346,6 +368,7 @@ function renderLine(c) {
     series[1].labelDy = up ? -8 : 8; series[0].labelDy = up ? 8 : -8;
   }
   Charts.lines(el, {
+    animate: building === c.id,
     xs, series, height: 300, rightPad: 84, zero: metric.signed && m !== "count",
     yFmt: tickFmt(metric, m), valFmt: (v) => fmt(v, metric, m), xFmt: b.tick, tipX: b.label, xTitle: b.name,
     aria: `${label} by ${b.name}`,
@@ -364,6 +387,7 @@ function renderColumns(c) {
   if (!view.sel.length) return emptyChart(el);
   const color = Charts.css(view.one ? "--c-compare" : "--c-qb");
   Charts.columns(el, {
+    animate: building === c.id,
     height: 300, color, yFmt: tickFmt(metric, m), aria: `${label} by ${b.name}`,
     data: keys.map((k) => {
       const v = measure(gSel.get(k), metric, m);
@@ -387,6 +411,7 @@ function renderBars(c) {
   if (!view.sel.length) return emptyChart(el);
   const color = Charts.css(view.one ? "--c-compare" : "--c-qb");
   Charts.hbars(el, {
+    animate: building === c.id,
     color, labelW: 150, xFmt: tickFmt(metric, m), aria: `${label} by ${b.name}`,
     rows: keys.map((k) => ({ k, label: b.label(k), value: measure(gSel.get(k), metric, m) ?? 0 })),
     tip: (r) => `<b>${esc(r.label)}</b><div class="tt-dim">${label}</div>` +
@@ -422,6 +447,7 @@ function renderLeaders(c) {
   };
   if (!ranked.length) return emptyChart(el, needMin ? `No quarterback has ${MIN_RANK_DRIVES}+ drives under these filters.` : undefined);
   Charts.hbars(el, {
+    animate: building === c.id,
     labelW: 170, color: Charts.css("--c-qb"), xFmt: tickFmt(metric, m), aria: `${label} leaderboard`,
     rows: shown.map((r) => ({ ...r, label: `${r.rank}. ${b.label(r.k)}`, on: mine(r) })),
     tip: (r) => `<b>${esc(b.label(r.k))}</b> · rank ${r.rank} of ${ranked.length}<div class="tt-row">${label}: <b>${fmt(r.value, metric, m)}</b></div><span class="tt-dim">${int(r.n)} drives</span>`,
@@ -483,6 +509,7 @@ Promise.all([fetch("data/dashboard_drives.csv").then((r) => r.text()), fetch("da
     buildControls(cyMax);
     state = readHash();
     update();
+    document.querySelectorAll(".dash-grid .card.in").forEach(buildIn);   // charts already on screen at load
     addEventListener("hashchange", () => { state = readHash(); update(); });
   })
   .catch((err) => {

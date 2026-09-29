@@ -32,7 +32,7 @@
 
 <main class="wrap">
   <!-- filters -->
-  <section class="card filters" aria-label="Filters">
+  <section class="card filters reveal" aria-label="Filters">
     <div class="filters-head">
       <h2>Filters</h2>
       <p class="showing" id="showing" aria-live="polite">Loading drives…</p>
@@ -79,23 +79,23 @@
   </section>
 
   <!-- summary numbers -->
-  <section class="kpis" id="kpis" aria-label="Summary numbers"></section>
+  <section class="kpis reveal" id="kpis" aria-label="Summary numbers"></section>
 
   <!-- what the charts measure -->
-  <section class="metric-bar">
+  <section class="metric-bar reveal">
     <span class="field-label">Charts measure</span>
     <div class="toggle" id="metric" role="group" aria-label="What the charts measure"></div>
   </section>
 
   <section class="dash-grid">
-    <article class="card" id="c1"></article>
-    <article class="card" id="c2"></article>
-    <article class="card" id="c3"></article>
-    <article class="card" id="c4"></article>
+    <article class="card reveal" id="c1"></article>
+    <article class="card reveal delay" id="c2"></article>
+    <article class="card reveal" id="c3"></article>
+    <article class="card reveal delay" id="c4"></article>
   </section>
 
   <!-- numbers behind the view -->
-  <section class="card table-card">
+  <section class="card table-card reveal">
     <div class="card-head">
       <div>
         <h3 class="card-title">The numbers behind the charts</h3>
@@ -110,7 +110,7 @@
   </section>
 
   <!-- method -->
-  <section class="method dash-method">
+  <section class="method dash-method reveal">
     <h5>How it's calculated</h5>
     <p><b>One row = one quarterback on one drive.</b> The data covers every quarterback whose rookie season was 2000 or later and who had at least one season with 9 or more starts. It includes every drive of their careers through 2025. Kneels and spikes are left out. This page loads <a href="data/dashboard_drives.csv">data/dashboard_drives.csv</a>, a trimmed copy of <code>data/qb_drives.csv</code> built by <code>05_dashboard_data.py</code>.</p>
     <h5>The four measures</h5>
