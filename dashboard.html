@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>QB Dashboard</title>
+  <title>QB Drive Dashboard</title>
+  <meta name="description" content="Filter every drive by 135 NFL quarterbacks from the 2000–2025 rookie classes and watch the numbers and charts recompute.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body class="dash">
 <nav class="nav" aria-label="Site">
   <div class="wrap">
     <a class="brand" href="index.html"><span class="brand-mark">QB</span><span>Worth the Wait</span></a>
@@ -20,12 +21,116 @@
     </div>
   </div>
 </nav>
-<header class="hero">
+
+<header class="hero dash-hero">
   <div class="wrap">
     <p class="kicker">Dashboard</p>
-    <h1>Coming <span>soon</span></h1>
-    <p class="summary">The interactive dashboard is being built next. Head back to the <a href="index.html">report</a> for now.</p>
+    <h1>Every drive, your filters</h1>
+    <p class="summary">The report argues that quarterbacks take longer to develop than teams are willing to wait. This page lets you test that yourself. It loads all 105,862 drives by the 135 quarterbacks in the data, and every number, chart and table below is recomputed in your browser whenever you change a filter. It opens on Sam Darnold. Pick <b>All QBs</b> to see the whole group.</p>
   </div>
 </header>
+
+<main class="wrap">
+  <!-- filters -->
+  <section class="card filters" aria-label="Filters">
+    <div class="filters-head">
+      <h2>Filters</h2>
+      <p class="showing" id="showing" aria-live="polite">Loading drives…</p>
+      <button class="btn" id="reset" type="button">Reset all filters</button>
+    </div>
+    <div class="filter-grid">
+      <div class="field wide">
+        <label class="field-label" for="f-qb">Quarterback</label>
+        <select id="f-qb"></select>
+      </div>
+      <div class="field">
+        <span class="field-label">Seasons</span>
+        <div class="range"><select id="f-s0" aria-label="First season"></select><span>to</span><select id="f-s1" aria-label="Last season"></select></div>
+      </div>
+      <div class="field">
+        <span class="field-label">Rookie class</span>
+        <div class="range"><select id="f-c0" aria-label="First rookie class"></select><span>to</span><select id="f-c1" aria-label="Last rookie class"></select></div>
+      </div>
+      <div class="field">
+        <span class="field-label">Career year</span>
+        <div class="range"><select id="f-y0" aria-label="First career year"></select><span>to</span><select id="f-y1" aria-label="Last career year"></select></div>
+      </div>
+      <div class="field">
+        <span class="field-label">Quarter</span>
+        <div class="chips" id="f-q" role="group" aria-label="Quarter"></div>
+      </div>
+      <div class="field">
+        <span class="field-label">Game type</span>
+        <div class="toggle" id="f-gt" role="group" aria-label="Game type"></div>
+      </div>
+      <div class="field">
+        <span class="field-label">Home or away</span>
+        <div class="toggle" id="f-ha" role="group" aria-label="Home or away"></div>
+      </div>
+      <div class="field">
+        <span class="field-label">QB role</span>
+        <div class="toggle" id="f-role" role="group" aria-label="QB role"></div>
+      </div>
+      <div class="field">
+        <span class="field-label">Game result</span>
+        <div class="toggle" id="f-res" role="group" aria-label="Game result"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- summary numbers -->
+  <section class="kpis" id="kpis" aria-label="Summary numbers"></section>
+
+  <!-- what the charts measure -->
+  <section class="metric-bar">
+    <span class="field-label">Charts measure</span>
+    <div class="toggle" id="metric" role="group" aria-label="What the charts measure"></div>
+  </section>
+
+  <section class="dash-grid">
+    <article class="card" id="c1"></article>
+    <article class="card" id="c2"></article>
+    <article class="card" id="c3"></article>
+    <article class="card" id="c4"></article>
+  </section>
+
+  <!-- numbers behind the view -->
+  <section class="card table-card">
+    <div class="card-head">
+      <div>
+        <h3 class="card-title">The numbers behind the charts</h3>
+        <p class="card-sub" id="table-sub"></p>
+      </div>
+      <div class="table-tools">
+        <div class="toggle" id="table-pick" role="group" aria-label="Which chart's numbers"></div>
+        <button class="btn" id="download" type="button">Download CSV</button>
+      </div>
+    </div>
+    <div id="table"></div>
+  </section>
+
+  <!-- method -->
+  <section class="method dash-method">
+    <h5>How it's calculated</h5>
+    <p><b>One row = one quarterback on one drive.</b> The data covers every quarterback whose rookie season was 2000 or later and who had at least one season with 9 or more starts. It includes every drive of their careers through 2025. Kneels and spikes are left out. This page loads <a href="data/dashboard_drives.csv">data/dashboard_drives.csv</a>, a trimmed copy of <code>data/qb_drives.csv</code> built by <code>05_dashboard_data.py</code>.</p>
+    <h5>The four measures</h5>
+    <p class="formula">Count = number of drives</p>
+    <p class="formula">Total = sum of the stat over those drives</p>
+    <p class="formula">Median = the middle drive's value when the drives are sorted by the stat</p>
+    <p class="formula">Rate = total ÷ drives (× 100 for turnovers and for % of drives)</p>
+    <p>Median is turned off for scoring drives, TD drives and turnovers. Almost every drive has 0 or 1 of these, so the middle drive is always 0 or 1 and tells you nothing.</p>
+    <h5>The stats</h5>
+    <p><b>QB EPA</b> (expected points added) is how many points the quarterback's own plays added to his team's expected score. For example, an interception is about −4.4 and a touchdown pass about +2.8. On this page it is the raw value, <i>not</i> the era-adjusted version used in the report, so the league-wide rise in passing over time shows up in it. <b>Drive yards</b> count the whole drive, whoever ran each play. <b>Passing yards</b> and <b>turnovers</b> (interceptions plus lost fumbles) count only the quarterback's own plays. A <b>scoring drive</b> ends in a touchdown or a field goal.</p>
+    <h5>Reading it fairly</h5>
+    <p>Later career years only include quarterbacks who lasted that long, so they lean toward the good ones. The 2022–2025 rookie classes have not reached those years yet. On the leaderboard, a quarterback needs at least 100 drives under the current filters to be ranked by median or rate, so a few lucky drives can't put someone at the top.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Worth the Wait · Data from nflverse (CC-BY 4.0) · Built with plain HTML, CSS and JavaScript · <a href="index.html">Back to the report</a></div>
+</footer>
+
+<script src="assets/charts.js"></script>
+<script src="assets/dashboard.js"></script>
 </body>
 </html>
