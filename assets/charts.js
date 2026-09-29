@@ -99,9 +99,10 @@ const Charts = (() => {
     const svg = h("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": s.aria || "" }, el);
     const total = (d) => (d.stack ? d.stack.reduce((a, p) => a + p.y, 0) : d.y);
     const xs = s.data.map((d) => d.x);
-    const yMax = s.yMax ?? Math.max(...s.data.map(total)) * 1.12;
-    const ticks = niceTicks(0, yMax, 4);
-    const y = scale(0, ticks[ticks.length - 1], H - m.b, m.t);
+    const yMax = s.yMax ?? Math.max(0, ...s.data.map(total)) * 1.12;
+    const yMin = Math.min(0, ...s.data.map(total)) * 1.12;   // single bars may go below zero (stacks never do)
+    const ticks = niceTicks(yMin, yMax, 4);
+    const y = scale(ticks[0], ticks[ticks.length - 1], H - m.b, m.t);
     const band = (W - m.l - m.r) / xs.length;
     const bw = Math.min(24, band * 0.7);
     const bx = (i) => m.l + band * i + (band - bw) / 2;
@@ -131,6 +132,7 @@ const Charts = (() => {
       const parts = d.stack || [{ y: d.y, color: d.color || s.color || css("--c-qb") }];
       let base = 0;
       const top = parts.map((p) => p.y > 0).lastIndexOf(true);
+      if (!d.stack && d.y < 0) h("path", { d: barPath(bx(i), y(0), bw, y(d.y)), fill: parts[0].color, class: "bar down", style: `--i:${i}` }, svg);
       parts.forEach((p, k) => {
         if (p.y <= 0) return;
         const y0 = y(base) - (base > 0 ? 2 : 0), y1 = y(base + p.y);   // 2px surface gap between segments
@@ -142,7 +144,7 @@ const Charts = (() => {
         h("rect", { x: bx(i) - 4, y: Math.min(y(total(d)), y(0)) - 4, width: bw + 8, height: Math.abs(y(0) - y(total(d))) + 8,
                     fill: "none", stroke: css("--c-compare"), "stroke-width": 2, rx: 6 }, svg);
       }
-      if (d.label) text(svg, bx(i) + bw / 2, y(total(d)) - (d.outline ? 12 : 7), d.label, "direct-label late", { "text-anchor": "middle" });
+      if (d.label) text(svg, bx(i) + bw / 2, total(d) < 0 ? y(total(d)) + 16 : y(total(d)) - (d.outline ? 12 : 7), d.label, "direct-label late", { "text-anchor": "middle" });
       const hit = h("rect", { x: m.l + band * i, y: m.t, width: band, height: H - m.b - m.t, class: "hit" }, svg);
       hit.addEventListener("mousemove", (e) => showTip(s.tip(d), e));
       hit.addEventListener("mouseleave", hideTip);
@@ -178,7 +180,8 @@ const Charts = (() => {
       h("line", { x1: m.l, x2: W - m.r + 12, y1: y(0), y2: y(0), stroke: css("--ink-2"), "stroke-width": 1 }, svg);
       if (s.zeroLabel) text(svg, W - m.r + 12, y(0) - 6, s.zeroLabel, "annot-muted", { "text-anchor": "end" });
     }
-    xs.forEach((v) => text(svg, x(v), H - m.b + 18, s.xFmt ? s.xFmt(v) : v, "tick-label", { "text-anchor": "middle" }));
+    const xEvery = Math.ceil(xs.length / Math.max(1, Math.floor((W - m.l - m.r) / 34)));   // thin labels on narrow screens
+    xs.forEach((v, i) => { if (i % xEvery === 0) text(svg, x(v), H - m.b + 18, s.xFmt ? s.xFmt(v) : v, "tick-label", { "text-anchor": "middle" }); });
     if (s.xTitle) text(svg, (W + m.l - m.r) / 2, H - 6, s.xTitle, "axis-title", { "text-anchor": "middle" });
 
     s.series.forEach((sr) => {
@@ -213,9 +216,9 @@ const Charts = (() => {
       const rows = s.series.map((sr) => {
         const p = sr.points.find((q) => q.x === xv);
         return p && p.y !== null && p.y !== undefined
-          ? `<div class="tt-row">${key(sr.color)}${sr.name}: <b>${s.yFmt(p.y)}</b>${p.extra ? ` <span class="tt-dim">${p.extra}</span>` : ""}</div>` : "";
+          ? `<div class="tt-row">${key(sr.color)}${sr.name}: <b>${(s.valFmt || s.yFmt)(p.y)}</b>${p.extra ? ` <span class="tt-dim">${p.extra}</span>` : ""}</div>` : "";
       }).join("");
-      showTip(`<b>${s.xFmt ? s.xFmt(xv) : xv}</b>${s.tipHead ? s.tipHead(xv) : ""}${rows}`, e);
+      showTip(`<b>${s.tipX ? s.tipX(xv) : s.xFmt ? s.xFmt(xv) : xv}</b>${s.tipHead ? s.tipHead(xv) : ""}${rows}`, e);
     });
     hit.addEventListener("mouseleave", () => { hideTip(); cross.setAttribute("opacity", 0); });
     return svg;
@@ -327,6 +330,34 @@ const Charts = (() => {
     return svg;
   }
 
+  // ---- horizontal bars: one value per row, zero line when values go negative; `on` highlights a row --
+  function drawHBars(el, s, W) {
+    const rowH = s.rowH || 28, bh = 14, m = { t: 8, r: 64, b: 30, l: Math.min(s.labelW || 150, W * 0.36) };
+    const H = m.t + m.b + rowH * s.rows.length;
+    const svg = h("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": s.aria || "" }, el);
+    const vals = s.rows.map((r) => r.value);
+    const ticks = niceTicks(Math.min(0, ...vals), Math.max(0, ...vals), W < 480 ? 3 : 5);
+    const x = scale(ticks[0], ticks[ticks.length - 1], m.l, W - m.r);
+    const grid = h("g", { class: "grid" }, svg);
+    ticks.forEach((t) => {
+      h("line", { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b }, grid);
+      text(svg, x(t), H - m.b + 16, s.xFmt(t), "tick-label", { "text-anchor": "middle" });
+    });
+    h("line", { x1: x(0), x2: x(0), y1: m.t, y2: H - m.b, stroke: css("--line-2"), "stroke-width": 1.2 }, svg);
+    s.rows.forEach((r, i) => {
+      const top = m.t + rowH * i, yy = top + (rowH - bh) / 2;
+      const g = h("g", { class: "row" }, svg);
+      h("rect", { x: 0, y: top + 1, width: W, height: rowH - 2, rx: 6, class: "row-hover" }, g);
+      text(g, m.l - 10, top + rowH / 2 + 4, r.label, `row-label${r.on ? " on" : ""}`, { "text-anchor": "end" });
+      const color = r.on ? css("--c-compare") : r.color || s.color || css("--c-qb");
+      h("path", { d: hbarPath(x(0), yy, x(r.value), bh, 3), fill: color, class: `hbar${r.value < 0 ? " left" : ""}`, style: `--i:${i}` }, g);
+      text(g, x(r.value) + (r.value >= 0 ? 6 : -6), yy + bh - 2, s.xFmt(r.value), "row-sub", { "text-anchor": r.value >= 0 ? "start" : "end" });
+      g.addEventListener("mousemove", (e) => showTip(s.tip(r), e));
+      g.addEventListener("mouseleave", hideTip);
+    });
+    return svg;
+  }
+
   // ---- table view -----------------------------------------------------------------------------
   function table(el, cols, rows) {
     const esc = (v) => String(v ?? "").replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
@@ -341,5 +372,6 @@ const Charts = (() => {
     pairedBars: (el, s) => mount(el, drawPairedBars, s),
     stack100: (el, s) => mount(el, drawStack100, s),
     donut: (el, s) => mount(el, drawDonut, s),
+    hbars: (el, s) => mount(el, drawHBars, s),
   };
 })();
