@@ -62,6 +62,8 @@ Promise.all([fetch("data/findings.json").then((r) => r.json()), fetch("data/care
     initExplorer();
     if (URL_QB) selectQB(CAREERS.find((c) => c.id === URL_QB));
     initFindings();
+    // the browser jumped to #about before the charts above it were drawn; go there again now
+    if (location.hash) document.querySelector(location.hash)?.scrollIntoView({ behavior: "instant" });
   })
   .catch((err) => {
     document.querySelector("main").insertAdjacentHTML("afterbegin",
@@ -225,8 +227,8 @@ function openInExplorer(name, season) {
    - draw(el, qb, animate, mode) draws the chart, highlighting the looked-up QB (a per_qb record) if any
    - table(mode) returns [columns, rows] for the table view
    - readout(qb) returns the sentence shown under the chart for the looked-up QB
-   Cards with a switch (.toggle) pass the chosen view as `mode`. The chart is drawn (animated)
-   each time the card scrolls back into view. */
+   Cards with a switch (.toggle) pass the chosen view as `mode`. The chart is drawn at load, then
+   redrawn animated each time the card scrolls back into view. */
 function setup(id, { draw, table, readout }) {
   const card = document.querySelector(`[data-chart="${id}"]`);
   const chart = card.querySelector(".chart") || card.querySelector(".qb-cards");
@@ -259,7 +261,11 @@ function setup(id, { draw, table, readout }) {
     link.textContent = tbl.hidden ? "Show table" : "Hide table";
     showTable();
   });
-  // the chart builds in each time the card comes back into view after leaving the screen
+  // draw it right away so the page has its full height from the start (otherwise charts drawn while
+  // scrolling push everything below them down, and links like "The Data" stop short); it then
+  // builds in each time the card comes back into view after leaving the screen
+  drawn = true;
+  redraw(false);
   let away = true;
   const io = new IntersectionObserver((entries) => entries.forEach((e) => {
     if (e.intersectionRatio >= 0.25 && away) { away = false; drawn = true; redraw(true); }
