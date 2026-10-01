@@ -470,14 +470,13 @@ function initFindings() {
     },
   });
 
-  // ---- 07 money: the clock, the price, who gets paid, which teams ---------------------------------
+  // ---- 07 money: the price, who gets paid, which teams ---------------------------------
   const k7 = F["7_contracts"];
   const teamColor = {};
   CAREERS.forEach((c) => c.seasons.forEach((s) => { teamColor[s.team] = s.jersey.body === "#FFFFFF" ? s.jersey.number : s.jersey.body; }));
   const card7 = document.querySelector('[data-chart="f7"]');
   const legend7 = card7.querySelector("[data-legend]"), grid7 = card7.querySelector(".team-grid");
   const TITLES = {
-    clock: ["When teams paid their own quarterback", `${k7.second_deals} big second contracts (10%+ of the cap) from a QB's original team, QBs who entered the league 2011–2025`],
     price: ["What a quarterback costs, as a share of the salary cap", "Median rookie deal vs. median big second contract, by the years it was signed"],
     who: ["Who got a big second contract from his original team", "51 QBs who entered the league 2011–2021 and started for their original team in Years 1–3"],
     teams: ["Which teams paid their own quarterback", "Big second contracts to a QB who started his career with that team, QBs who entered the league 2011–2025"],
@@ -495,19 +494,7 @@ function initFindings() {
       grid7.hidden = mode !== "teams";
       legend7.hidden = mode !== "who";
       const own = q ? q.contracts.find((c) => c[6] && c[1] > 1 && c[5] >= 0.10) : null;
-      if (mode === "clock") {
-        Charts.columns(el, {
-          animate, data: range(1, 8).map((x) => {
-            const deals = k7.deals.filter((d) => d.career_year === x);
-            return { x, y: deals.length, deals, color: x <= 4 ? C.team : C.teamLight, xLabel: x === 1 ? "R" : x, outline: own && own[1] === x,
-                     label: x === 4 ? `${deals.length} of ${k7.second_deals}` : null };
-          }),
-          xTitle: "Career year the deal was signed (Year 4 = after three seasons)", yTitle: "Deals",
-          regions: [{ from: 5, fill: "rgba(42,120,214,.07)", label: "Where the late best seasons in Part 1 happen" }],
-          tip: (d) => `<b>Signed in ${yearLabel(d.x)}: ${d.y} deal${d.y === 1 ? "" : "s"}</b>` +
-            (d.deals.length ? `<br>${d.deals.map((x) => `${x.qb} (${x.team}, ${x.year_signed}, ${pct(x.cap_pct, 1)} of cap)`).join("<br>")}` : ""),
-        });
-      } else if (mode === "price") {
+      if (mode === "price") {
         const rows = [{ x: 1, xLabel: "Rookie deal", y: k7.rookie_deal_cap_pct.round_1, color: C.neutral, deals: [], label: pct(k7.rookie_deal_cap_pct.round_1, 1),
                         tip: `<b>First-round rookie deal</b><br>Median ${pct(k7.rookie_deal_cap_pct.round_1, 1)} of the cap per year (round 2: ${pct(k7.rookie_deal_cap_pct.round_2, 1)}, round 3+: ${pct(k7.rookie_deal_cap_pct.round_3_plus, 1)})` }]
           .concat(k7.price_by_window.map((w, i) => {
@@ -545,10 +532,7 @@ function initFindings() {
       : mode === "who"
         ? [["Group", "QBs", "Got a big 2nd contract", "Names paid"], Object.entries({ "Above average early": "above_average_early", "Below average early": "below_average_early",
             "First-round picks": "round_1", "Later picks / undrafted": "later_rounds" }).map(([l, key]) => [l, k7.who_paid[key].qbs, k7.who_paid[key].paid, list(k7.who_paid[key].names_paid)])]
-        : mode === "teams"
-          ? [["Team", "Big 2nd contracts to own QB", "Names"], Object.entries(k7.teams).map(([t, n]) => [t, n.length, list(n)])]
-          : [["QB", "Team", "Year signed", "Career year", "Years", "Total ($M)", "Share of cap", "Guaranteed ($M)"],
-             k7.deals.map((d) => [d.qb, d.team, d.year_signed, yearLabel(d.career_year), d.years, d.value, pct(d.cap_pct, 1), d.guaranteed])],
+        : [["Team", "Big 2nd contracts to own QB", "Names"], Object.entries(k7.teams).map(([t, n]) => [t, n.length, list(n)])],
     readout: (q) => {
       if (!q.contracts.length) return `${who(q)}: no contract records in the data.`;
       const rookie = q.contracts[0], big = q.contracts.filter((c) => c[1] > 1 && c[5] >= 0.10);
