@@ -31,11 +31,25 @@ const revealer = new IntersectionObserver((entries) => entries.forEach((e) => {
 }), { threshold: [0, 0.12], rootMargin: "0px 0px -40px 0px" });
 document.querySelectorAll(".reveal").forEach((el) => revealer.observe(el));
 
-// reading progress bar in the nav
-addEventListener("scroll", () => {
+// reading progress bar in the nav: a football spirals along it, leaving a red trail.
+// A spiral turns the ball around its long axis, so the laces roll over the top and around the back.
+const ball = document.getElementById("football"), laces = document.getElementById("fb-laces");
+let ballIdle;
+function spiral() {
   const max = document.documentElement.scrollHeight - innerHeight;
   document.getElementById("progress").style.width = `${Math.min(100, (scrollY / max) * 100)}%`;
-}, { passive: true });
+  const turn = scrollY / 22;                        // radians: about one full turn per 140px of scrolling
+  const facing = Math.cos(turn);                    // 1 = laces toward the reader, -1 = around the back
+  laces.setAttribute("transform", `translate(0, ${11 - 7.5 * Math.sin(turn)}) scale(1, ${Math.max(0.15, Math.abs(facing))})`);
+  laces.setAttribute("opacity", Math.max(0, Math.min(1, facing * 2.5)));
+  ball.style.setProperty("--wobble", `${Math.sin(turn / 3) * 4}deg`);
+  ball.classList.add("moving");
+  clearTimeout(ballIdle);
+  ballIdle = setTimeout(() => ball.classList.remove("moving"), 160);
+}
+addEventListener("scroll", spiral, { passive: true });
+spiral();
+ball.classList.remove("moving");
 
 // headline numbers count up once
 function countUp() {
@@ -113,9 +127,24 @@ function selectQB(career, season) {
   selectSeason(Math.max(0, i));
 }
 
-function selectSeason(i) {
+// best and worst EPA-vs-league seasons, among starting seasons (8+ starts) so tiny samples don't count;
+// the same seasons the green and red season buttons mark
+function extremes(c) {
+  const idx = c.seasons.map((s, i) => i), starts = idx.filter((i) => c.seasons[i].starts >= 8);
+  const pool = starts.length ? starts : idx, epa = (i) => c.seasons[i].epa_vs_league;
+  return { best: pool.reduce((a, b) => (epa(b) > epa(a) ? b : a)),
+           worst: pool.length > 1 ? pool.reduce((a, b) => (epa(b) < epa(a) ? b : a)) : -1 };
+}
+
+// react = the reader clicked or played to this season, so the crowd (if sound is on) reacts to a best or worst one
+function selectSeason(i, react = false) {
   const c = EX.career, s = c.seasons[i];
   EX.i = i;
+  if (react) {
+    const x = extremes(c);
+    if (i === x.best) Sound.cheer();
+    else if (i === x.worst) Sound.boo();
+  }
   Jersey.update(document.getElementById("dial"), c, s);
   const best = bestIndex(c);
   document.getElementById("s-name").textContent = c.name;
@@ -163,7 +192,7 @@ function renderSeasonButtons() {
     else if (s === worst && pool.length > 1) b.title = `Worst EPA season: ${signed(s.epa_vs_league, 3)} per play vs league`;
     b.innerHTML = `<i style="background:${s.jersey.body};${s.jersey.body === "#FFFFFF" ? "box-shadow:inset 0 0 0 1px #cfd4da" : ""}"></i>Y${s.career_year}<small>'${String(s.season).slice(2)} ${s.team}</small>`;
     b.setAttribute("aria-label", `${s.season}, ${yearLabel(s.career_year)}, ${s.team_name}`);
-    b.addEventListener("click", () => { stopPlay(); selectSeason(i); });
+    b.addEventListener("click", () => { stopPlay(); selectSeason(i, true); });
     box.appendChild(b);
   });
   box.insertAdjacentHTML("beforeend", `<p class="season-key"><span class="k best"></span>Best EPA season<span class="k worst"></span>Worst EPA season<span class="note">(among seasons with 8+ starts)</span></p>`);
@@ -196,7 +225,7 @@ function drawCareerChart() {
       `${s.starts} starts${s.starts ? `, ${s.record}` : ""}${part ? ' <span class="tt-dim">(part-time)</span>' : ""}`, e));
     hit.addEventListener("mouseenter", () => Charts.lift([bar], true));
     hit.addEventListener("mouseleave", () => { Charts.hideTip(); Charts.lift([bar], false); });
-    hit.addEventListener("click", () => { stopPlay(); selectSeason(i); });
+    hit.addEventListener("click", () => { stopPlay(); selectSeason(i, true); });
   });
 }
 
@@ -206,7 +235,7 @@ function startPlay() {
   if (EX.i >= EX.career.seasons.length - 1) selectSeason(0);
   EX.timer = setInterval(() => {
     if (EX.i >= EX.career.seasons.length - 1) return stopPlay();
-    selectSeason(EX.i + 1);
+    selectSeason(EX.i + 1, true);
   }, 1400);
 }
 function stopPlay() {
