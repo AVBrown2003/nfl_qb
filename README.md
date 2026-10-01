@@ -34,6 +34,7 @@ A two-page website (a report and a dashboard), live at https://avbrown2003.githu
 | `assets/charts.js` | Small SVG chart helpers (columns, lines, paired bars, horizontal bars, donut) with hover tooltips and table views. |
 | `assets/jersey.js` | Draws the career explorer's jersey and the six stat dials around it. |
 | `assets/dashboard.js` | Loads `data/dashboard_drives.csv`, applies the filters, computes every number on the dashboard, and keeps the current view in the page URL so it can be linked. |
+| `assets/sound.js` | The sound toggle in the nav bar (off by default) and the crowd cheer and boos for a QB's best and worst seasons in the career explorer, synthesized in the browser with no audio files. |
 | `assets/report.js` | Loads `data/findings.json` and `data/careers.json` and draws everything on the report page. |
 | `01_build_qb_plays.py` | Reads the raw nflverse files, picks the qualifying QBs, and builds the play-level data (one row per QB play) with drive and career-year information attached. |
 | `02_build_qb_drives.py` | Rolls the plays up to one row per QB per drive and checks the result against the assignment requirements. |
