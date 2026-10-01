@@ -55,56 +55,58 @@ const Jersey = (() => {
 
   function build(el) {
     el.innerHTML = "";
+    // ids are prefixed with the container's id, so two dials can share a page (head-to-head)
+    const id = (n) => `${el.id}-${n}`, ref = (n) => `url(#${id(n)})`;
     const svg = h("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Jersey and season stat dials" }, el);
     const defs = h("defs", {}, svg);
     const stops = (g, list) => list.forEach(([o, c, a = 1]) => h("stop", { offset: o, "stop-color": c, "stop-opacity": a }, g));
     // the stage: a navy disc under a spotlight
-    stops(h("radialGradient", { id: "jx-stage", cx: 0.5, cy: 0.42, r: 0.62 }, defs), [[0, "#3a6299"], [0.5, "#123060"], [1, "#04122b"]]);
-    stops(h("radialGradient", { id: "jx-spot", cx: 0.5, cy: 0, r: 0.75 }, defs), [[0, "#ffffff", 0.42], [0.45, "#ffffff", 0.1], [1, "#ffffff", 0]]);
-    const halo = h("radialGradient", { id: "jx-halo", cx: 0.5, cy: 0.5, r: 0.5 }, defs);
+    stops(h("radialGradient", { id: id("stage"), cx: 0.5, cy: 0.42, r: 0.62 }, defs), [[0, "#3a6299"], [0.5, "#123060"], [1, "#04122b"]]);
+    stops(h("radialGradient", { id: id("spot"), cx: 0.5, cy: 0, r: 0.75 }, defs), [[0, "#ffffff", 0.42], [0.45, "#ffffff", 0.1], [1, "#ffffff", 0]]);
+    const halo = h("radialGradient", { id: id("halo"), cx: 0.5, cy: 0.5, r: 0.5 }, defs);
     const haloStops = [h("stop", { offset: 0, "stop-opacity": 0.95 }, halo), h("stop", { offset: 0.62, "stop-opacity": 0.5 }, halo), h("stop", { offset: 1, "stop-opacity": 0 }, halo)];
-    stops(h("linearGradient", { id: "jx-rim", x1: 0, y1: 0, x2: 0, y2: 1 }, defs), [[0, "#ffffff"], [0.5, "#aab3bf"], [1, "#e7ebf0"]]);
+    stops(h("linearGradient", { id: id("rim"), x1: 0, y1: 0, x2: 0, y2: 1 }, defs), [[0, "#ffffff"], [0.5, "#aab3bf"], [1, "#e7ebf0"]]);
     // fabric: rounded torso, light from above, mesh
-    stops(h("linearGradient", { id: "jx-round", x1: 0, y1: 0, x2: 1, y2: 0 }, defs),
+    stops(h("linearGradient", { id: id("round"), x1: 0, y1: 0, x2: 1, y2: 0 }, defs),
       [[0, "#000", 0.32], [0.18, "#000", 0.08], [0.42, "#fff", 0.1], [0.58, "#fff", 0.06], [0.82, "#000", 0.08], [1, "#000", 0.32]]);
-    stops(h("linearGradient", { id: "jx-fall", x1: 0, y1: 0, x2: 0, y2: 1 }, defs), [[0, "#fff", 0.22], [0.3, "#fff", 0], [0.8, "#000", 0.06], [1, "#000", 0.22]]);
-    const mesh = h("pattern", { id: "jx-mesh", width: 5, height: 5, patternUnits: "userSpaceOnUse" }, defs);
+    stops(h("linearGradient", { id: id("fall"), x1: 0, y1: 0, x2: 0, y2: 1 }, defs), [[0, "#fff", 0.22], [0.3, "#fff", 0], [0.8, "#000", 0.06], [1, "#000", 0.22]]);
+    const mesh = h("pattern", { id: id("mesh"), width: 5, height: 5, patternUnits: "userSpaceOnUse" }, defs);
     h("circle", { cx: 2.5, cy: 2.5, r: 0.9, fill: "#000", "fill-opacity": 0.12 }, mesh);
-    stops(h("linearGradient", { id: "jx-sweep", x1: 0, y1: 0, x2: 1, y2: 0 }, defs), [[0, "#fff", 0], [0.5, "#fff", 0.55], [1, "#fff", 0]]);
-    stops(h("linearGradient", { id: "jx-numfill", x1: 0, y1: 0, x2: 0, y2: 1 }, defs), [[0, "#fff", 0.35], [0.5, "#fff", 0], [1, "#000", 0.15]]);
-    const clip = h("clipPath", { id: "jx-clip" }, defs);
+    stops(h("linearGradient", { id: id("sweep"), x1: 0, y1: 0, x2: 1, y2: 0 }, defs), [[0, "#fff", 0], [0.5, "#fff", 0.55], [1, "#fff", 0]]);
+    stops(h("linearGradient", { id: id("numfill"), x1: 0, y1: 0, x2: 0, y2: 1 }, defs), [[0, "#fff", 0.35], [0.5, "#fff", 0], [1, "#000", 0.15]]);
+    const clip = h("clipPath", { id: id("clip") }, defs);
     h("path", { d: SHAPE }, clip);
-    const discClip = h("clipPath", { id: "jx-disc" }, defs);
+    const discClip = h("clipPath", { id: id("disc") }, defs);
     h("circle", { cx: CX, cy: CY, r: R - 24 }, discClip);
     // the glow's box is the whole drawing, so it is never clipped on a thin, curved arc
-    const glow = h("filter", { id: "jx-glow", filterUnits: "userSpaceOnUse", x: 0, y: 0, width: W, height: H }, defs);
+    const glow = h("filter", { id: id("glow"), filterUnits: "userSpaceOnUse", x: 0, y: 0, width: W, height: H }, defs);
     h("feGaussianBlur", { in: "SourceGraphic", stdDeviation: 4, result: "b" }, glow);
     const gm = h("feMerge", {}, glow);
     h("feMergeNode", { in: "b" }, gm); h("feMergeNode", { in: "SourceGraphic" }, gm);
-    const drop = h("filter", { id: "jx-drop", x: "-20%", y: "-20%", width: "140%", height: "150%" }, defs);
+    const drop = h("filter", { id: id("drop"), x: "-20%", y: "-20%", width: "140%", height: "150%" }, defs);
     h("feDropShadow", { dx: 0, dy: 10, stdDeviation: 9, "flood-color": "#000814", "flood-opacity": 0.55 }, drop);
-    const numShadow = h("filter", { id: "jx-numshadow", x: "-10%", y: "-10%", width: "120%", height: "130%" }, defs);
+    const numShadow = h("filter", { id: id("numshadow"), x: "-10%", y: "-10%", width: "120%", height: "130%" }, defs);
     h("feDropShadow", { dx: 0, dy: 3, stdDeviation: 1.5, "flood-color": "#000", "flood-opacity": 0.35 }, numShadow);
 
     const parts = {};
     // stage
-    h("circle", { cx: CX, cy: CY, r: R - 18, fill: "none", stroke: "url(#jx-rim)", "stroke-width": 6 }, svg);
-    h("circle", { cx: CX, cy: CY, r: R - 21, fill: "url(#jx-stage)" }, svg);
-    const stage = h("g", { "clip-path": "url(#jx-disc)" }, svg);
+    h("circle", { cx: CX, cy: CY, r: R - 18, fill: "none", stroke: ref("rim"), "stroke-width": 6 }, svg);
+    h("circle", { cx: CX, cy: CY, r: R - 21, fill: ref("stage") }, svg);
+    const stage = h("g", { "clip-path": ref("disc") }, svg);
     for (let i = -3; i <= 3; i++) h("line", { x1: CX + i * 44, x2: CX + i * 44, y1: CY - 180, y2: CY + 180, stroke: "#fff", "stroke-opacity": i ? 0.06 : 0.1, "stroke-width": i ? 1 : 2 }, stage);
     for (let i = -8; i <= 8; i++) {   // hash marks
       h("line", { x1: CX - 26, x2: CX - 18, y1: CY + i * 22, y2: CY + i * 22, stroke: "#fff", "stroke-opacity": 0.07 }, stage);
       h("line", { x1: CX + 18, x2: CX + 26, y1: CY + i * 22, y2: CY + i * 22, stroke: "#fff", "stroke-opacity": 0.07 }, stage);
     }
-    parts.halo = h("circle", { cx: CX, cy: CY - 8, r: 172, fill: "url(#jx-halo)" }, stage);
-    h("ellipse", { cx: CX, cy: CY - 150, rx: 190, ry: 230, fill: "url(#jx-spot)" }, stage);
+    parts.halo = h("circle", { cx: CX, cy: CY - 8, r: 172, fill: ref("halo") }, stage);
+    h("ellipse", { cx: CX, cy: CY - 150, rx: 190, ry: 230, fill: ref("spot") }, stage);
     h("ellipse", { cx: CX, cy: CY + 128, rx: 104, ry: 12, fill: "#000814", "fill-opacity": 0.45 }, stage);   // floor shadow
 
     // jersey
     const g = h("g", { transform: `translate(${CX - 120}, ${CY - 142})` }, svg);
-    const jersey = h("g", { class: "jersey", filter: "url(#jx-drop)" }, g);
+    const jersey = h("g", { class: "jersey", filter: ref("drop") }, g);
     parts.body = h("path", { d: SHAPE, class: "jersey-body" }, jersey);
-    const fabric = h("g", { "clip-path": "url(#jx-clip)", "pointer-events": "none" }, jersey);
+    const fabric = h("g", { "clip-path": ref("clip"), "pointer-events": "none" }, jersey);
     parts.sleeves = [h("path", { d: SLEEVE_L, class: "jersey-sleeve" }, fabric), h("path", { d: SLEEVE_R, class: "jersey-sleeve" }, fabric)];
     parts.stripes = [
       h("path", { d: "M-6,86 L38,95 L37.5,104 L-7,95 Z", class: "jersey-trim" }, fabric),
@@ -114,9 +116,9 @@ const Jersey = (() => {
       h("path", { d: "M-7,98 L37.5,107 L37.4,110 L-7.4,101 Z", class: "jersey-pin" }, fabric),
       h("path", { d: "M247,98 L202.5,107 L202.6,110 L247.4,101 Z", class: "jersey-pin" }, fabric),
     ];
-    h("rect", { x: -10, y: 0, width: 260, height: 262, fill: "url(#jx-mesh)" }, fabric);
-    h("rect", { x: -10, y: 0, width: 260, height: 262, fill: "url(#jx-round)" }, fabric);
-    h("rect", { x: -10, y: 0, width: 260, height: 262, fill: "url(#jx-fall)" }, fabric);
+    h("rect", { x: -10, y: 0, width: 260, height: 262, fill: ref("mesh") }, fabric);
+    h("rect", { x: -10, y: 0, width: 260, height: 262, fill: ref("round") }, fabric);
+    h("rect", { x: -10, y: 0, width: 260, height: 262, fill: ref("fall") }, fabric);
     // seams and stitching
     parts.seams = [
       h("path", { d: "M74,10 Q54,52 38,112", class: "jersey-seam" }, fabric),
@@ -131,17 +133,17 @@ const Jersey = (() => {
     parts.collarPin = h("path", { d: "M80,12 Q120,26 160,12", fill: "none", "stroke-width": 1.6, class: "jersey-collar-pin" }, jersey);
     parts.rim = h("path", { d: SHAPE, fill: "none", "stroke-width": 1.6 }, jersey);   // rim light, stronger on dark jerseys
     // name, arched across the shoulders
-    h("path", { id: "jx-name-arc", d: "M40,80 Q120,56 200,80", fill: "none" }, defs);
+    h("path", { id: id("name-arc"), d: "M40,80 Q120,56 200,80", fill: "none" }, defs);
     parts.name = h("text", { class: "jersey-name", "text-anchor": "middle", style: "font: 700 23px var(--font-label); letter-spacing: .16em" }, jersey);
-    parts.namePath = h("textPath", { href: "#jx-name-arc", startOffset: "50%" }, parts.name);
+    parts.namePath = h("textPath", { href: `#${id("name-arc")}`, startOffset: "50%" }, parts.name);
     // number: shadow, outline, fill, and a soft shine on the twill
-    const num = h("g", { class: "jersey-num-g", filter: "url(#jx-numshadow)" }, jersey);
+    const num = h("g", { class: "jersey-num-g", filter: ref("numshadow") }, jersey);
     parts.numOutline = text(num, 120, 208, "", "jersey-num-outline", { "text-anchor": "middle", "stroke-width": 9, "stroke-linejoin": "round", style: "font: 700 120px var(--font-label)" });
     parts.num = text(num, 120, 208, "", "jersey-num", { "text-anchor": "middle", style: "font: 700 120px var(--font-label)" });
-    parts.numShine = text(num, 120, 208, "", "jersey-num-shine", { "text-anchor": "middle", fill: "url(#jx-numfill)", style: "font: 700 120px var(--font-label)" });
+    parts.numShine = text(num, 120, 208, "", "jersey-num-shine", { "text-anchor": "middle", fill: ref("numfill"), style: "font: 700 120px var(--font-label)" });
     // a light that sweeps across the jersey when the season changes
-    const sweepG = h("g", { "clip-path": "url(#jx-clip)", "pointer-events": "none" }, jersey);
-    parts.sweep = h("rect", { x: -120, y: -20, width: 90, height: 320, fill: "url(#jx-sweep)", class: "jersey-sweep", transform: "skewX(-18)" }, sweepG);
+    const sweepG = h("g", { "clip-path": ref("clip"), "pointer-events": "none" }, jersey);
+    parts.sweep = h("rect", { x: -120, y: -20, width: 90, height: 320, fill: ref("sweep"), class: "jersey-sweep", transform: "skewX(-18)" }, sweepG);
     parts.jersey = jersey;
     parts.caption = text(svg, CX, CY + 152, "", "dial-caption", { "text-anchor": "middle" });
 
@@ -162,11 +164,11 @@ const Jersey = (() => {
       }
       h("path", { d: arc(a0, a1, R), fill: "none", "stroke-width": 18, "stroke-linecap": "round", class: "dial-track" }, dg);
       const [sx, sy] = polar(start, R), [ex, ey] = polar(end, R);
-      const grad = h("linearGradient", { id: `jx-arc-${i}`, gradientUnits: "userSpaceOnUse", x1: sx, y1: sy, x2: ex, y2: ey }, defs);
+      const grad = h("linearGradient", { id: id(`arc-${i}`), gradientUnits: "userSpaceOnUse", x1: sx, y1: sy, x2: ex, y2: ey }, defs);
       const gStops = [h("stop", { offset: 0 }, grad), h("stop", { offset: 1 }, grad)];
       // fill and its highlight both measure their length as 1, so a fraction f fills exactly f of each
-      const fill = h("path", { d: arc(start, end, R), fill: "none", "stroke-width": 18, "stroke-linecap": "round", stroke: `url(#jx-arc-${i})`,
-                               filter: "url(#jx-glow)", class: "dial-fill", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1 }, dg);
+      const fill = h("path", { d: arc(start, end, R), fill: "none", "stroke-width": 18, "stroke-linecap": "round", stroke: ref(`arc-${i}`),
+                               filter: ref("glow"), class: "dial-fill", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1 }, dg);
       h("path", { d: arc(start, end, R - 4), fill: "none", stroke: "rgba(255,255,255,.35)", "stroke-width": 3, "stroke-linecap": "round", "pointer-events": "none",
                   class: "dial-gloss", pathLength: 1, "stroke-dasharray": 1, "stroke-dashoffset": 1 }, dg);
       // the knob that rides to the percentile: drawn at angle 0 and rotated into place
