@@ -51,7 +51,8 @@ function countUp() {
   });
 }
 
-Promise.all([fetch("data/findings.json").then((r) => r.json()), fetch("data/careers.json").then((r) => r.json())])
+// no-cache: always check for a newer data file, so updates show up without clearing the browser cache
+Promise.all([fetch("data/findings.json", { cache: "no-cache" }).then((r) => r.json()), fetch("data/careers.json", { cache: "no-cache" }).then((r) => r.json())])
   .then(([findings, careers]) => {
     F = findings;
     PER = findings.per_qb;

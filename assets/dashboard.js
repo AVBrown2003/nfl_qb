@@ -488,7 +488,8 @@ function downloadCsv() {
 function parseCsv(text) {
   return text.trim().split(/\r?\n/).slice(1).map((line) => line.split(","));   // no field contains a comma
 }
-Promise.all([fetch("data/dashboard_drives.csv").then((r) => r.text()), fetch("data/dashboard_qbs.csv").then((r) => r.text())])
+// no-cache: always check for a newer data file, so updates show up without clearing the browser cache
+Promise.all([fetch("data/dashboard_drives.csv", { cache: "no-cache" }).then((r) => r.text()), fetch("data/dashboard_qbs.csv", { cache: "no-cache" }).then((r) => r.text())])
   .then(([drives, qbs]) => {
     QBS = parseCsv(qbs).map(([qb, name, cls]) => ({ qb: +qb, name, cls: +cls }));
     const TEXT = new Set(["team", "opp", "res", "dr"]);
