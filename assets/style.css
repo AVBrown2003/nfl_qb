@@ -238,6 +238,8 @@ table.data th:first-child, table.data td:first-child { text-align: left; }
 .dial-label { fill: var(--muted); font: 500 11px var(--font-label); letter-spacing: .12em; text-transform: uppercase; }
 .dial-value { fill: var(--ink); font: 700 18px var(--font-head); }
 .dial-pct { fill: var(--ink-2); font: 12px var(--font-body); }
+.dial-pct.above { fill: #1f9d55; font-weight: 600; }   /* same green and red as the best / worst season buttons */
+.dial-pct.below { fill: #d64545; font-weight: 600; }
 
 .season-panel { padding: 18px 0 0; }
 .season-title { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }

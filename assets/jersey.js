@@ -1,22 +1,21 @@
 /* The career explorer's centerpiece: the back of the jersey a QB wore that season (team colors
-   for that era, his name and number), with five stat dials around it. Each dial fills to the
-   share of all starting seasons (8+ starts) in the data that this season beat. */
+   for that era, his name and number), with six stat dials around it. Each dial fills to the
+   share of all starting seasons (8+ starts) in the data that this season beat; the percentile
+   is green when it beats at least half of them and red when it doesn't. */
 
 const Jersey = (() => {
   const { h, text } = Charts;
   const CX = 320, CY = 300, R = 196, W = 640, H = 600;
-  const SEG = 72, GAP = 12, SPAN = SEG - GAP;   // degrees per dial, gap between dials
+  const SEG = 60, GAP = 12, SPAN = SEG - GAP;   // degrees per dial, gap between dials
   const DIALS = [
-    { key: "win_pct", label: "Win %", value: (s) => (s.starts ? `${s.record}` : "No starts"),
-      sub: (s) => (s.starts ? fmtPct3(s.win_pct) : "") },
-    { key: "epa_vs_league", label: "EPA vs league", value: (s) => signed(s.epa_vs_league, 2), sub: () => "per play" },
+    { key: "win_pct", label: "Record", value: (s) => (s.starts ? s.record : "No starts"), sub: () => "as starter" },
+    { key: "passing_yards", label: "Passing yards", value: (s) => s.passing_yards.toLocaleString(), sub: () => "that season" },
+    { key: "pass_tds", label: "TD passes", value: (s) => String(s.pass_tds), sub: () => "that season" },
+    { key: "turnovers", label: "Turnovers", value: (s) => String(s.turnovers), sub: () => "lower is better" },
     { key: "td_drive_pct", label: "TD drives", value: (s) => pct(s.td_drive_pct, 0), sub: () => "of his drives" },
     { key: "yards_per_attempt", label: "Yards / pass", value: (s) => (s.yards_per_attempt ?? 0).toFixed(1), sub: () => "per attempt" },
-    { key: "int_pct", label: "INT rate", value: (s) => pct(s.int_pct, 1), sub: () => "lower is better" },
   ];
   const pct = (v, d) => (v === null || v === undefined ? "–" : `${(v * 100).toFixed(d)}%`);
-  const signed = (v, d) => `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(d)}`;
-  const fmtPct3 = (v) => (v === null ? "" : v.toFixed(3).replace(/^0/, ""));
   const ordinal = (n) => {
     const s = ["th", "st", "nd", "rd"], v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
@@ -112,6 +111,8 @@ const Jersey = (() => {
       dial.fill.setAttribute("stroke-dashoffset", v === null ? ARC_LEN : ARC_LEN * (1 - Math.max(0.02, v)));
       dial.value.textContent = d.value(s);
       dial.sub.textContent = v === null ? d.sub(s) : `${ordinal(Math.round(v * 100))} percentile`;
+      dial.sub.classList.toggle("above", v !== null && v >= 0.5);
+      dial.sub.classList.toggle("below", v !== null && v < 0.5);
     });
   }
 

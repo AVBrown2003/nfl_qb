@@ -32,7 +32,7 @@ A two-page website (a report and a dashboard), live at https://avbrown2003.githu
 | `dashboard.html` | The dashboard page: loads every drive and recomputes 6 summary numbers, 4 charts and a table in the browser as you change 9 filters (QB, seasons, rookie class, career year, quarter, game type, home/away, QB role, game result). Each chart has a measure switch (count / total / median / rate) and a split-by switch. |
 | `assets/style.css` | Shared fonts, colors, and layout for both pages. |
 | `assets/charts.js` | Small SVG chart helpers (columns, lines, paired bars, horizontal bars, donut) with hover tooltips and table views. |
-| `assets/jersey.js` | Draws the career explorer's jersey and the five stat dials around it. |
+| `assets/jersey.js` | Draws the career explorer's jersey and the six stat dials around it. |
 | `assets/dashboard.js` | Loads `data/dashboard_drives.csv`, applies the filters, computes every number on the dashboard, and keeps the current view in the page URL so it can be linked. |
 | `assets/report.js` | Loads `data/findings.json` and `data/careers.json` and draws everything on the report page. |
 | `01_build_qb_plays.py` | Reads the raw nflverse files, picks the qualifying QBs, and builds the play-level data (one row per QB play) with drive and career-year information attached. |
