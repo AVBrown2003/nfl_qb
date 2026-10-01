@@ -42,7 +42,7 @@ JERSEYS = {
     "LV":  [(2000, 2099, "#000000", "#FFFFFF", "#A5ACAF")],
     "MIA": [(2000, 2099, "#008E97", "#FFFFFF", "#F58220")],
     "MIN": [(2000, 2099, "#4F2683", "#FFFFFF", "#FFC62F")],
-    "NE":  [(2000, 2099, "#002244", "#FFFFFF", "#C60C30")],
+    "NE":  [(2000, 2099, "#FFFFFF", "#1F3F7A", "#C60C30")],  # white road jersey: navy numbers (lightened so it reads as blue), red trim
     "NO":  [(2000, 2099, "#101820", "#D3BC8D", "#FFFFFF")],
     "NYG": [(2000, 2099, "#0B2265", "#FFFFFF", "#A71930")],
     "NYJ": [(2000, 2018, "#0C371D", "#FFFFFF", "#FFFFFF"), (2019, 2099, "#125740", "#FFFFFF", "#000000")],
