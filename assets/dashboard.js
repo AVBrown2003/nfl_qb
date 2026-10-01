@@ -212,6 +212,7 @@ function pressToggle(el, v) {
 function buildControls(cyMax) {
   const qbList = [["all", `All QBs (${QBS.length})`], ...[...QBS].sort((a, b) => a.name.localeCompare(b.name)).map((q) => [q.qb, `${q.name} (${q.cls})`])];
   $("f-qb").innerHTML = options(qbList);
+  QBSearch.enhance($("f-qb"));
   const years = Array.from({ length: 26 }, (_, i) => [2000 + i, 2000 + i]);
   ["f-s0", "f-s1", "f-c0", "f-c1"].forEach((id) => ($(id).innerHTML = options(years)));
   const cys = Array.from({ length: cyMax }, (_, i) => [i + 1, cyLabel(i + 1)]);
@@ -488,8 +489,43 @@ function downloadCsv() {
 function parseCsv(text) {
   return text.trim().split(/\r?\n/).slice(1).map((line) => line.split(","));   // no field contains a comma
 }
-// no-cache: always check for a newer data file, so updates show up without clearing the browser cache
-Promise.all([fetch("data/dashboard_drives.csv", { cache: "no-cache" }).then((r) => r.text()), fetch("data/dashboard_qbs.csv", { cache: "no-cache" }).then((r) => r.text())])
+// ---- loading screen: the ring fills as the drive file downloads, and the football rides its edge ----
+const LOADER = document.getElementById("loader");
+// size of data/dashboard_drives.csv in bytes, so the ring can show progress (the server sends the
+// file compressed, so the download doesn't report its real size). Update it if the file is rebuilt.
+const DRIVES_BYTES = 5488007;
+function loaderProgress(f, label) {
+  document.getElementById("ring-fill").style.strokeDashoffset = 1 - f;
+  document.getElementById("ring-ball").style.transform = `rotate(${-90 + 360 * f}deg)`;
+  const turn = f * 40, facing = Math.cos(turn);   // the same spiral as the report's progress football
+  const laces = document.getElementById("ring-laces");
+  laces.setAttribute("transform", `translate(0, ${11 - 7.5 * Math.sin(turn)}) scale(1, ${Math.max(0.15, Math.abs(facing))})`);
+  laces.setAttribute("opacity", Math.max(0, Math.min(1, facing * 2.5)));
+  document.getElementById("loader-text").textContent = label || `Loading 105,862 drives… ${Math.round(f * 100)}%`;
+}
+async function fetchWithProgress(url) {
+  const res = await fetch(url, { cache: "no-cache" });   // no-cache: always check for a newer data file
+  if (!res.ok) throw new Error(`${url}: ${res.status}`);
+  if (!res.body) return res.text();
+  const reader = res.body.getReader(), chunks = [];
+  let got = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    got += value.length;
+    loaderProgress(Math.min(0.97, got / DRIVES_BYTES));
+  }
+  return new Blob(chunks).text();
+}
+const loaderShown = performance.now();
+loaderProgress(0);
+
+Promise.all([fetchWithProgress("data/dashboard_drives.csv"), fetch("data/dashboard_qbs.csv", { cache: "no-cache" }).then((r) => r.text())])
+  .then(([drives, qbs]) => {
+    loaderProgress(1, "Building the dashboard…");
+    return new Promise((done) => requestAnimationFrame(() => setTimeout(() => done([drives, qbs]), 30)));   // let the full ring paint
+  })
   .then(([drives, qbs]) => {
     QBS = parseCsv(qbs).map(([qb, name, cls]) => ({ qb: +qb, name, cls: +cls }));
     const TEXT = new Set(["team", "opp", "res", "dr"]);
@@ -511,9 +547,13 @@ Promise.all([fetch("data/dashboard_drives.csv", { cache: "no-cache" }).then((r) 
     state = readHash();
     update();
     document.querySelectorAll(".dash-grid .card.in").forEach(buildIn);   // charts already on screen at load
+    // hold the loading screen at least briefly so it never just flickers, then fade it out
+    setTimeout(() => LOADER.classList.add("done"), Math.max(0, 700 - (performance.now() - loaderShown)));
+    document.getElementById("share").addEventListener("click", (e) => Charts.copyLink(e.currentTarget, location.href));
     addEventListener("hashchange", () => { state = readHash(); update(); });
   })
   .catch((err) => {
+    LOADER.classList.add("done");
     $("showing").textContent = "Could not load the drive data. If you opened this file directly, run a local server (see the README).";
     console.error(err);
   });
