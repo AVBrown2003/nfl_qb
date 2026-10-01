@@ -59,11 +59,6 @@ a { color: var(--navy); text-underline-offset: 3px; }
   padding: 10px 14px;
 }
 .nav-links a:hover { color: #fff; }
-.sound-toggle { margin-left: 10px; flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; border: 1px solid rgba(255,255,255,.25);
-  border-radius: 50%; background: transparent; color: rgba(255,255,255,.75); cursor: pointer; transition: color .15s, border-color .15s, background .15s; }
-.sound-toggle svg { width: 17px; height: 17px; }
-.sound-toggle:hover { color: #fff; border-color: rgba(255,255,255,.6); }
-.sound-toggle[aria-pressed="true"] { color: #fff; background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.6); }
 .nav-links a[aria-current="page"] { color: #fff; box-shadow: inset 0 -2px 0 #fff; }
 .progress {
   position: absolute; left: 0; bottom: -3px; height: 3px; width: 0; transition: width .1s linear;
@@ -524,7 +519,6 @@ html.pro .brand-mark {
 html.pro .nav-links a { font: 600 14.5px/1 var(--font-label); letter-spacing: .16em; }
 html.pro .nav-links a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--red); }
 html.pro .progress { box-shadow: 0 0 10px rgba(255,69,69,.45); }
-html.pro .sound-toggle { background-image: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0) 55%); }
 
 /* ---- hero: a night game under the lights ---- */
 html.pro .hero {

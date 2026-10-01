@@ -232,7 +232,7 @@ function initExplorerControls() {
     const n = EX.i + d;
     if (n < 0 || n >= EX.career.seasons.length) return;
     stopPlay();
-    selectSeason(n, true);
+    selectSeason(n);
   };
   let inView = false;
   new IntersectionObserver(([e]) => { inView = e.intersectionRatio >= 0.3; }, { threshold: [0, 0.3, 0.6] })
@@ -289,15 +289,9 @@ function extremes(c) {
            worst: pool.length > 1 ? pool.reduce((a, b) => (epa(b) < epa(a) ? b : a)) : -1 };
 }
 
-// react = the reader clicked or played to this season, so the crowd (if sound is on) reacts to a best or worst one
-function selectSeason(i, react = false) {
+function selectSeason(i) {
   const c = EX.career, s = c.seasons[i];
   EX.i = i;
-  if (react) {
-    const x = extremes(c);
-    if (i === x.best) Sound.cheer();
-    else if (i === x.worst) Sound.boo();
-  }
   Jersey.update(document.getElementById("dial"), c, s);
   const best = bestIndex(c);
   document.getElementById("s-name").textContent = c.name;
@@ -346,7 +340,7 @@ function renderSeasonButtons() {
     else if (s === worst && pool.length > 1) b.title = `Worst EPA season: ${signed(s.epa_vs_league, 3)} per play vs league`;
     b.innerHTML = `<i style="background:${s.jersey.body};${s.jersey.body === "#FFFFFF" ? "box-shadow:inset 0 0 0 1px #cfd4da" : ""}"></i>Y${s.career_year}<small>'${String(s.season).slice(2)} ${s.team}</small>`;
     b.setAttribute("aria-label", `${s.season}, ${yearLabel(s.career_year)}, ${s.team_name}`);
-    b.addEventListener("click", () => { stopPlay(); selectSeason(i, true); });
+    b.addEventListener("click", () => { stopPlay(); selectSeason(i); });
     box.appendChild(b);
   });
   box.insertAdjacentHTML("beforeend", `<p class="season-key"><span class="k best"></span>Best EPA season<span class="k worst"></span>Worst EPA season<span class="note">(among seasons with 8+ starts)</span></p>`);
@@ -380,7 +374,7 @@ function drawCareerChart() {
       `${s.starts} starts${s.starts ? `, ${s.record}` : ""}${part ? ' <span class="tt-dim">(part-time)</span>' : ""}`, e));
     hit.addEventListener("mouseenter", () => Charts.lift([bar], true));
     hit.addEventListener("mouseleave", () => { Charts.hideTip(); Charts.lift([bar], false); });
-    hit.addEventListener("click", () => { stopPlay(); selectSeason(i, true); });
+    hit.addEventListener("click", () => { stopPlay(); selectSeason(i); });
   });
 }
 
@@ -393,7 +387,7 @@ function drawCareerChartH2H() {
   const { h, text, scale, niceTicks, barPath } = Charts;
   const svg = h("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `EPA per play vs league by career year, ${A.name} and ${B.name}` }, el);
   const sides = [
-    { c: A, color: C.qb, on: EX.i, pick: (i) => { stopPlay(); selectSeason(i, true); } },
+    { c: A, color: C.qb, on: EX.i, pick: (i) => { stopPlay(); selectSeason(i); } },
     { c: B, color: C.compare, on: H2H.i, pick: (i) => { H2H.match = false; document.getElementById("h2h-match").checked = false; selectB(i); } },
   ];
   const years = [...new Set([...A.seasons, ...B.seasons].map((x) => x.career_year))].sort((a, b) => a - b);
@@ -438,7 +432,7 @@ function startPlay() {
   if (EX.i >= EX.career.seasons.length - 1) selectSeason(0);
   EX.timer = setInterval(() => {
     if (EX.i >= EX.career.seasons.length - 1) return stopPlay();
-    selectSeason(EX.i + 1, true);
+    selectSeason(EX.i + 1);
   }, 1400);
 }
 function stopPlay() {
