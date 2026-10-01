@@ -472,7 +472,7 @@ footer { margin-top: 70px; padding: 30px 0 44px; border-top: 3px solid var(--nav
 .explore a { font-weight: 600; }
 
 /* =====================================================================================
-   PRO THEME (preview: add ?look=pro to the address; ?look=plain switches back)
+   PRO THEME (the default look; add ?look=plain to the address for the plain look, ?look=pro to come back)
    Night-game hero, frosted glass panels on a cool stadium-gray page, broadcast-style
    condensed italic display type for the big moments, glossy chart marks.
    Only colors, type and finish change here; words, layout and charts stay the same.
