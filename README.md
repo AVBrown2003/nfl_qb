@@ -29,7 +29,7 @@ A two-page website (a report and a dashboard), live at https://avbrown2003.githu
 | File | What it does |
 |---|---|
 | `index.html` | The report page: headline numbers, the career explorer, the 10 findings with their charts, and the data notes. |
-| `dashboard.html` | The dashboard page: loads every drive and recomputes 6 summary numbers, 4 charts and a table in the browser as you change 9 filters (QB, seasons, rookie class, career year, quarter, game type, home/away, QB role, game result). Each chart has a measure switch (count / total / median / rate) and a split-by switch. |
+| `dashboard.html` | The dashboard page: loads every drive and recomputes 6 summary numbers, 4 charts and a table in the browser as you change 9 filters (QB, seasons, rookie class, career year, quarter, game type, home/away, QB role, game result). Each chart has a measure switch (count / total / median / rate; the two charts that compare a QB with the whole group leave out count) and a split-by switch. |
 | `assets/style.css` | Shared fonts, colors, and layout for both pages. |
 | `assets/charts.js` | Small SVG chart helpers (columns, lines, paired bars, horizontal bars, donut) with hover tooltips and table views. |
 | `assets/jersey.js` | Draws the career explorer's jersey and the six stat dials around it. |

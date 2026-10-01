@@ -53,7 +53,7 @@ const BREAKDOWNS = {
 };
 
 const CHARTS = [
-  { id: "c1", title: "Over the career", splits: ["cy", "season", "cls"], m: "m1", x: "x1" },
+  { id: "c1", title: "Over the career", splits: ["cy", "season", "cls"], m: "m1", x: "x1", measures: ["total", "median", "rate"] },
   { id: "c2", title: "By game situation", splits: ["qtr", "zone", "ha", "res", "role", "gt"], m: "m2", x: "x2", measures: ["total", "median", "rate"] },
   { id: "c3", title: "By drive result, team and opponent", splits: ["dr", "team", "opp"], m: "m3", x: "x3" },
   { id: "c4", title: "Leaderboard", splits: ["qb", "cls"], m: "m4", x: "x4" },
