@@ -51,6 +51,32 @@ addEventListener("scroll", spiral, { passive: true });
 spiral();
 ball.classList.remove("moving");
 
+// Q1-Q4 dots on the progress bar: each sits where its part of the report starts; click to jump there
+const quarterBox = document.getElementById("quarters");
+const quarterDots = ["part1", "part2", "part3", "part4"].map((id, i) => {
+  const part = document.getElementById(id), b = document.createElement("button");
+  b.type = "button"; b.className = "qdot"; b.textContent = `Q${i + 1}`;
+  b.title = part.querySelector(".part-label").textContent.trim();
+  b.setAttribute("aria-label", `Jump to ${b.title}`);
+  quarterBox.appendChild(b);
+  const q = { part, b };
+  b.addEventListener("click", () => scrollTo({ top: q.at, behavior: "smooth" }));
+  return q;
+});
+// position on the page from layout, ignoring the fade-in's temporary shift
+const pageTop = (el) => { let y = 0; for (let e = el; e; e = e.offsetParent) y += e.offsetTop; return y; };
+function placeQuarters() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  quarterDots.forEach((q) => {
+    q.at = pageTop(q.part) - 80;   // 80 = the scroll padding under the nav
+    q.b.style.left = `${Math.min(100, Math.max(0, (q.at / max) * 100))}%`;
+  });
+  markQuarters();
+}
+const markQuarters = () => quarterDots.forEach((q) => q.b.classList.toggle("passed", scrollY >= q.at - 2));
+addEventListener("scroll", markQuarters, { passive: true });
+new ResizeObserver(placeQuarters).observe(document.body);
+
 // headline numbers count up once
 function countUp() {
   document.querySelectorAll("[data-count]").forEach((el) => {
@@ -75,7 +101,10 @@ Promise.all([fetch("data/findings.json", { cache: "no-cache" }).then((r) => r.js
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches) countUp();
     URL_QB = urlQB();
     initExplorer();
-    if (URL_QB) selectQB(CAREERS.find((c) => c.id === URL_QB));
+    // a shared link: ?qb=Name&season=2018&vs=Other Name opens that career (and head-to-head)
+    const params = new URLSearchParams(location.search), byLower = (n) => n && CAREERS.find((c) => c.name.toLowerCase() === n.toLowerCase());
+    if (URL_QB) selectQB(CAREERS.find((c) => c.id === URL_QB), +params.get("season") || undefined);
+    if (byLower(params.get("vs"))) setH2H(true, byLower(params.get("vs")), +params.get("vs_season") || undefined);
     initFindings();
     // the browser jumped to #about before the charts above it were drawn; go there again now
     if (location.hash) document.querySelector(location.hash)?.scrollIntoView({ behavior: "instant" });
@@ -98,6 +127,7 @@ function initExplorer() {
   sel.innerHTML = classes.map((y) => `<optgroup label="${y} rookie class">${CAREERS.filter((c) => c.rookie_class === y)
     .sort((a, b) => a.name.localeCompare(b.name)).map((c) => `<option value="${c.id}">${c.name}</option>`).join("")}</optgroup>`).join("");
   sel.addEventListener("change", () => selectQB(CAREERS.find((c) => c.id === sel.value)));
+  QBSearch.enhance(sel);
   const quick = document.getElementById("quick");
   QUICK.filter((n) => byName[n]).forEach((n) => {
     const b = document.createElement("button");
@@ -106,7 +136,130 @@ function initExplorer() {
     quick.appendChild(b);
   });
   document.getElementById("play").addEventListener("click", togglePlay);
+  initH2H();
+  initExplorerControls();
   selectQB(byName["Sam Darnold"]);
+}
+
+/* ---- head-to-head: a second, smaller jersey and dial beside the first. Each side has its own
+   season buttons; "Match career years" makes the second side follow the first year by year. ---- */
+const H2H = { on: false, career: null, i: 0, match: false };
+function initH2H() {
+  const selB = document.getElementById("qb-select-b");
+  selB.innerHTML = document.getElementById("qb-select").innerHTML;
+  selB.addEventListener("change", () => pickB(CAREERS.find((c) => c.id === selB.value)));
+  QBSearch.enhance(selB);
+  document.getElementById("h2h").addEventListener("click", () => setH2H(!H2H.on));
+  document.getElementById("h2h-match").addEventListener("change", (e) => { H2H.match = e.target.checked; syncH2H(); });
+}
+function setH2H(on, vs, season) {
+  H2H.on = on;
+  const btn = document.getElementById("h2h");
+  document.getElementById("explorer").classList.toggle("h2h", on);
+  document.getElementById("dial-b-box").hidden = !on;
+  btn.setAttribute("aria-pressed", on);
+  btn.textContent = on ? "Exit head-to-head" : "Head-to-head";
+  if (on) {
+    // default opponent: the classmate with the most career starts (Darnold vs. Josh Allen), otherwise Josh Allen
+    const starts = (c) => c.seasons.reduce((a, x) => a + x.starts, 0);
+    const mate = CAREERS.filter((c) => c.rookie_class === EX.career.rookie_class && c.id !== EX.career.id)
+      .sort((a, b) => starts(b) - starts(a))[0];
+    pickB(vs || (H2H.career && H2H.career.id !== EX.career.id ? H2H.career : null) || mate || byName["Josh Allen"], season);
+  }
+  syncH2H();
+  drawCareerChart();
+}
+// choose the second quarterback; he opens on the given season, else the matching career year (if
+// matching is on), else his best season
+function pickB(c, season) {
+  H2H.career = c;
+  document.getElementById("qb-select-b").value = c.id;
+  const k = season ? c.seasons.findIndex((x) => x.season === season) : -1;
+  renderSeasonsB();
+  if (k >= 0) selectB(k);
+  else if (H2H.match) syncH2H();
+  else selectB(Math.max(0, extremes(c).best));
+}
+function renderSeasonsB() {
+  const box = document.getElementById("seasons-b"), c = H2H.career, x = extremes(c);
+  box.innerHTML = "";
+  c.seasons.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = `season-btn${i === x.best ? " best" : i === x.worst ? " worst" : ""}`;
+    b.innerHTML = `<i style="background:${s.jersey.body};${s.jersey.body === "#FFFFFF" ? "box-shadow:inset 0 0 0 1px #cfd4da" : ""}"></i>Y${s.career_year}<small>'${String(s.season).slice(2)} ${s.team}</small>`;
+    b.setAttribute("aria-label", `${c.name}: ${s.season}, ${yearLabel(s.career_year)}, ${s.team_name}`);
+    b.addEventListener("click", () => {
+      if (H2H.match) { H2H.match = false; document.getElementById("h2h-match").checked = false; }   // picking a year by hand unlocks matching
+      selectB(i);
+    });
+    box.appendChild(b);
+  });
+}
+function selectB(i, missingYear) {
+  const c = H2H.career, s = c.seasons[i];
+  H2H.i = i;
+  Jersey.update(document.getElementById("dial-b"), c, s);
+  document.getElementById("dial-b-box").classList.toggle("missing", !!missingYear);
+  document.querySelectorAll("#seasons-b .season-btn").forEach((b, k) => b.setAttribute("aria-pressed", k === i));
+  drawCareerChart();
+  document.getElementById("vs-note").textContent = missingYear
+    ? `${c.name} never played a ${yearLabel(missingYear)} season. Showing his last one (${yearLabel(s.career_year)}, ${s.season}).`
+    : `${c.name} · ${yearLabel(s.career_year)} · ${s.season} ${s.team} · ${s.starts ? `${s.record} as starter` : "no starts"}`;
+}
+// keeps the first side's label current and, when matching is on, moves the second side to the same career year
+function syncH2H() {
+  const a = EX.career.seasons[EX.i];
+  document.getElementById("vs-a").textContent = `${EX.career.name} · ${yearLabel(a.career_year)} · ${a.season} ${a.team}`;
+  if (!H2H.on || !H2H.match || !H2H.career) return;
+  const c = H2H.career, k = c.seasons.findIndex((s) => s.career_year === a.career_year);
+  selectB(k < 0 ? c.seasons.length - 1 : k, k < 0 ? a.career_year : 0);
+}
+
+/* ---- share link, keyboard (← → and Space), and swipe on the jersey ---- */
+function initExplorerControls() {
+  document.getElementById("share").addEventListener("click", (e) => {
+    const u = new URL(location.href);
+    u.search = ""; u.hash = "explorer";
+    u.searchParams.set("qb", EX.career.name);
+    u.searchParams.set("season", EX.career.seasons[EX.i].season);
+    if (H2H.on) {
+      u.searchParams.set("vs", H2H.career.name);
+      u.searchParams.set("vs_season", H2H.career.seasons[H2H.i].season);
+    }
+    Charts.copyLink(e.currentTarget, u.toString());
+  });
+  const step = (d) => {
+    const n = EX.i + d;
+    if (n < 0 || n >= EX.career.seasons.length) return;
+    stopPlay();
+    selectSeason(n, true);
+  };
+  let inView = false;
+  new IntersectionObserver(([e]) => { inView = e.intersectionRatio >= 0.3; }, { threshold: [0, 0.3, 0.6] })
+    .observe(document.getElementById("explorer"));
+  addEventListener("keydown", (e) => {
+    if (!inView || !EX.career || e.altKey || e.ctrlKey || e.metaKey || e.target.closest("input, select, textarea")) return;
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); step(e.key === "ArrowRight" ? 1 : -1); }
+    else if (e.key === " " && !e.target.closest("button, a")) { e.preventDefault(); togglePlay(); }
+  });
+  ["dial", "dial-b"].forEach((id) => {
+    const el = document.getElementById(id);
+    let x0 = null, y0 = null;
+    el.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    el.addEventListener("touchend", (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) {   // swipe left = next season, on whichever jersey was swiped
+        const d = dx < 0 ? 1 : -1;
+        if (id === "dial") step(d);
+        else if (H2H.career && H2H.i + d >= 0 && H2H.i + d < H2H.career.seasons.length) {
+          H2H.match = false; document.getElementById("h2h-match").checked = false;
+          selectB(H2H.i + d);
+        }
+      }
+      x0 = null;
+    }, { passive: true });
+  });
 }
 
 const bestIndex = (c) => {
@@ -173,6 +326,7 @@ function selectSeason(i, react = false) {
   drawCareerChart();
   const origYears = c.seasons.filter((x) => x.with_original_team && x.starts >= 8).map((x) => x.career_year);
   const bs = best >= 0 ? c.seasons[best] : null;
+  syncH2H();
   document.getElementById("career-note").textContent =
     (bs ? `Best season: ${bs.season} (${yearLabel(bs.career_year)}) with ${bs.team}, ${signed(bs.epa_vs_league, 2)} per play vs league. ` : "No starting seasons. ") +
     (origYears.length ? `Last starting season for ${c.original_team}: ${yearLabel(Math.max(...origYears))}.` : "");
@@ -200,6 +354,7 @@ function renderSeasonButtons() {
 
 // EPA vs league for every season of the selected career; click a bar to jump to that season
 function drawCareerChart() {
+  if (H2H.on && H2H.career) return drawCareerChartH2H();
   const el = document.getElementById("career-chart"), c = EX.career;
   el.innerHTML = "";
   const W = Math.max(280, el.clientWidth), H = 150, m = { t: 14, r: 8, b: 22, l: 40 };
@@ -226,6 +381,54 @@ function drawCareerChart() {
     hit.addEventListener("mouseenter", () => Charts.lift([bar], true));
     hit.addEventListener("mouseleave", () => { Charts.hideTip(); Charts.lift([bar], false); });
     hit.addEventListener("click", () => { stopPlay(); selectSeason(i, true); });
+  });
+}
+
+// head-to-head: both quarterbacks' seasons side by side for each career year, each bar measured
+// against the league average (the "avg" line); click a bar to show that season on its side
+function drawCareerChartH2H() {
+  const el = document.getElementById("career-chart"), A = EX.career, B = H2H.career;
+  el.innerHTML = "";
+  const W = Math.max(280, el.clientWidth), H = 190, m = { t: 34, r: 8, b: 22, l: 40 };
+  const { h, text, scale, niceTicks, barPath } = Charts;
+  const svg = h("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `EPA per play vs league by career year, ${A.name} and ${B.name}` }, el);
+  const sides = [
+    { c: A, color: C.qb, on: EX.i, pick: (i) => { stopPlay(); selectSeason(i, true); } },
+    { c: B, color: C.compare, on: H2H.i, pick: (i) => { H2H.match = false; document.getElementById("h2h-match").checked = false; selectB(i); } },
+  ];
+  const years = [...new Set([...A.seasons, ...B.seasons].map((x) => x.career_year))].sort((a, b) => a - b);
+  const vals = [...A.seasons, ...B.seasons].map((x) => x.epa_vs_league);
+  const ticks = niceTicks(Math.min(-0.1, ...vals), Math.max(0.1, ...vals), 3);
+  const y = scale(ticks[0], ticks[ticks.length - 1], H - m.b, m.t);
+  const band = (W - m.l - m.r) / Math.max(years.length, 8), bw = Math.min(15, band * 0.36);
+  // legend
+  let lx = m.l;
+  sides.forEach((sd) => {
+    h("rect", { x: lx, y: 6, width: 11, height: 11, rx: 3, fill: sd.color }, svg);
+    lx += 16 + text(svg, lx + 16, 16, sd.c.name, "row-label").getComputedTextLength() + 14;
+  });
+  if (lx + 300 < W) text(svg, lx + 4, 16, "Bars above avg beat the league average that season", "annot-muted");
+  ticks.forEach((t) => {
+    h("line", { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t), stroke: t === 0 ? "#8d97a5" : "#e4e6ea", "stroke-width": t === 0 ? 1.4 : 1 }, svg);
+    text(svg, m.l - 6, y(t) + 4, t === 0 ? "avg" : signed(t, 2), "tick-label", { "text-anchor": "end" });
+  });
+  years.forEach((yr, k) => {
+    const cx = m.l + band * k + band / 2;
+    text(svg, cx, H - 6, `Y${yr}`, "tick-label", { "text-anchor": "middle" });
+    sides.forEach((sd, j) => {
+      const i = sd.c.seasons.findIndex((x) => x.career_year === yr);
+      if (i < 0) return;
+      const s = sd.c.seasons[i], x = j === 0 ? cx - bw - 1 : cx + 1, on = i === sd.on, part = s.starts < 8;
+      const bar = h("path", { d: barPath(x, y(0), bw, y(s.epa_vs_league)), fill: sd.color, opacity: on ? 1 : part ? 0.3 : 0.6, class: "bar" }, svg);
+      if (on) h("rect", { x: x - 2.5, y: m.t - 4, width: bw + 5, height: H - m.b - m.t + 8, fill: "none", stroke: sd.color, "stroke-width": 1.8, rx: 4 }, svg);
+      const hit = h("rect", { x: j === 0 ? cx - band / 2 : cx, y: m.t, width: band / 2, height: H - m.b - m.t, class: "hit clickable" }, svg);
+      hit.addEventListener("mousemove", (e) => Charts.showTip(
+        `<b>${sd.c.name} · ${s.season} · ${yearLabel(s.career_year)} · ${s.team}</b><br>EPA vs league: <b>${signed(s.epa_vs_league, 3)}</b> per play ` +
+        `(${s.epa_vs_league >= 0 ? "above" : "below"} average)<br>${s.starts} starts${s.starts ? `, ${s.record}` : ""}${part ? ' <span class="tt-dim">(part-time)</span>' : ""}`, e));
+      hit.addEventListener("mouseenter", () => Charts.lift([bar], true));
+      hit.addEventListener("mouseleave", () => { Charts.hideTip(); Charts.lift([bar], false); });
+      hit.addEventListener("click", () => sd.pick(i));
+    });
   });
 }
 
@@ -270,6 +473,7 @@ function setup(id, { draw, table, readout }) {
       <p class="readout" aria-live="polite"></p></div>
     <button class="link-btn" type="button" data-table>Show table</button>`;
   const sel = foot.querySelector("select"), out = foot.querySelector(".readout"), link = foot.querySelector("[data-table]");
+  QBSearch.enhance(sel);
   let qb = null, drawn = false;
   let mode = card.querySelector(".toggle button[aria-pressed='true']")?.dataset.mode;
   const redraw = (animate) => draw(chart, qb, animate, mode);
