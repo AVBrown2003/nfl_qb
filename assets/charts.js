@@ -10,8 +10,44 @@ const Charts = (() => {
   function h(tag, attrs = {}, parent) {
     const el = document.createElementNS(NS, tag);
     for (const [k, v] of Object.entries(attrs)) if (v !== undefined && v !== null && v !== false) el.setAttribute(k, v);
+    if (GLASS && attrs.fill && /\b(bar|hbar|slice|dot)\b/.test(attrs.class || "")) el.setAttribute("fill", glassFill(attrs.fill, /hbar/.test(attrs.class)));
     if (parent) parent.appendChild(el);
     return el;
+  }
+
+  // ---- glass finish (html.glass): colored marks get a glossy gradient instead of a flat fill ----
+  const GLASS = document.documentElement.classList.contains("glass");
+  let glassDefs;
+  const mix = (hex, toWhite, a) => {
+    const n = parseInt(hex.slice(1), 16), t = toWhite ? 255 : 0;
+    return `#${[n >> 16, (n >> 8) & 255, n & 255].map((c) => Math.round(c + (t - c) * a).toString(16).padStart(2, "0")).join("")}`;
+  };
+  // one hidden <svg> holds a gradient per color, shared by every chart on the page. The shine runs
+  // across a mark's thickness (side to side on a column, top to bottom on a horizontal bar), like
+  // light on a glass tube, so it never looks like a split or stacked bar.
+  function glassFill(color, across) {
+    if (!/^#[0-9a-f]{3}([0-9a-f]{3})?$/i.test(color || "")) return color;
+    if (color.length === 4) color = `#${[...color.slice(1)].map((c) => c + c).join("")}`;
+    const id = `glass-${across ? "h" : "v"}-${color.slice(1).toLowerCase()}`;
+    if (!glassDefs) {
+      const holder = document.createElementNS(NS, "svg");
+      holder.setAttribute("aria-hidden", "true");
+      holder.style.cssText = "position:absolute;width:0;height:0;overflow:hidden";
+      glassDefs = document.createElementNS(NS, "defs");
+      holder.appendChild(glassDefs);
+      document.body.appendChild(holder);
+    }
+    if (!document.getElementById(id)) {
+      const g = document.createElementNS(NS, "linearGradient");
+      g.id = id; g.setAttribute("x1", 0); g.setAttribute("y1", 0); g.setAttribute("x2", across ? 0 : 1); g.setAttribute("y2", across ? 1 : 0);
+      [[0, mix(color, true, 0.12)], [0.28, mix(color, true, 0.34)], [0.6, color], [1, mix(color, false, 0.16)]].forEach(([o, c]) => {
+        const st = document.createElementNS(NS, "stop");
+        st.setAttribute("offset", o); st.setAttribute("stop-color", c);
+        g.appendChild(st);
+      });
+      glassDefs.appendChild(g);
+    }
+    return `url(#${id})`;
   }
   function text(parent, x, y, str, cls, attrs = {}) {
     const t = h("text", { x, y, class: cls, ...attrs }, parent);
