@@ -72,7 +72,7 @@ extra = d.groupby(["qb_id", "season"]).agg(
     passing_yards=("passing_yards", "sum"), pass_tds=("pass_tds", "sum"),
     rushing_yards=("rushing_yards", "sum"), rush_tds=("rush_tds", "sum"), sacks=("sacks", "sum"),
 ).reset_index()
-qs = qs.merge(extra, on=["qb_id", "season"])
+qs = qs.merge(extra[[c for c in extra if c not in qs or c in ("qb_id", "season")]], on=["qb_id", "season"])
 qs["td_drive_pct"] = qs.td_drives / qs.drives
 qs["int_pct"] = qs.interceptions / qs.pass_attempts
 qs["yards_per_attempt"] = qs.passing_yards / qs.pass_attempts
@@ -87,8 +87,8 @@ qs = qs.merge(number, left_on=["qb_id", "season"], right_index=True, how="left")
 
 # rank each stat against every starting season (share of starting seasons this one beats)
 pool = qs[qs.starting_season]
-DIAL = {"win_pct": True, "epa_vs_league": True, "td_drive_pct": True,
-        "yards_per_attempt": True, "int_pct": False}  # False = lower is better
+DIAL = {"win_pct": True, "passing_yards": True, "pass_tds": True, "turnovers": False,
+        "td_drive_pct": True, "yards_per_attempt": True}  # False = lower is better
 for col, higher in DIAL.items():
     ref = pool[col].dropna().sort_values().to_numpy()
     def pct(v):
@@ -119,7 +119,8 @@ for qb, x in qs.groupby("qb_id"):
             "yards_per_attempt": None if pd.isna(r.yards_per_attempt) else round(r.yards_per_attempt, 2),
             "completion_pct": None if pd.isna(r.completion_pct) else round(r.completion_pct, 3),
             "passing_yards": int(r.passing_yards), "pass_tds": int(r.pass_tds),
-            "interceptions": int(r.interceptions), "rushing_yards": int(r.rushing_yards),
+            "interceptions": int(r.interceptions), "turnovers": int(r.turnovers),
+            "rushing_yards": int(r.rushing_yards),
             "rush_tds": int(r.rush_tds), "sacks": int(r.sacks), "drives": int(r.drives),
             "pctile": {k: None if pd.isna(r[f"{k}_pctile"]) else r[f"{k}_pctile"] for k in DIAL},
         })
