@@ -187,14 +187,15 @@ function drawCareerChart() {
   c.seasons.forEach((s, i) => {
     const x = m.l + band * i + (band - bw) / 2;
     const on = i === EX.i, part = s.starts < 8;
-    h("path", { d: barPath(x, y(0), bw, y(s.epa_vs_league)), fill: s.epa_vs_league >= 0 ? C.qb : C.team, opacity: on ? 1 : part ? 0.3 : 0.55 }, svg);
+    const bar = h("path", { d: barPath(x, y(0), bw, y(s.epa_vs_league)), fill: s.epa_vs_league >= 0 ? C.qb : C.team, opacity: on ? 1 : part ? 0.3 : 0.55, class: "bar" }, svg);
     if (on) h("rect", { x: x - 3, y: m.t - 4, width: bw + 6, height: H - m.b - m.t + 8, fill: "none", stroke: "#0e1a2b", "stroke-width": 1.5, rx: 5 }, svg);
     text(svg, x + bw / 2, H - 6, `Y${s.career_year}`, "tick-label", { "text-anchor": "middle" });
     const hit = h("rect", { x: m.l + band * i, y: m.t, width: band, height: H - m.b - m.t, class: "hit clickable" }, svg);
     hit.addEventListener("mousemove", (e) => Charts.showTip(
       `<b>${s.season} · ${yearLabel(s.career_year)} · ${s.team}</b><br>EPA vs league: <b>${signed(s.epa_vs_league, 3)}</b> per play<br>` +
       `${s.starts} starts${s.starts ? `, ${s.record}` : ""}${part ? ' <span class="tt-dim">(part-time)</span>' : ""}`, e));
-    hit.addEventListener("mouseleave", Charts.hideTip);
+    hit.addEventListener("mouseenter", () => Charts.lift([bar], true));
+    hit.addEventListener("mouseleave", () => { Charts.hideTip(); Charts.lift([bar], false); });
     hit.addEventListener("click", () => { stopPlay(); selectSeason(i); });
   });
 }

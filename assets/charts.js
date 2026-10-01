@@ -40,6 +40,8 @@ const Charts = (() => {
   }
   function hideTip() { if (tip) tip.classList.remove("show"); }
   const key = (color) => `<span class="tt-key" style="background:${color}"></span>`;
+  // hover lift: the marks behind a tooltip grow slightly and cast a shadow, as if raised off the page
+  const lift = (els, on) => els.forEach((e) => e.classList.toggle("lift", on));
 
   // ---- scales and ticks ------------------------------------------------------------------------
   const scale = (d0, d1, r0, r1) => (v) => r0 + ((v - d0) / (d1 - d0 || 1)) * (r1 - r0);
@@ -81,7 +83,10 @@ const Charts = (() => {
       el.innerHTML = "";
       const w = Math.max(280, el.clientWidth);
       const svg = el._draw(el, { ...el._spec, animate }, w);
-      if (svg && animate) svg.classList.add("anim");
+      if (svg && animate) {
+        svg.classList.add("anim");
+        setTimeout(() => svg.classList.remove("anim"), 3000);
+      }
     };
     render(!!spec.animate);
     if (!el._ro) {
@@ -132,12 +137,12 @@ const Charts = (() => {
       const parts = d.stack || [{ y: d.y, color: d.color || s.color || css("--c-qb") }];
       let base = 0;
       const top = parts.map((p) => p.y > 0).lastIndexOf(true);
-      if (!d.stack && d.y < 0) h("path", { d: barPath(bx(i), y(0), bw, y(d.y)), fill: parts[0].color, class: "bar down", style: `--i:${i}` }, svg);
+      if (!d.stack && d.y < 0) h("path", { d: barPath(bx(i), y(0), bw, y(d.y)), fill: parts[0].color, class: "bar down", style: `--i:${i}`, "data-col": i }, svg);
       parts.forEach((p, k) => {
         if (p.y <= 0) return;
         const y0 = y(base) - (base > 0 ? 2 : 0), y1 = y(base + p.y);   // 2px surface gap between segments
         const path = k === top ? barPath(bx(i), y0, bw, y1) : `M${bx(i)},${y0}V${y1}H${bx(i) + bw}V${y0}Z`;
-        h("path", { d: path, fill: p.color, class: "bar", style: `--i:${i}` }, svg);
+        h("path", { d: path, fill: p.color, class: "bar", style: `--i:${i}`, "data-col": i }, svg);
         base += p.y;
       });
       if (d.outline) {
@@ -146,8 +151,10 @@ const Charts = (() => {
       }
       if (d.label) text(svg, bx(i) + bw / 2, total(d) < 0 ? y(total(d)) + 16 : y(total(d)) - (d.outline ? 12 : 7), d.label, "direct-label late", { "text-anchor": "middle" });
       const hit = h("rect", { x: m.l + band * i, y: m.t, width: band, height: H - m.b - m.t, class: "hit" }, svg);
+      const bars = () => svg.querySelectorAll(`[data-col="${i}"]`);
+      hit.addEventListener("mouseenter", () => lift(bars(), true));
       hit.addEventListener("mousemove", (e) => showTip(s.tip(d), e));
-      hit.addEventListener("mouseleave", hideTip);
+      hit.addEventListener("mouseleave", () => { hideTip(); lift(bars(), false); });
     });
     h("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), class: "baseline" }, svg);
     return svg;
@@ -195,7 +202,7 @@ const Charts = (() => {
                       "stroke-width": sr.width || 2, "stroke-linejoin": "round", "stroke-linecap": "round",
                       pathLength: 1, class: "line" }, svg);
       pts.forEach((p) => h("circle", { cx: x(p.x), cy: y(p.y), r: p.big ? 6 : 4, fill: p.hollow ? "#fff" : sr.color,
-                                       stroke: p.hollow ? sr.color : "#fff", "stroke-width": 2, class: "dot" }, svg));
+                                       stroke: p.hollow ? sr.color : "#fff", "stroke-width": 2, class: "dot", "data-x": p.x }, svg));
       const last = pts[pts.length - 1];
       if (sr.endLabel !== false && !s.noEndLabels) text(svg, x(last.x) + 12, y(last.y) + (sr.labelDy || 0) + 4, sr.name, "direct-label late");
     });
@@ -213,6 +220,7 @@ const Charts = (() => {
       const loc = pt.matrixTransform(svg.getScreenCTM().inverse());
       const xv = xs.reduce((a, b) => (Math.abs(x(b) - loc.x) < Math.abs(x(a) - loc.x) ? b : a));
       cross.setAttribute("x1", x(xv)); cross.setAttribute("x2", x(xv)); cross.setAttribute("opacity", 0.35);
+      svg.querySelectorAll(".dot").forEach((c) => c.classList.toggle("lift", c.dataset.x === String(xv)));
       const rows = s.series.map((sr) => {
         const p = sr.points.find((q) => q.x === xv);
         return p && p.y !== null && p.y !== undefined
@@ -220,7 +228,7 @@ const Charts = (() => {
       }).join("");
       showTip(`<b>${s.tipX ? s.tipX(xv) : s.xFmt ? s.xFmt(xv) : xv}</b>${s.tipHead ? s.tipHead(xv) : ""}${rows}`, e);
     });
-    hit.addEventListener("mouseleave", () => { hideTip(); cross.setAttribute("opacity", 0); });
+    hit.addEventListener("mouseleave", () => { hideTip(); cross.setAttribute("opacity", 0); lift(svg.querySelectorAll(".dot"), false); });
     return svg;
   }
 
@@ -276,7 +284,7 @@ const Charts = (() => {
         const first = k === 0, last = k === r.parts.length - 1;
         const rr = 4, w = x1 - x0;
         const d = `M${x0 + (first ? rr : 0)},${top}H${x1 - (last ? rr : 0)}${last ? `Q${x1},${top} ${x1},${top + rr}V${top + bh - rr}Q${x1},${top + bh} ${x1 - rr},${top + bh}` : `V${top + bh}`}H${x0 + (first ? rr : 0)}${first ? `Q${x0},${top + bh} ${x0},${top + bh - rr}V${top + rr}Q${x0},${top} ${x0 + rr},${top}` : `V${top}`}Z`;
-        const seg = h("path", { d, fill: p.color, class: "hbar", style: `--i:${i * 3 + k}` }, svg);
+        const seg = h("path", { d, fill: p.color, class: "hbar seg", style: `--i:${i * 3 + k}` }, svg);
         const label = `${p.n} (${Math.round((p.n / total) * 100)}%)`;
         if (w > label.length * 7 + 12)
           text(svg, x0 + w / 2, top + bh / 2 + 4, label, "seg-label late", { "text-anchor": "middle", fill: luminance(p.color) > 0.4 ? css("--ink") : "#fff" });
@@ -306,6 +314,7 @@ const Charts = (() => {
       const mid = (a0 + a1) / 2;
       const path = h("path", { d, fill: p.color, class: "slice dot",
                                stroke: p.on ? css("--c-compare") : "none", "stroke-width": p.on ? 3 : 0 }, svg);
+      path.style.transformOrigin = `${cx}px ${cy}px`;
       if (p.on) path.style.transform = `translate(${Math.cos(mid) * 6}px, ${Math.sin(mid) * 6}px)`;
       if (p.n / total > 0.07) {
         const [lx, ly] = [cx + ((R + r0) / 2) * Math.cos(mid), cy + ((R + r0) / 2) * Math.sin(mid)];
@@ -323,8 +332,8 @@ const Charts = (() => {
     if (s.legendEl) {
       s.legendEl.innerHTML = s.slices.map((p) => `<div class="${p.on ? "on" : ""}"><i style="background:${p.color}"></i><span>${p.label}</span><b>${p.n}</b></div>`).join("");
       [...s.legendEl.children].forEach((row, i) => {
-        row.addEventListener("mousemove", (e) => { showTip(tip(s.slices[i]), e); paths[i].style.opacity = 0.8; });
-        row.addEventListener("mouseleave", () => { hideTip(); paths[i].style.opacity = 1; });
+        row.addEventListener("mousemove", (e) => { showTip(tip(s.slices[i]), e); paths[i].classList.add("lift"); });
+        row.addEventListener("mouseleave", () => { hideTip(); paths[i].classList.remove("lift"); });
       });
     }
     return svg;
@@ -366,7 +375,7 @@ const Charts = (() => {
   }
 
   return {
-    h, text, css, showTip, hideTip, key, scale, niceTicks, barPath, table, luminance,
+    h, text, css, showTip, hideTip, key, lift, scale, niceTicks, barPath, table, luminance,
     columns: (el, s) => mount(el, drawColumns, s),
     lines: (el, s) => mount(el, drawLines, s),
     pairedBars: (el, s) => mount(el, drawPairedBars, s),

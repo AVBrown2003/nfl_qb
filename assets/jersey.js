@@ -65,8 +65,8 @@ const Jersey = (() => {
     // dials
     parts.dials = DIALS.map((d, i) => {
       const mid = -90 + SEG * i, a0 = mid - SPAN / 2, a1 = mid + SPAN / 2;
-      const dg = h("g", {}, svg);
-      h("path", { d: arc(a0, a1, R), fill: "none", stroke: "#e6e8ec", "stroke-width": 16, "stroke-linecap": "round" }, dg);
+      const dg = h("g", { class: "dial" }, svg);
+      h("path", { d: arc(a0, a1, R), fill: "none", stroke: "#e6e8ec", "stroke-width": 16, "stroke-linecap": "round", class: "dial-track" }, dg);
       const fill = h("path", { d: arc(a0, a1, R), fill: "none", "stroke-width": 16, "stroke-linecap": "round",
                                class: "dial-fill", "stroke-dasharray": ARC_LEN, "stroke-dashoffset": ARC_LEN }, dg);
       // labels outside the ring
@@ -77,13 +77,14 @@ const Jersey = (() => {
       const value = text(dg, lx, ly + dy + 4, "", "dial-value", { "text-anchor": anchor });
       const sub = text(dg, lx, ly + dy + 21, "", "dial-pct", { "text-anchor": anchor });
       const hit = h("path", { d: arc(a0, a1, R), fill: "none", stroke: "transparent", "stroke-width": 44 }, dg);
+      hit.addEventListener("mouseenter", () => dg.classList.add("lift"));
       hit.addEventListener("mousemove", (e) => {
         const s = el._season; if (!s) return;
         const p = s.pctile[d.key];
         Charts.showTip(`<b>${d.label}: ${d.value(s)}</b> ${d.sub(s)}<br>` +
           (p === null ? "No starts this season" : `Better than <b>${Math.round(p * 100)}%</b> of the 625 starting seasons in the data`), e);
       });
-      hit.addEventListener("mouseleave", Charts.hideTip);
+      hit.addEventListener("mouseleave", () => { Charts.hideTip(); dg.classList.remove("lift"); });
       return { fill, label, value, sub };
     });
     el._parts = parts;
